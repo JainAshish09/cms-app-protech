@@ -1,0 +1,31 @@
+backend:
+  name: git-gateway
+  branch: master # Branch to update (optional; defaults to master)
+media_folder: public/images
+public_folder: images
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+    - label: "Features"
+      name: "features"
+      file: "app/content/features.md"
+      fields:
+        - { label: "Title", name: "title", widget: "string"}
+        - { label: "Publish Date", name: "date", widget: "datetime" }
+        - label: 'Features'
+          name: "features"
+          widget: list
+          fields:
+            - { label: "Title", name: "title", widget: "string"}
+            - label: "Sub Section"
+              name: "subSections"
+              widget: "list"
+              fields:
+                - { label: "Title", name: "title", widget: "string"}
+                - { label: "Image", name: "image", widget: "image"}
+                - label: "Details"
+                  name: "details"
+                  widget: "list"
+                  fields:
+                    - { label: "Description", name: "description", widget: "markdown"}
