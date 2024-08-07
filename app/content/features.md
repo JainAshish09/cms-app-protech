@@ -40,6 +40,12 @@ features:
               Testing\
               \
               Working fine
+  - title: "New features "
+    subSections:
+      - title: Feature 1
+        image: images/automation.svg
+        details:
+          - description: This  is a feature 1.
 ---
 **Project management solution for distributors**
 
