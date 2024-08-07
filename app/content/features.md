@@ -2,7 +2,7 @@
 title: Protech Website
 date: 2024-07-05T10:10:00.000Z
 features:
-  - title: Improve business efficiency
+  - title: Test
     subSections:
       - title: Automation
         image: /images/automation.svg
