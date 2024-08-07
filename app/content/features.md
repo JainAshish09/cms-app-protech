@@ -70,5 +70,7 @@ features:
     subSections:
       - title: Test
         image: images/gallery1.png
+        details:
+          - description: This is a test 1
 ---
 **Project management solution for distributors**
