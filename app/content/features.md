@@ -31,6 +31,15 @@ features:
           - description: AD - Active Directory integration for easy employee log-in
           - description: Customized integrations - Custom integrations are possible for
               customer specific solutions
+  - title: Test
+    subSections:
+      - title: Test1
+        image: images/se-icon.webp
+        details:
+          - description: |-
+              Testing\
+              \
+              Working fine
 ---
 **Project management solution for distributors**
 
