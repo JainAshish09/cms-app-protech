@@ -2,7 +2,7 @@
 title: Protech Website
 date: 2024-07-05T10:10:00.000Z
 features:
-  - title: Test
+  - title: Improve business efficiency
     subSections:
       - title: Automation
         image: /images/automation.svg
@@ -31,12 +31,40 @@ features:
           - description: AD - Active Directory integration for easy employee log-in
           - description: Customized integrations - Custom integrations are possible for
               customer specific solutions
-  - title: "New features "
+  - title: Create consistent performance
     subSections:
-      - title: Feature 1
-        image: images/automation.svg
+      - title: Accountability
+        image: /images/accountability.svg
         details:
-          - description: This  is a feature 1.
+          - description: User management - Administrators can manage users, roles and
+              permissions (view, create, edit)
+          - description: Admin tools - Prevent inconsistent product and job pricing issues;
+              allows management to control and set markup percentages
+          - description: Questions/requests for information - Track and manage all client
+              inquiries, associate questions with hardware sets and add images
+              to any question RFIs
+      - title: Accuracy
+        image: /images/accuracy.svg
+        details:
+          - description: Contacts - Manage all contact and job site information
+          - description: Change orders - Quickly create change orders to review
+              modifications to approved jobs
+          - description: Submittals - Accurately create purchase orders, proposals and
+              submittal packages with summary and detailed drawings
+      - title: Convenience
+        image: /images/convenience.svg
+        details:
+          - description: Custom price books  - Create and save custom price books
+          - description: Letterhead - Upload your company's letterhead using the Word
+              proposal feature to create distinctive submittals
+          - description: Cloud hosting - Cloud hosting on Amazon Web Services is standard in
+              TITAN and optional in V8
+  - title: New Feature added
+    subSections:
+      - title: Simplicity
+        image: images/simplicity.svg
+        details:
+          - description: Export - Download complete or specific data sets with the document
+              export feature
 ---
 **Project management solution for distributors**
-
