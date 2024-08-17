@@ -59,13 +59,6 @@ features:
               proposal feature to create distinctive submittals
           - description: Cloud hosting - Cloud hosting on Amazon Web Services is standard in
               TITAN and optional in V8
-  - title: New Feature added
-    subSections:
-      - title: Simplicity
-        image: images/simplicity.svg
-        details:
-          - description: Export - Download complete or specific data sets with the document
-              export feature
-  - title: Test
 ---
+
 **Project management solution for distributors**

@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { features } from 'process';
 
 const postsDirectory = path.join(process.cwd(), 'app/content');
 
@@ -8,7 +9,7 @@ export function getFeatureSlugs() {
 }
 
 export async function getFeatureBySlug(slug: string) {
-    const realSlug = slug.replace(/\.md$/, '');
+    const realSlug = "features";
     const { attributes, react: Content } = await import(`../../content/${realSlug}.md`);
     return { slug: realSlug, frontmatter: attributes, Content };
 }

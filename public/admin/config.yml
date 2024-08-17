@@ -29,3 +29,19 @@ collections:
                   widget: "list"
                   fields:
                     - { label: "Description", name: "description", widget: "markdown"}
+    - name: "blogs"
+      label: "Blogs"
+      file: "app/content/blogs.md"
+      fields:
+        - name: "Blog"
+          label: "blog"
+          widget: "list"
+          fields:
+            - { label: "Title", name: "title", widget: "string" }
+            - { label: "Date", name: "date", widget: "datetime" }
+            - { label: "Content", name: "content", widget: "markdown" }
+            - label: "Image"
+              name: "image" 
+              widget: "list"
+              fields:
+                - {label: "Image", name: "image", widget: "image"}
