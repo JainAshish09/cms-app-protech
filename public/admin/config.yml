@@ -30,10 +30,10 @@ collections:
                   fields:
                     - { label: "Description", name: "description", widget: "markdown"}
     - name: "blogs"
-      label: "Blogs"
+      label: "blogs"
       file: "app/content/blogs.md"
       fields:
-        - name: "Blog"
+        - name: "blog"
           label: "blog"
           widget: "list"
           fields:
