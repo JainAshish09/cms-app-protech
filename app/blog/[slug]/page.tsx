@@ -19,7 +19,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       {blogPost ? (
         <>
           <div className="w-[80%] justify-center m-auto p-11">
-            <h1 className="font-[700] text-[50px] text-start mb-9">My Post: {blogPost.title}</h1>
+            <h1 className="font-[700] text-[50px] text-start mb-9">{blogPost.title}</h1>
 
             <div dangerouslySetInnerHTML={{ __html: blogPost.content }} className="text-[30px]" />
             {blogPost.image && blogPost.image.length > 0 && (
