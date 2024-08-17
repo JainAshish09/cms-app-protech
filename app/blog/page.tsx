@@ -29,7 +29,7 @@ export default async function Page() {
       <MainContainer title={title} breadcrumbs={breadcrumbs} />
       <div className='flex justify-center mt-10'>
         <div className='grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 w-full max-w-[80%] px-4 sm:px-6 lg:px-8'>
-          {blogPosts.map((post) => (
+          {blogPosts?.map((post) => (
             <Link key={generateSlug(post.title)} href={`/blog/${generateSlug(post.title)}`} className='bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex flex-col xl:h-[400px] sm:h-[300px] md:h-[350px] transition-transform transform hover:scale-105 hover:shadow-2xl hover:border-blue-300'>
               {/* Image section */}
               <div className='flex-shrink-0 h-[65%]'>
