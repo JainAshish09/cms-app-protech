@@ -4,12 +4,13 @@ import path from 'path';
 import { remark } from 'remark';
 import html from 'remark-html';
 import { generateSlug } from './generateSlug';
+import { Image } from '@/app/models/blogs';
 
 interface BlogPost {
   title: string;
   date: string;
   content: string;
-  image: string[];
+  image: Image[];
 }
 
 export async function getBlogPosts() {
@@ -24,7 +25,6 @@ export async function getBlogPosts() {
 
   return { blogPosts, htmlString };
 }
-
 
 export async function getBlogPostBySlug(slug: string) {
   const { blogPosts } = await getBlogPosts();

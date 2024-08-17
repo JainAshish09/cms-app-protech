@@ -17,7 +17,7 @@ blog:
 
 
 
-      [www.google.com](www.google.com)
+      [https://www.google.com/](https://www.google.com/)
     image:
       - image: images/gallery1.png
 ---

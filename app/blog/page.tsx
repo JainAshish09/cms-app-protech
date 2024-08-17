@@ -34,8 +34,8 @@ export default async function Page() {
               {/* Image section */}
               <div className='flex-shrink-0 h-[65%]'>
                 <img
-                  src={post.image.length > 0 ? post.image[0] : DEFAULT_IMAGE_URL} // Use default image if no image is provided
-                  alt={post.title}
+                  src={post.image.length > 0 ? post.image[0].image : DEFAULT_IMAGE_URL} // Use default image if no image is provided
+                  alt={post.image[0].image}
                   className='w-full h-full object-cover'
                 />
               </div>

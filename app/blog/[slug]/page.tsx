@@ -1,9 +1,8 @@
-import { Blog, BlogEntry } from "@/app/models/blogs";
+import { Blog, Image } from "@/app/models/blogs";
 import { getBlogPostBySlug } from "../utils/markdownUtil";
 import MainContainer from "@/app/features/main-container";
 
 export default async function Page({ params }: { params: { slug: string } }) {
-
   const blogPost = await getBlogPostBySlug(params.slug);
 
   const title = "PRO-TECH TITAN® Blogs";
@@ -14,24 +13,22 @@ export default async function Page({ params }: { params: { slug: string } }) {
   ];
 
   return (
-    <div >
+    <div>
       <MainContainer title={title} breadcrumbs={breadcrumbs} />
       {blogPost ? (
         <>
-          <div className="w-[80%] justify-center m-auto p-11">
-            <h1 className="font-[700] text-[50px] text-start mb-9">{blogPost.title}</h1>
-
-            <div dangerouslySetInnerHTML={{ __html: blogPost.content }} className="text-[30px]" />
+          <div className="container mx-auto px-4 py-11">
+            <h1 className="text-4xl font-bold mb-9">{blogPost.title}</h1>
+            <div dangerouslySetInnerHTML={{ __html: blogPost.htmlString }} className="text-xl" />
             {blogPost.image && blogPost.image.length > 0 && (
-              <div className="">
-                {blogPost.image.map((image: string, index: number) => (
+              <div className="flex flex-wrap gap-2">
+                {blogPost.image.map((image: Image, index: number) => (
                   <img
                     key={index}
-                    src={"../" + image}
-                    alt={`${image}`}
-                    className="my-4 xl:w-[30%] md:w-[50%] sm:w-[100%]"
+                    src={`../${image.image}`}
+                    alt={image.image}
+                    className="flex-shrink-0 sm:w-[100%] md:w-[45%] lg:w-[30%] aspect-square "
                   />
-
                 ))}
               </div>
             )}
