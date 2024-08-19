@@ -3,8 +3,13 @@
 import Link from 'next/link';
 import { useState, useRef } from 'react';
 import { generateSlug } from '../blog/utils/generateSlug';
+import { Blog, BlogEntry } from '../models/blogs';
 
-export default function SearchBar({ blogPosts }) {
+interface SearchBarProps {
+  blogPosts: BlogEntry[];
+}
+
+export default function SearchBar({ blogPosts }: SearchBarProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const searchInputRef = useRef(null);
