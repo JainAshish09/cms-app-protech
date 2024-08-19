@@ -1,6 +1,7 @@
 import { Blog, Image } from "@/app/models/blogs";
-import { getBlogPostBySlug } from "../utils/markdownUtil";
+import { getBlogPostBySlug, getBlogPosts } from "../utils/markdownUtil";
 import MainContainer from "@/app/features/main-container";
+import SearchBar from "@/app/components/SearchBar";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const blogPost = await getBlogPostBySlug(params.slug);
@@ -12,12 +13,15 @@ export default async function Page({ params }: { params: { slug: string } }) {
     { label: blogPost?.title || params.slug, href: `/blog/${params.slug}` }
   ];
 
+  const blogPost1 = await getBlogPosts();
+
   return (
     <div>
       <MainContainer title={title} breadcrumbs={breadcrumbs} />
+      <SearchBar blogPosts={blogPost1.blogPosts} />
       {blogPost ? (
         <>
-          <div className="container mx-auto px-4 py-11">
+          <div className="container mx-auto px-4 py-11 w-[90%]">
             <h1 className="text-4xl font-bold mb-9">{blogPost.title}</h1>
             <div dangerouslySetInnerHTML={{ __html: blogPost.htmlString }} className="text-xl" />
             {blogPost.image && blogPost.image.length > 0 && (

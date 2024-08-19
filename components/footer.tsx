@@ -15,19 +15,19 @@ const Footer: React.FC = () => {
           </Link>
           <div className="flex space-x-2">
             <Link href="https://www.facebook.com">
-              <Image src="/icons/facebook.svg" alt="Facebook" width={20} height={20} style={{height: '20px'}} />
+              <Image src="/icons/facebook.svg" alt="Facebook" width={20} height={20} style={{ height: '20px' }} />
             </Link>
             <Link href="https://www.instagram.com">
-              <Image src="/icons/instagram.svg" alt="Instagram" width={20} height={20} style={{height: '20px'}} />
+              <Image src="/icons/instagram.svg" alt="Instagram" width={20} height={20} style={{ height: '20px' }} />
             </Link>
             <Link href="https://www.twitter.com">
-              <Image src="/icons/twitter.svg" alt="Twitter" width={20} height={20} style={{height: '20px'}} />
+              <Image src="/icons/twitter.svg" alt="Twitter" width={20} height={20} style={{ height: '20px' }} />
             </Link>
             <Link href="https://www.google.com">
-              <Image src="/icons/google.svg" alt="Google" width={20} height={20} style={{height: '20px'}} />
+              <Image src="/icons/google.svg" alt="Google" width={20} height={20} style={{ height: '20px' }} />
             </Link>
             <Link href="https://www.pinterest.com">
-              <Image src="/icons/pinterest.svg" alt="Pinterest" width={20} height={20} style={{height: '20px'}} />
+              <Image src="/icons/pinterest.svg" alt="Pinterest" width={20} height={20} style={{ height: '20px' }} />
             </Link>
           </div>
         </div>
@@ -45,6 +45,9 @@ const Footer: React.FC = () => {
             </Link></li>
             <li><Link href="/demo">
               Request a Demo
+            </Link></li>
+            <li><Link href="/blog">
+              Blogs
             </Link></li>
           </ul>
         </div>
@@ -75,12 +78,12 @@ const Footer: React.FC = () => {
         <div className="space-y-2">
           <h4 className="font-[700] text-[28px] leading-[42px] text-black">Gallery</h4>
           <div className="grid grid-cols-3 gap-2">
-            <Image src="/images/gallery1.png" alt="Gallery 1" width={64} height={64} className="object-cover"/>
-            <Image src="/images/gallery2.png" alt="Gallery 2" width={64} height={64} className="object-cover"/>
-            <Image src="/images/gallery3.png" alt="Gallery 3" width={64} height={64} className="object-cover"/>
-            <Image src="/images/gallery4.png" alt="Gallery 4" width={64} height={64} className="object-cover"/>
-            <Image src="/images/gallery5.png" alt="Gallery 5" width={64} height={64} className="object-cover"/>
-            <Image src="/images/gallery6.png" alt="Gallery 6" width={64} height={64} className="object-cover"/>
+            <Image src="/images/gallery1.png" alt="Gallery 1" width={64} height={64} className="object-cover" />
+            <Image src="/images/gallery2.png" alt="Gallery 2" width={64} height={64} className="object-cover" />
+            <Image src="/images/gallery3.png" alt="Gallery 3" width={64} height={64} className="object-cover" />
+            <Image src="/images/gallery4.png" alt="Gallery 4" width={64} height={64} className="object-cover" />
+            <Image src="/images/gallery5.png" alt="Gallery 5" width={64} height={64} className="object-cover" />
+            <Image src="/images/gallery6.png" alt="Gallery 6" width={64} height={64} className="object-cover" />
           </div>
         </div>
       </div>

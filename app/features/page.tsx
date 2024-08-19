@@ -17,7 +17,7 @@ const breadcrumbs = [
 const renderFeatures = (features: FeatureData[]) => {
     return (
         <div>
-            {features.map((feature, index) => (
+            {features?.map((feature, index) => (
                 <div key={index} className='flex justify-center'>
                     <div className='w-[90%] mt-12'>
                         <h2 className="w-fit font-lato font-[700] text-[24px] leading-[30px] text-[#000000]">{feature.title}</h2>
