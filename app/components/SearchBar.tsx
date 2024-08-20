@@ -1,21 +1,21 @@
 "use client";
 
 import Link from 'next/link';
-import { useState, useRef } from 'react';
+import { useState, useRef, ChangeEvent, FocusEvent, KeyboardEvent } from 'react';
 import { generateSlug } from '../blog/utils/generateSlug';
-import { Blog, BlogEntry } from '../models/blogs';
+import { BlogEntry } from '../models/blogs';
 
 interface SearchBarProps {
   blogPosts: BlogEntry[];
 }
 
 export default function SearchBar({ blogPosts }: SearchBarProps) {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [isDropdownVisible, setDropdownVisible] = useState(false);
-  const searchInputRef = useRef(null);
-  const dropdownRef = useRef(null);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [isDropdownVisible, setDropdownVisible] = useState<boolean>(false);
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  const handleSearchChange = (event) => {
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
     setDropdownVisible(event.target.value.length > 0);
   };
@@ -26,13 +26,13 @@ export default function SearchBar({ blogPosts }: SearchBarProps) {
     }
   };
 
-  const handleBlur = (event) => {
+  const handleBlur = (event: FocusEvent<HTMLDivElement>) => {
     // Timeout is used to ensure dropdown closes only after the click event has been handled
     setTimeout(() => {
       if (
         dropdownRef.current &&
-        !dropdownRef.current.contains(event.relatedTarget) &&
-        !searchInputRef.current.contains(event.relatedTarget)
+        !dropdownRef.current.contains(event.relatedTarget as Node) &&
+        !searchInputRef.current?.contains(event.relatedTarget as Node)
       ) {
         setDropdownVisible(false);
       }
@@ -41,7 +41,9 @@ export default function SearchBar({ blogPosts }: SearchBarProps) {
 
   // Safely filter blog posts, ensuring blogPosts is an array
   const filteredPosts = Array.isArray(blogPosts)
-    ? blogPosts.filter(post => post.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    ? blogPosts.filter(post =>
+      post.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
     : [];
 
   return (

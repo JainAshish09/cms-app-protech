@@ -39,7 +39,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </div>
         </>
       ) : (
-        <h1>Not Found</h1>
+        <div className=" flex justify-center align-middle w-[100%] h-[100%]">
+          <h1 className="text-[50px] font-[800] p-10">Not Found</h1>
+        </div>
       )}
     </div>
   );
