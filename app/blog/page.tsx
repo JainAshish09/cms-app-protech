@@ -27,7 +27,7 @@ export default async function Page() {
               <div className='flex-shrink-0 h-[65%]'>
                 <img
                   src={(post.image && post.image.length > 0) ? post.image[0].image : DEFAULT_IMAGE_URL}
-                  alt={post.image && post.image.length > 0 ? post.image[0].alt : 'Default image'}
+                  alt={post.image && post.image.length > 0 ? 'error fetching image' : 'Default image'}
                   className='w-full h-[95%] object-cover'
                 />
               </div>
