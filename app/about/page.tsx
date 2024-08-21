@@ -1,7 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-
-export default () => {
+export default function about() {
 
   const hardware = [
     ["Adams Rite", "dormakaba Commercial", "McKinney"],
