@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 const navItems = [
   { name: 'Home', url: '/' },
-  { name: 'What is PRO-TECH?', url: '/about-us' },
+  { name: 'What is PRO-TECH?', url: '/about' },
   { name: 'Features', url: '/features' },
   { name: 'Products', url: '/products' },
   { name: 'Request a Demo', url: '/request-demo' },

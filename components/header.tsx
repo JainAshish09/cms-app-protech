@@ -43,7 +43,7 @@ const Header = () => {
             <ul className="flex justify-between">
               {[
                 { name: 'Home', path: '/' },
-                { name: 'What is PRO-TECH?', path: '/what-is-protech' },
+                { name: 'What is PRO-TECH?', path: '/about' },
                 { name: 'Products', path: '/products' },
                 { name: 'Features', path: '/features' },
                 { name: 'Request a Demo', path: '/demo' },

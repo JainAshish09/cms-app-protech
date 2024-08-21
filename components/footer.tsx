@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
         <div className="space-y-2">
           <h4 className=" font-[700] text-[28px] leading-[42px] text-black">Site Links</h4>
           <ul className="space-y-1">
-            <li><Link href="/pro-tech">
+            <li><Link href="/about">
               What is PRO-TECH?
             </Link></li>
             <li><Link href="/features">
