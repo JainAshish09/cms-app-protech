@@ -79,10 +79,14 @@ const Header = () => {
                     Learn how PRO-TECH can accelerate your business to the next level.
                   </p>
                   <Link href="/demo">
-                    <span className="inline-block px-4 py-2 mt-4 bg-[#00A0D0] text-white rounded-md hover:bg-blue-600" onClick={toggleMenu}
-                    >
-                      Request a demo
-                    </span>
+                    <button className=' w-[172.38px]  bg-[#00A0D0] rounded-md px-[18px] py-[10px] mt-4 ' onClick={toggleMenu}>
+                      <div className='flex items-center justify-between'>
+                        <span className=' w-[167px] h-5 font-lato text-[16px] font-[600] leading-5 text-white'>
+                          Request a Demo
+                        </span>
+                        <Image src={"/icons/chevron-right.svg"} alt="" height={15} width={10}></Image>
+                      </div>
+                    </button>
                   </Link>
                 </div>
               </div>
@@ -105,8 +109,8 @@ const Header = () => {
               <Image
                 src="/images/protechLogo.png"
                 alt="Protech Logo"
-                width={150}  // Adjust width as needed
-                height={150} // Adjust height as needed
+                width={150}
+                height={150}
                 className="w-2/3 rounded-md"
               />
             </div>
