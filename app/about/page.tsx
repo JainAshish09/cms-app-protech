@@ -77,7 +77,7 @@ export default function about() {
         <div className="lg:w-[57%] w-full mb-4 lg:mb-0 pl-5">
           <p className="text-[30px] font-[600] mb-4">Why PRO-TECH?</p>
           <p className="text-[20px] font-[500] tracking-widest">
-            We make it easy to run and manage your business! Easy scalability and automatic software updates,<b> including integrated price books,</b> means your team has the latest version and most up-to-date information. Use PRO-TECH's 28 different reporting options including:
+            We make it easy to run and manage your business! Easy scalability and automatic software updates,<b> including integrated price books,</b> means your team has the latest version and most up-to-date information. Use PRO-TECH'&nbsp;s 28 different reporting options including:
           </p>
           <ul className="list-disc list-inside space-y-2 text-lg pl-6 mt-4">
             <li>Door schedules</li>
