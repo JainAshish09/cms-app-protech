@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { remark } from 'remark';
 import html from 'remark-html';
-import { generateSlug } from './generateSlug';
+import { generateSlug } from '../blog/utils/generateSlug';
 import { Image } from '@/app/models/blogs';
 
 interface BlogPost {

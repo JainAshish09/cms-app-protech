@@ -1,7 +1,7 @@
 
 import Image from 'next/image';
 import { FeatureData } from "../models/feature";
-import { getAllFeatures } from "./lib/features";
+import { getAllFeatures } from "../services/featuresMarkdown";
 import Link from 'next/link';
 import MainContainer from './main-container';
 import { Inter } from 'next/font/google';

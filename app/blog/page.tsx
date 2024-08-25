@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import MainContainer from '../features/main-container';
-import { getBlogPosts } from './utils/markdownUtil';
+import { getBlogPosts } from '../services/blogMarkdown';
 import React from 'react';
 import { generateSlug } from './utils/generateSlug';
 import SearchBar from '../components/SearchBar';

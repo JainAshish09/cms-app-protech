@@ -1,5 +1,5 @@
 import { Blog, Image } from "@/app/models/blogs";
-import { getBlogPostBySlug, getBlogPosts } from "../utils/markdownUtil";
+import { getBlogPostBySlug, getBlogPosts } from "../../services/blogMarkdown";
 import MainContainer from "@/app/features/main-container";
 import SearchBar from "@/app/components/SearchBar";
 

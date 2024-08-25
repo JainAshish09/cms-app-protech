@@ -1,6 +1,7 @@
 backend:
-  name: git-gateway
+  name: test-repo
   branch: master # Branch to update (optional; defaults to master)
+local_backend: true
 media_folder: public/images
 public_folder: images
 collections:
@@ -45,3 +46,17 @@ collections:
               widget: "list"
               fields:
                 - {label: "Image", name: "image", widget: "image"}
+  - name: "dashboard"
+    label: "Dashboard"
+    files:
+      - label: "Features"
+        name: "features"
+        file: "app/content/dashboard/dashboardFeatures.md"
+        fields:
+          - label: "Feature"
+            name: "DashboardFeature"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Icon", name: "icon", widget: "image" }
+
