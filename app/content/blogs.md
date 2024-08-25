@@ -56,6 +56,8 @@ blog:
       By leveraging our software, manufacturers can gain a competitive edge, enhance their operational efficiency, and deliver high-quality products that meet the needs of their customers. We are committed to helping door and hardware manufacturers unlock their full potential and achieve their business goals.
     image:
       - image: images/home1.png
+    images:
+      - image: images/gallery6.png
   - title: "The Future of Door and Hardware Manufacturing: Embracing Technology for
       a Smarter Tomorrow"
     date: 2024-08-17T11:13:00.000Z
@@ -239,11 +241,17 @@ blog:
       - image: images/training-sessions.png
       - image: images/protech-in-action.png
       - image: images/project-management-tool.svg
-
-  - title: "Harnessing Data Analytics to Drive Efficiency in Door and Hardware Manufacturing"
+  - title: Harnessing Data Analytics to Drive Efficiency in Door and Hardware
+      Manufacturing
     date: 2024-08-20T09:00:00.000Z
-    content:
-      In an era where data reigns supreme, leveraging analytics can transform manufacturing operations. Our software integrates advanced data analytics tools to provide manufacturers with actionable insights into every aspect of their production process. By analyzing trends, identifying inefficiencies, and predicting future needs, manufacturers can make data-driven decisions that enhance productivity and cut costs. From optimizing machine performance to refining supply chain logistics, our solutions ensure that every decision is backed by robust data, driving operational excellence and competitive advantage.
-    image:
-      
+    content: In an era where data reigns supreme, leveraging analytics can transform
+      manufacturing operations. Our software integrates advanced data analytics
+      tools to provide manufacturers with actionable insights into every aspect
+      of their production process. By analyzing trends, identifying
+      inefficiencies, and predicting future needs, manufacturers can make
+      data-driven decisions that enhance productivity and cut costs. From
+      optimizing machine performance to refining supply chain logistics, our
+      solutions ensure that every decision is backed by robust data, driving
+      operational excellence and competitive advantage.
+    image: null
 ---
