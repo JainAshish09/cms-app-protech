@@ -89,7 +89,7 @@ const Dashboard: React.FC = async () => {
           {section1content.content}
         </p>
         {section1content?.images?.map((image, index) => (
-          <div className="relative w-full h-[280px] rounded-2xl max-w-4xl">
+          <div key={index} className="relative w-full h-[280px] rounded-2xl max-w-4xl">
             <Image
               src={`/${image.image}`}
               alt="imageAlt"
