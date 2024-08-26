@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Feature, Features } from '@/app/models/dashboard';
-import { getExtractModel, getSection1Content } from '@/app/services/markdownConvert';
+import { getExtractModel, getSection1Content, getSection3Content } from '@/app/services/markdownConvert';
 
 async function getFeatures() {
   return await getExtractModel('dashboard/dashboardFeatures.md');
@@ -75,9 +75,7 @@ const Dashboard: React.FC = async () => {
 
   const features = await getFeatures();
   const section1content = await section1Content();
-  console.log(section1content.images[0].image);
-
-
+  const section3content = await getSection3Content('dashboard/section3.md');
 
   return (
     <div>
@@ -122,7 +120,7 @@ const Dashboard: React.FC = async () => {
       <div className="flex flex-col lg:flex-row items-center justify-between p-8 border rounded-lg shadow-md bg-white">
         <div className="lg:w-1/2 ml-[146px]">
           <Image
-            src="/images/project-management-tool.png" // Make sure to put your image in the public/images directory
+            src={section3content.image ? `/${section3content.image}` : "/images/project-management-tool.png"}
             alt="TITAN Software"
             width={768}
             height={507}
@@ -130,20 +128,8 @@ const Dashboard: React.FC = async () => {
           />
         </div>
         <div className="lg:w-1/2 lg:pl-8 mt-8 lg:mt-0">
-          <h2 className="text-3xl font-bold mb-4">Powerful project management tool made for the door and hardware industry</h2>
-          <p className="mb-4">
-            Managing the door openings on projects large and small can be a time-consuming and complex task for
-            contract hardware distributors. Simplify the process and bring greater efficiency to your business with
-            PRO-TECH software.
-          </p>
-          <p className="mb-4">
-            Offered as on-premises software or cloud-based with PRO-TECH V8®, or exclusively on the cloud as PRO-TECH TITAN®.
-            Help for your most time-consuming tasks is here!
-          </p>
-          <ul className="list-disc pl-5 mb-4">
-            <li>Simplified project detailing with advanced features</li>
-            <li>Default and custom price books for hardware and material</li>
-          </ul>
+          <h2 className="text-3xl font-bold mb-4">{section3content.title}</h2>
+          <div dangerouslySetInnerHTML={{ __html: section3content.content }} />
           <button className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600">
             Check out the latest versions of PRO-TECH TITAN®
           </button>

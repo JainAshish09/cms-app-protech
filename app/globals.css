@@ -7,3 +7,19 @@
 * {
   font-family: 'Lato';
 }
+
+ul {
+  padding-left: 40px;
+  list-style: disc;
+}
+
+ol {
+  padding-left: 40px;
+  list-style: disc;
+}
+
+br {
+  content: "";
+  display: block;
+  height: 15px;
+}

@@ -7,7 +7,7 @@ export interface Features {
   feature: Feature[];
 }
 
-export interface Section1 {
+export interface Section {
   title: string;
   content: string;
   images: Image[]

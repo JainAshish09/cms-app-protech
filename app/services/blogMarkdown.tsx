@@ -33,7 +33,9 @@ export async function getBlogPostBySlug(slug: string) {
 
   if (blogPost) {
     const htmlContent = await remark().use(html).process(blogPost.content);
-    const htmlString = htmlContent.toString();
+    const inString = htmlContent.toString();
+    const htmlString = inString.replace(/<\/p>/g, '</p><br>');
+
 
     return { ...blogPost, htmlString };
   }

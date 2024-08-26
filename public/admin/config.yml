@@ -71,3 +71,10 @@ collections:
         max: 1
         fields:
         - {label: "image", name: "image", widget: "image"}
+    - label: "Section3"
+      name: "section3"
+      file: "app/content/dashboard/section3.md"
+      fields:
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Content", name: "content", widget: "markdown"}
