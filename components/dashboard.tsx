@@ -2,11 +2,14 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Feature, Features } from '@/app/models/dashboard';
-import { getExtractModel } from '@/app/services/markdownConert';
+import { getExtractModel, getSection1Content } from '@/app/services/markdownConvert';
 
 async function getFeatures() {
   return await getExtractModel('dashboard/dashboardFeatures.md');
 
+}
+async function section1Content() {
+  return await getSection1Content('dashboard/section1.md');
 }
 
 const PromoSection: React.FC = () => {
@@ -71,34 +74,41 @@ const PromoSection: React.FC = () => {
 const Dashboard: React.FC = async () => {
 
   const features = await getFeatures();
+  const section1content = await section1Content();
+  console.log(section1content.images[0].image);
+
+
 
   return (
     <div>
       <div className="flex flex-col items-center justify-center bg-[#D8F2F9] p-24 rounded-lg shadow-md pt-[140px]">
         <h1 className="text-2xl font-bold text-gray-800 mb-4">
-          PRO-TECH TITAN® Software for Door and Hardware Distributors
+          {section1content.title}
         </h1>
         <p className="text-gray-600 text-center mb-6">
-          Submittals, estimates, quoting, scheduling, ordering and delivery details become automated, efficient and fast!
+          {section1content.content}
         </p>
-        <div className="relative w-full max-w-4xl">
-          <Image
-            src="/images/homepage-header.png"
-            alt="imageAlt"
-            className="rounded-md"
-            width={1094}
-            height={26}
-          />
-          <div className="absolute inset-x-0 bottom-0 flex justify-center py-2">
-            <div className="w-4 h-4 bg-blue-500 rounded-full mx-1"></div>
-            <div className="w-4 h-4 bg-blue-200 rounded-full mx-1"></div>
-            <div className="w-4 h-4 bg-blue-200 rounded-full mx-1"></div>
+        {section1content?.images?.map((image, index) => (
+          <div className="relative w-full h-[280px] rounded-2xl max-w-4xl">
+            <Image
+              src={`/${image.image}`}
+              alt="imageAlt"
+              layout='fill'
+              objectFit='cover'
+              className='rounded-3xl'
+
+            />
+            <div className="absolute inset-x-0 bottom-0 flex justify-center py-2">
+              <div className="w-4 h-4 bg-blue-500 rounded-full mx-1"></div>
+              <div className="w-4 h-4 bg-blue-200 rounded-full mx-1"></div>
+              <div className="w-4 h-4 bg-blue-200 rounded-full mx-1"></div>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
       <div className="container mx-auto py-16">
         <h2 className="font-lato text-[32px] text-3xl font-bold text-center mb-8">Robust Features Save Your Time and Money</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-5">
           {features?.DashboardFeature.map((feature, index) => (
             <div key={index} className="font-lato text-[15px] flex flex-col items-center text-center p-4 border rounded-lg shadow-md">
               <Image
@@ -140,7 +150,7 @@ const Dashboard: React.FC = async () => {
         </div>
       </div>
       <PromoSection />
-    </div>
+    </div >
   );
 };
 

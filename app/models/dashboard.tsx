@@ -6,3 +6,13 @@ export interface Feature {
 export interface Features {
   feature: Feature[];
 }
+
+export interface Section1 {
+  title: string;
+  content: string;
+  images: Image[]
+}
+
+export interface Image {
+  image: string;
+}

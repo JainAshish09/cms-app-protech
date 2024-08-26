@@ -1,7 +1,6 @@
 backend:
   name: test-repo
   branch: master # Branch to update (optional; defaults to master)
-local_backend: true
 media_folder: public/images
 public_folder: images
 collections:
@@ -49,14 +48,26 @@ collections:
   - name: "dashboard"
     label: "Dashboard"
     files:
-      - label: "Features"
-        name: "features"
-        file: "app/content/dashboard/dashboardFeatures.md"
+    - label: "Features"
+      name: "features"
+      file: "app/content/dashboard/dashboardFeatures.md"
+      fields:
+      - label: "Feature"
+        name: "DashboardFeature"
+        widget: "list"
         fields:
-          - label: "Feature"
-            name: "DashboardFeature"
-            widget: "list"
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Icon", name: "icon", widget: "image" }
-
+        - { label: "Title", name: "title", widget: "string" }
+        - { label: "Icon", name: "icon", widget: "image" }
+    - label: "Section1"
+      name: "section1"
+      file: "app/content/dashboard/section1.md"
+      fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Content", name: "content", widget: "string"}
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        min: 1
+        max: 1
+        fields:
+        - {label: "image", name: "image", widget: "image"}
