@@ -40,7 +40,7 @@ const Header = () => {
       {isMenuOpen && (<div className="fixed top-[110px] left-11 right-11 z-[1000] flex items-center justify-between p-0 shadow-md bg-white rounded-xl border-[1px] border-[#D8E5EF] ">
         <div className="w-[70%] mr-0 m-2">
           <nav>
-            <ul className="flex justify-between">
+            <div className="flex justify-between">
               {[
                 { name: 'Home', path: '/' },
                 { name: 'What is PRO-TECH?', path: '/about' },
@@ -48,16 +48,16 @@ const Header = () => {
                 { name: 'Features', path: '/features' },
                 { name: 'Request a Demo', path: '/demo' },
               ].map(({ name, path }) => (
-                <li
+                <p
                   key={name}
                   className="flex-1 border border-[#D8E5EF] text-center mr-2 rounded-md py-2"
                 >
                   <Link href={path}>
                     <p className="block h-full w-full" onClick={toggleMenu}>{name}</p>
                   </Link>
-                </li>
+                </p>
               ))}
-            </ul>
+            </div>
           </nav>
 
           <div className="grid grid-cols-2 gap-4 mt-5">
