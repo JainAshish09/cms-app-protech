@@ -93,3 +93,50 @@ collections:
         - {label: "Content", name: "content", widget: "markdown"}
         - {label: "Link", name: "link", widget: "string"}
         - {label: "Link Text", name: "linkText", widget: "string"}
+  - name: 'demoForm'
+    label: 'Demo Form'
+    files:
+    - label: "Form"
+      name: "form"
+      file: 'app/content/forms/demoForm.md'
+      fields:
+      - label: 'Form Title'
+        name: 'title'
+        widget: 'string'
+      - label: 'Form Fields'
+        name: 'fields'
+        widget: 'list'
+        fields:
+        - label: "Row Name"
+          name: "rows"
+          widget: "string"
+        - label: 'Row'
+          name: 'row'
+          widget: 'list'
+          min: 1
+          max: 2
+          fields:
+          - label: 'Field Name'
+            name: 'name'
+            widget: 'string'
+          - label: 'Field Label'
+            name: 'label'
+            widget: 'string'
+          - label: 'Field Type'
+            name: 'type'
+            widget: 'select'
+            options:
+            - 'text'
+            - 'email'
+            - 'number'
+            - 'password'
+            - 'url'
+            - 'tel'
+            - 'color'
+            - 'date'
+            - 'time'
+            - 'datetime-local'
+            - 'month'
+            - 'week'
+            - 'textarea'
+            - 'file'
