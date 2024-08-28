@@ -1,5 +1,5 @@
 ---
-image: images/about-img-1.jpeg
+image: images/project-management-tool.png
 title: This is a section 3 content
 content: >-
   Managing the door openings on projects large and small can be a time-consuming

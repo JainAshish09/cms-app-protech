@@ -16,3 +16,15 @@ export interface Section {
 export interface Image {
   image: string;
 }
+
+export interface Section4Item {
+  image: string;
+  title: string;
+  content: string;
+  link: string;
+  linkText: string;
+}
+
+export interface Section4Data {
+  section: Section4Item[];
+}

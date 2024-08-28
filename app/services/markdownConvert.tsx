@@ -1,12 +1,10 @@
 import matter from 'gray-matter';
 import fs from 'fs';
 import path from 'path';
-import { Feature, Section } from '../models/dashboard';
+import { Feature, Section, Section4Data, Section4Item } from '../models/dashboard';
 import { remark } from 'remark';
 import html from 'remark-html';
 import breaks from 'remark-breaks';
-
-
 
 export async function getExtractModel<T>(filename: string) {
   const filePath = path.join(process.cwd(), 'app/content', filename);
@@ -39,8 +37,19 @@ export async function getSection3Content(filename: string) {
   const section1Content = {
     title: data.title || '',
     content: manualBreaks,
-    image: data.image || []
+    image: data.image
   };
 
   return section1Content;
+}
+
+export async function getSection4Content(filename: string): Promise<Section4Data> {
+  const filePath = path.join(process.cwd(), 'app/content', filename);
+  const fileContent = fs.readFileSync(filePath, 'utf8');
+  const { data } = matter(fileContent);
+  const sectionData = data as { section: Section4Item[] };
+
+
+
+  return sectionData;
 }

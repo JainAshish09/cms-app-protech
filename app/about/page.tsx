@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import MainContainer from "../features/main-container";
 export default function about() {
 
   const hardware = [
@@ -35,14 +36,21 @@ export default function about() {
 
   ];
 
+  const title = "Project management solution for distributors";
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: 'About', href: '/about' },
+  ];
+
 
   return <div
     className="bg-white  ">
-    <p className="relative m-auto w-full text-center font-[700] lg:text-[45px] sm:text-[30px] h-[50%] bg-black text-white pt-40 pb-10">Project management solution for distributors</p>
+    <MainContainer title={title} breadcrumbs={breadcrumbs} />
+
     <div className="container mx-auto">
 
 
-      <div className="mt-20 mx-3 flex flex-wrap w-full p-16">
+      <div className="mt-10 mx-3 flex flex-wrap w-full p-16">
         <div className="lg:w-[60%] w-full mb-4 lg:mb-0">
           <p className="text-[30px] font-[600]  mb-4">What is PRO-TECH®?</p>
           <p className="text-[20px] font-[500] tracking-widest">

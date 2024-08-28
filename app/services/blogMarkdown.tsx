@@ -16,10 +16,8 @@ interface BlogPost {
 export async function getBlogPosts() {
   const filePath = path.join(process.cwd(), 'app/content', 'blogs.md');
   const fileContent = fs.readFileSync(filePath, 'utf8');
-
   const { data, content } = matter(fileContent);
   const blogPosts = (data as { blog: BlogPost[] }).blog;
-
   const htmlContent = await remark().use(html).process(content);
   const htmlString = htmlContent.toString();
 
@@ -35,8 +33,6 @@ export async function getBlogPostBySlug(slug: string) {
     const htmlContent = await remark().use(html).process(blogPost.content);
     const inString = htmlContent.toString();
     const htmlString = inString.replace(/<\/p>/g, '</p><br>');
-
-
     return { ...blogPost, htmlString };
   }
   else {

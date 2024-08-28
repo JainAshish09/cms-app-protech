@@ -78,3 +78,18 @@ collections:
       - {label: "Image", name: "image", widget: "image"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Content", name: "content", widget: "markdown"}
+    - label: "Section4"
+      name: "section4"
+      file: "app/content/dashboard/section4.md"
+      fields:
+      - label: "Section"
+        name: "section"
+        widget: "list"
+        min: 1
+        max: 2
+        fields:
+        - {label: "Image", name: "image", widget: "image"}
+        - {label: "Title", name: "title", widget: "string"}
+        - {label: "Content", name: "content", widget: "markdown"}
+        - {label: "Link", name: "link", widget: "string"}
+        - {label: "Link Text", name: "linkText", widget: "string"}

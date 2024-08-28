@@ -33,47 +33,47 @@ const Footer: React.FC = () => {
         </div>
         <div className="space-y-2">
           <h4 className=" font-[700] text-[28px] leading-[42px] text-black">Site Links</h4>
-          <ul className="space-y-1">
-            <li><Link href="/about">
+          <div className="space-y-1">
+            <div><Link href="/about">
               What is PRO-TECH?
-            </Link></li>
-            <li><Link href="/features">
+            </Link></div>
+            <div><Link href="/features">
               Features
-            </Link></li>
-            <li><Link href="/products">
+            </Link></div>
+            <div><Link href="/products">
               Products
-            </Link></li>
-            <li><Link href="/demo">
+            </Link></div>
+            <div><Link href="/demo">
               Request a Demo
-            </Link></li>
-            <li><Link href="/blog">
+            </Link></div>
+            <div><Link href="/blog">
               Blogs
-            </Link></li>
-          </ul>
+            </Link></div>
+          </div>
         </div>
         <div className="space-y-2">
           <h4 className="font-[700] text-[28px] leading-[42px] text-black">Useful Links</h4>
-          <ul className="space-y-1">
-            <li><Link href="/training"> Training
-            </Link></li>
-            <li><Link href="/support"> Support
-            </Link></li>
-            <li><Link href="/contact"> Contact
-            </Link></li>
-          </ul>
+          <div className="space-y-1">
+            <div><Link href="/training"> Training
+            </Link></div>
+            <div><Link href="/support"> Support
+            </Link></div>
+            <div><Link href="/contact"> Contact
+            </Link></div>
+          </div>
         </div>
         <div className="space-y-2">
           <h4 className="font-[700] text-[28px] leading-[42px] text-black">Quick Links</h4>
-          <ul className="space-y-1">
-            <li><Link href="/privacy"> Privacy Center
-            </Link></li>
-            <li><Link href="/sitemap"> Sitemap
-            </Link></li>
-            <li><Link href="/terms"> Terms and Conditions
-            </Link></li>
-            <li><Link href="/donotsell"> Do Not Sell My Information
-            </Link></li>
-          </ul>
+          <div className="space-y-1">
+            <div><Link href="/privacy"> Privacy Center
+            </Link></div>
+            <div><Link href="/sitemap"> Sitemap
+            </Link></div>
+            <div><Link href="/terms"> Terms and Conditions
+            </Link></div>
+            <div><Link href="/donotsell"> Do Not Sell My Information
+            </Link></div>
+          </div>
         </div>
         <div className="space-y-2">
           <h4 className="font-[700] text-[28px] leading-[42px] text-black">Gallery</h4>

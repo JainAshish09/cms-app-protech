@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Feature, Features } from '@/app/models/dashboard';
-import { getExtractModel, getSection1Content, getSection3Content } from '@/app/services/markdownConvert';
+import { getExtractModel, getSection1Content, getSection3Content, getSection4Content } from '@/app/services/markdownConvert';
 
 async function getFeatures() {
   return await getExtractModel('dashboard/dashboardFeatures.md');
@@ -12,59 +12,39 @@ async function section1Content() {
   return await getSection1Content('dashboard/section1.md');
 }
 
-const PromoSection: React.FC = () => {
+const PromoSection: React.FC = async () => {
+  const section4content = await getSection4Content('dashboard/section4.md');
+
   return (
     <div className="relative py-8" style={{ backgroundImage: 'url(/images/Promo-background.png)', backgroundSize: 'cover' }}>
       <div className="flex justify-center space-x-6">
-        <div className="bg-white bg-opacity-80 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row max-w-md md:max-w-2xl">
-          <div className="relative w-full h-64" style={{ height: '330px' }}>
-            <Image
-              src="/images/protech-in-action.png"
-              alt="Action Image"
-              layout="fill"
-              objectFit="cover"
-              className="rounded-t-lg md:rounded-t-none md:rounded-l-lg"
-            />
-          </div>
-          <div className="p-6 flex flex-col justify-between">
-            <div>
-              <h2 className="text-2xl font-bold mb-2">See PRO-TECH in action</h2>
-              <p className="text-gray-700 mb-4">
-                Learn how PRO-TECH can accelerate productivity and improve project accuracy by automating many time-consuming tasks. Schedule a software demonstration to see the advanced PRO-TECH features that will help take your business to the next level.
-              </p>
-            </div>
-            <div>
-              <Link href="/demo" className="inline-block px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
-                Request a demo
-              </Link>
-            </div>
-          </div>
-        </div>
+        {
+          section4content?.section?.map((data, key) => (
+            <div key={key} className="bg-white bg-opacity-80 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row max-w-md md:max-w-2xl">
+              <div className="relative w-full h-64" style={{ height: '330px' }}>
+                <Image
+                  src={data.image ? `/${data.image}` : "/images/protech-in-action.png"}
+                  alt="Action Image"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-t-lg md:rounded-t-none md:rounded-l-lg"
+                />
+              </div>
+              <div className="p-6 flex flex-col justify-between w-[150%]">
+                <div>
+                  <h2 className="text-2xl font-bold mb-2">{data.title}</h2>
+                  <div className="text-gray-700 mb-4" dangerouslySetInnerHTML={{ __html: data.content }} />
 
-        <div className="bg-white bg-opacity-80 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row max-w-md md:max-w-2xl">
-          <div className="relative w-full md:w-1/2 h-64 md:h-auto">
-            <Image
-              src="/images/training-sessions.png"
-              alt="Training Image"
-              layout="fill"
-              objectFit="cover"
-              className="rounded-t-lg md:rounded-t-none md:rounded-l-lg"
-            />
-          </div>
-          <div className="p-6 flex flex-col justify-between">
-            <div>
-              <h2 className="text-2xl font-bold mb-2">Need help utilizing PRO-TECH to its full potential?</h2>
-              <p className="text-gray-700 mb-4">
-                Training sessions are available to assist you in getting the most out of the software. Our team of experts is happy to help!
-              </p>
+                </div>
+                <div>
+                  <Link href={data.link} className="inline-block px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                    {data.linkText}
+                  </Link>
+                </div>
+              </div>
             </div>
-            <div>
-              <Link href="#" className="inline-block px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
-                Further information on training
-              </Link>
-            </div>
-          </div>
-        </div>
+
+          ))};
       </div>
     </div>
   );
@@ -130,7 +110,7 @@ const Dashboard: React.FC = async () => {
         <div className="lg:w-1/2 lg:pl-8 mt-8 lg:mt-0">
           <h2 className="text-3xl font-bold mb-4">{section3content.title}</h2>
           <div dangerouslySetInnerHTML={{ __html: section3content.content }} />
-          <button className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600">
+          <button className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 mt-5">
             Check out the latest versions of PRO-TECH TITAN®
           </button>
         </div>
