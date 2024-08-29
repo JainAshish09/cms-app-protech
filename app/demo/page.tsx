@@ -1,28 +1,36 @@
 import MainContainer from "../features/main-container";
 import Link from "next/link";
 import { getFormContent } from "../services/formMarkdown";
+import { FormRow } from "../models/form";
 
-interface FormField {
-  type: string;
-  name: string;
-  label: string;
-}
 
-interface FormContent {
-  fields: { row: FormField[] }[];
-}
-
-const renderFormFields = (fields: FormContent['fields']) => {
-  return fields.map((row, key) => (
+const renderFormFields = (fields: FormRow[]) => {
+  return fields?.map((row, key) => (
     <div key={key} className="w-full mt-7">
       {row.row.length === 1 ? row.row[0].type == "textarea" ? (
-        <input
+        <textarea
           className="w-[929px] h-[160px] rounded-lg p-4 border-[1px] border-[#C8C8C8] bg-[#FFFFFF] placeholder:w-[200px] placeholder:h-[21px] placeholder:font-lato placeholder:text-[14px] placeholder:font-normal placeholder:leading-[27px]  placeholder:text-left"
-          type={row.row[0].type}
           name={row.row[0].name}
           placeholder={row.row[0].label}
           required
         />
+      ) : row.row[0].type === "dropdown" ? (
+        <div className="flex">
+          <p className="w-[15%] h-12 rounded-lg  px-5 py-4 text-2xl text-center align-middle">
+            {row.row[0].name}:
+          </p>
+          <select
+            className="w-[85%] ml-[20px] h-12 rounded-lg border border-gray-300 px-5 py-0"
+            name={row.row[0].name}
+            required
+          >
+            {row.row[0].dropdown_values.map((option, index) => (
+              <option key={index} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
       ) : (
         <input
           className="w-full h-12 rounded-lg border border-gray-300 px-5 py-4"
@@ -34,14 +42,32 @@ const renderFormFields = (fields: FormContent['fields']) => {
       ) : (
         <div className="flex space-x-4">
           {row.row.map((data, i) => (
-            <input
-              key={i}
-              className="w-full h-12 rounded-lg border border-gray-300 px-5 py-4"
-              type={data.type}
-              name={data.name}
-              placeholder={data.label}
-              required
-            />
+            data.type === "dropdown" ? (
+              <select
+                key={i}
+                className="w-full h-12 rounded-lg border border-gray-300 px-5 py-4"
+                name={data.name}
+                required
+              >
+                <option value={""} selected disabled hidden>
+                  {data.label}
+                </option>
+                {data.dropdown_values.map((option, index) => (
+                  <option key={index} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <input
+                key={i}
+                className="w-full h-12 rounded-lg border border-gray-300 px-5 py-4"
+                type={data.type}
+                name={data.name}
+                placeholder={data.label}
+                required
+              />
+            )
           ))}
         </div>
       )}
@@ -49,20 +75,17 @@ const renderFormFields = (fields: FormContent['fields']) => {
   ));
 };
 
-export default async function Demo() {
-  let formContent: FormContent | null = null;
 
-  try {
-    formContent = await getFormContent();
-  } catch (error) {
-    console.error("Failed to fetch form content", error);
-  }
+export default async function Demo() {
+
+  const [formContent, content] = await getFormContent();
 
   const title = "Request a PRO-TECH TITAN® Demo";
   const breadcrumbs = [
     { label: 'Home', href: '/' },
     { label: 'Request a Demo', href: '/demo' },
   ];
+
 
   return (
     <div>
@@ -79,29 +102,30 @@ export default async function Demo() {
         <div className="relative z-10 p-8">
           <div className="relative w-[994px] min-h-[793px] top-[20px] mx-auto mb-8">
             <div>
-              <p className="font-lato text-[22px] font-medium leading-[27.5px] text-left h-[28px] w-[521px]">We are Here To Provide 24x7 Support</p>
-              <p className="w-[931px] h-[54px] font-lato text-[14px] font-normal leading-[27px] text-left">Schedule a live demo with one of our PRO-TECH TITAN® product specialists. We can answer questions and show you the advanced features that will simplify many labor-intensive tasks and bring greater efficiency to your business.</p>
-              <p className="w-[931px] h-[27px] font-lato text-[14px] font-normal leading-[27px] text-left">Please complete the form or give us a call at 800-344-7269.</p>
+              <p className="font-lato text-[22px] font-medium leading-[27.5px] text-left h-[28px] w-[521px]">{formContent?.title}</p>
+              <div dangerouslySetInnerHTML={{ __html: content }} className="w-[931px] font-lato text-[14px] font-normal leading-[27px] text-left" />
+
             </div>
             <div className="w-[994px]  border-solid border-[1px] border-[#D8E5EF] rounded-3xl mt-4">
               <div className="w-[929.15px]  m-8">
                 {formContent ? (
                   <form>
                     {renderFormFields(formContent.fields)}
-                    <div className="w-full flex items-center mt-2">
-                      <input
-                        className="w-5 h-5 rounded border border-gray-300"
-                        type="checkbox"
-                        name="privacyPolicy"
-                        required
-                      />
-                      <span className="ml-2 text-sm">
-                        I agree to the
-                        <Link href="/privacy-policy">
-                          privacy policy.*
-                        </Link>
-                      </span>
-                    </div>
+                    {formContent.privacy ? (
+                      <div className="w-full flex items-center mt-2">
+                        <input
+                          className="w-5 h-5 rounded border border-gray-300"
+                          type="checkbox"
+                          name="privacyPolicy"
+                          required
+                        />
+                        <span className="w-[278px] h-[22px] font-lato text-[14px]text-center m-2">I agree to the
+                          <Link href={formContent.privacy} passHref>
+                            <span className="text-blue-500 hover:underline ml-1">privacy policy.*</span>
+                          </Link>
+                        </span>
+                      </div>
+                    ) : null}
                     <button className="inline-block px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 mt-7" type="submit">
                       Submit
                     </button>
@@ -142,6 +166,6 @@ export default async function Demo() {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }

@@ -102,13 +102,16 @@ collections:
       fields:
       - label: 'Form Title'
         name: 'title'
-        widget: 'string'
-      - label: 'Form Fields'
+        widget: 'string'        
+      - label: 'Form Content'
+        name: 'content'
+        widget: 'markdown'
+      - label: 'Form Fields (min = 1)'
         name: 'fields'
         widget: 'list'
         fields:
         - label: "Row Name"
-          name: "rows"
+          name: "row_name"
           widget: "string"
         - label: 'Row'
           name: 'row'
@@ -140,3 +143,15 @@ collections:
             - 'week'
             - 'textarea'
             - 'file'
+            - 'dropdown'
+          - name: 'dropdown_values'
+            label: 'Dropdown Values'
+            widget: 'list'
+            required: false
+            fields:
+            - { label: 'Value', name: 'value', widget: 'string' }
+            - { label: 'Label', name: 'label', widget: 'string' }
+      - name: "privacy"
+        label: "Privacy Policy URL"
+        widget: "string"
+        required: false
