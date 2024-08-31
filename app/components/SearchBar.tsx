@@ -47,7 +47,7 @@ export default function SearchBar({ blogPosts }: SearchBarProps) {
     : [];
 
   return (
-    <div className="relative p-0 m-0 mr-[10%] flex justify-end items-center pt-3">
+    <div className="relative p-0 mx-auto mr-[10%] flex justify-end items-center pt-3 container">
       <div
         className="flex items-center bg-white border border-gray-300 rounded-lg shadow-lg px-4 py-2 transition-transform transform hover:scale-105 hover:shadow-xl"
         onBlur={handleBlur}
