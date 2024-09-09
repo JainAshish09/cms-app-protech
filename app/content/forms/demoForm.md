@@ -1,14 +1,6 @@
 ---
 title: We are Here To Provide 24x7 Support
-content: >-
-  Schedule a live demo with one of our PRO-TECH TITAN® product specialists. We
-  can answer questions and show you the advanced features that will simplify
-  many labor-intensive tasks and bring greater efficiency to your business.
-
-
-
-
-  Please complete the form or give us a call at 800-344-7269.
+content: test
 fields:
   - row_name: Name
     row:
