@@ -72,8 +72,8 @@ export default function products() {
           <thead className="bg-gray-50">
             <tr>
               <th className="px-6 py-3 text-left uppercase tracking-wider w-1/2">Properties</th>
-              <th className="px-6 py-3 uppercase tracking-wider text-center">Product 1</th>
-              <th className="px-6 py-3 uppercase tracking-wider text-center">Product 2</th>
+              <th className="px-6 py-3 uppercase tracking-wider text-center">V8</th>
+              <th className="px-6 py-3 uppercase tracking-wider text-center">TITAN</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
