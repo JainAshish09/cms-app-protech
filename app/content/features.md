@@ -60,6 +60,9 @@ features:
           - description: Cloud hosting - Cloud hosting on Amazon Web Services is standard in
               TITAN and optional in V8
   - title: Test
+    subSections:
+      - image: images/accountability.svg
+        title: This is a test data
 ---
 
 **Project management solution for distributors**
