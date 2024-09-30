@@ -29,7 +29,7 @@ const renderFeatures = (features: FeatureData[]) => {
                                         <h3 className="font-lato leading-[27.5px] text-[22px] font-[500]  mb-0 p-5">{subsection.title}</h3>
                                     </div>
                                     <ul className="list-disc pl-5">
-                                        {subsection.details.map((detail: any, detailIndex: any) => (
+                                        {subsection.details?.map((detail: any, detailIndex: any) => (
                                             <li key={detailIndex}>{detail.description}</li>
                                         ))}
                                     </ul>
