@@ -38,15 +38,5 @@ fields:
       - name: question
         label: Ask a question
         type: textarea
-  - row_name: Dropdown Test
-    row:
-      - name: test
-        label: test
-        type: dropdown
-        dropdown_values:
-          - value: Val1
-            label: test1
-          - value: "val2 "
-            label: test2
 privacy: /features
 ---
