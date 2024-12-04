@@ -28,6 +28,19 @@ fields:
         label: Postal Code
         type: text
         dropdown_values: []
+  - row:
+      - name: State
+        label: State
+        type: dropdown
+        dropdown_values:
+          - value: Florida
+            label: Florida
+          - value: Alaska
+            label: Alaska
+      - name: Pincode
+        label: Pincode
+        type: text
+    row_name: State
   - row_name: Country
     row:
       - name: country
