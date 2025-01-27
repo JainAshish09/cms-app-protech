@@ -28,6 +28,19 @@ fields:
         label: Postal Code
         type: text
         dropdown_values: []
+  - row_name: State
+    row:
+      - name: State
+        label: State
+        type: dropdown
+        dropdown_values:
+          - value: Phoenix
+            label: Phoenix
+          - value: California
+            label: California
+      - name: City
+        label: City
+        type: text
   - row_name: question
     row:
       - name: question
