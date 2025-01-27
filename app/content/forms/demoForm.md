@@ -33,5 +33,18 @@ fields:
       - name: question
         label: Ask a question
         type: textarea
+  - row_name: State
+    row:
+      - name: State
+        label: State
+        type: dropdown
+        dropdown_values:
+          - value: california
+            label: california
+          - value: phoenix
+            label: phoenix
+      - name: CIty
+        label: City
+        type: text
 privacy: /features
 ---
