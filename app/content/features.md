@@ -59,10 +59,14 @@ features:
               proposal feature to create distinctive submittals
           - description: Cloud hosting - Cloud hosting on Amazon Web Services is standard in
               TITAN and optional in V8
-  - title: Test
+  - title: Reliability
     subSections:
-      - image: images/accountability.svg
-        title: This is a test data
+      - title: Reliable
+        image: images/convenience.svg
+        details:
+          - description: |-
+              * We are reliable.
+              * we care for customer
 ---
 
 **Project management solution for distributors**
