@@ -4,7 +4,7 @@ date: 2024-07-05T10:10:00.000Z
 features:
   - title: Improve business efficiency
     subSections:
-      - title: Automation
+      - title: TEST
         image: /images/automation.svg
         details:
           - description: Import schedules - Openings schedules and hardware sets can be
