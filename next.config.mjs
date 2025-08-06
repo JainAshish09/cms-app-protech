@@ -9,7 +9,16 @@ const nextConfig = {
             }
         )
         return cfg
-    }
+    },
+    async redirects() {
+    return [
+      {
+        source: "/admin",
+        destination: "/admin/index.html",
+        permanent: false, // Temporary so cache doesn't stick during dev
+      },
+    ];
+  },
 };
 
 export default nextConfig;
