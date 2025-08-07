@@ -53,3 +53,10 @@ export async function getSection4Content(filename: string): Promise<Section4Data
 
   return sectionData;
 }
+
+export async function getHomepageSections(filename: string) {
+  const filePath = path.join(process.cwd(), 'content', filename);
+  const fileContent = fs.readFileSync(filePath, 'utf8');
+  const { data } = matter(fileContent);
+  return data;
+}

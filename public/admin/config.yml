@@ -1,3 +1,4 @@
+local_backend: true
 backend:
   name: git-gateway
   branch: master # Branch to update (optional; defaults to master)
@@ -155,3 +156,62 @@ collections:
         label: "Privacy Policy URL"
         widget: "string"
         required: false
+  - name: "homepageSections"
+    label: "Homepage Sections"
+    files:
+      - label: "Homepage Sections"
+        name: "homepageSections"
+        file: "content/dashboard/homepageSections.md"
+        fields:
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            types:
+              - label: "Hero Section"
+                name: "hero"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "hidden", default: "hero" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Content", name: "content", widget: "string" }
+                  - label: "Images"
+                    name: "images"
+                    widget: "list"
+                    fields:
+                      - { label: "Image", name: "image", widget: "image" }
+              - label: "Features Section"
+                name: "features"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "hidden", default: "features" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - label: "Features"
+                    name: "features"
+                    widget: "list"
+                    fields:
+                      - { label: "Title", name: "title", widget: "string" }
+                      - { label: "Icon", name: "icon", widget: "image" }
+              - label: "Image With Text Section"
+                name: "imageWithText"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "hidden", default: "imageWithText" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Content", name: "content", widget: "markdown" }
+                  - { label: "Image", name: "image", widget: "image" }
+                  - { label: "Button Text", name: "buttonText", widget: "string", required: false }
+                  - { label: "Button Link", name: "buttonLink", widget: "string", required: false }
+              - label: "Promo Section"
+                name: "promo"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "hidden", default: "promo" }
+                  - label: "Promos"
+                    name: "promos"
+                    widget: "list"
+                    fields:
+                      - { label: "Image", name: "image", widget: "image" }
+                      - { label: "Title", name: "title", widget: "string" }
+                      - { label: "Content", name: "content", widget: "markdown" }
+                      - { label: "Link", name: "link", widget: "string" }
+                      - { label: "Link Text", name: "linkText", widget: "string" }
