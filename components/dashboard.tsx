@@ -97,24 +97,34 @@ const Dashboard: React.FC = async () => {
           ))}
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row items-center justify-between p-8 border rounded-lg shadow-md bg-white">
-        <div className="lg:w-1/2 ml-[146px]">
-          <Image
-            src={section3content.image ? `/${section3content.image}` : "/images/project-management-tool.png"}
-            alt="TITAN Software"
-            width={768}
-            height={507}
-            className="rounded-lg"
-          />
-        </div>
-        <div className="lg:w-1/2 lg:pl-8 mt-8 lg:mt-0">
-          <h2 className="text-3xl font-bold mb-4">{section3content.title}</h2>
-          <div dangerouslySetInnerHTML={{ __html: section3content.content }} />
-          <button className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 mt-5">
-            Check out the latest versions of PRO-TECH TITAN®
-          </button>
+      <div className="bg-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 rounded-lg p-8 bg-white">
+
+            {/* Image Section */}
+            <div className="w-full lg:w-auto lg:flex-shrink-0 max-w-[500px]">
+              <Image
+                src={section3content.image ? `/${section3content.image}` : "/images/project-management-tool.png"}
+                alt="TITAN Software"
+                width={768}
+                height={507}
+                className="rounded-lg w-full h-auto"
+              />
+            </div>
+
+            {/* Text Content Section */}
+            <div className="w-full max-w-2xl">
+              <h2 className="text-3xl font-bold mb-4">{section3content.title}</h2>
+              <div className="text-gray-800 leading-relaxed" dangerouslySetInnerHTML={{ __html: section3content.content }} />
+              <button className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 mt-5">
+                Check out the latest versions of PRO-TECH TITAN®
+              </button>
+            </div>
+
+          </div>
         </div>
       </div>
+
       <PromoSection />
     </div >
   );
