@@ -1,161 +1,10 @@
 local_backend: true
 backend:
   name: git-gateway
-  branch: master # Branch to update (optional; defaults to master)
+  branch: master
 media_folder: public/images
 public_folder: images
 collections:
-  - name: "pages"
-    label: "Pages"
-    files:
-    - label: "Features"
-      name: "features"
-      file: "app/content/features.md"
-      fields:
-        - { label: "Title", name: "title", widget: "string"}
-        - { label: "Publish Date", name: "date", widget: "datetime" }
-        - label: 'Features'
-          name: "features"
-          widget: list
-          fields:
-            - { label: "Title", name: "title", widget: "string"}
-            - label: "Sub Section"
-              name: "subSections"
-              widget: "list"
-              fields:
-                - { label: "Title", name: "title", widget: "string"}
-                - { label: "Image", name: "image", widget: "image"}
-                - label: "Details"
-                  name: "details"
-                  widget: "list"
-                  fields:
-                    - { label: "Description", name: "description", widget: "markdown"}
-    - name: "blogs"
-      label: "blogs"
-      file: "app/content/blogs.md"
-      fields:
-        - name: "blog"
-          label: "blog"
-          widget: "list"
-          fields:
-            - { label: "Title", name: "title", widget: "string" }
-            - { label: "Date", name: "date", widget: "datetime" }
-            - { label: "Content", name: "content", widget: "markdown" }
-            - label: "Image"
-              name: "image" 
-              widget: "list"
-              fields:
-                - {label: "Image", name: "image", widget: "image"}
-  - name: "dashboard"
-    label: "Dashboard"
-    files:
-    - label: "Features"
-      name: "features"
-      file: "app/content/dashboard/dashboardFeatures.md"
-      fields:
-      - label: "Feature"
-        name: "DashboardFeature"
-        widget: "list"
-        fields:
-        - { label: "Title", name: "title", widget: "string" }
-        - { label: "Icon", name: "icon", widget: "image" }
-    - label: "Section1"
-      name: "section1"
-      file: "app/content/dashboard/section1.md"
-      fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Content", name: "content", widget: "string"}
-      - label: "Images"
-        name: "images"
-        widget: "list"
-        min: 1
-        max: 1
-        fields:
-        - {label: "image", name: "image", widget: "image"}
-    - label: "Section3"
-      name: "section3"
-      file: "app/content/dashboard/section3.md"
-      fields:
-      - {label: "Image", name: "image", widget: "image"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Content", name: "content", widget: "markdown"}
-    - label: "Section4"
-      name: "section4"
-      file: "app/content/dashboard/section4.md"
-      fields:
-      - label: "Section"
-        name: "section"
-        widget: "list"
-        min: 1
-        max: 2
-        fields:
-        - {label: "Image", name: "image", widget: "image"}
-        - {label: "Title", name: "title", widget: "string"}
-        - {label: "Content", name: "content", widget: "markdown"}
-        - {label: "Link", name: "link", widget: "string"}
-        - {label: "Link Text", name: "linkText", widget: "string"}
-  - name: 'demoForm'
-    label: 'Demo Form'
-    files:
-    - label: "Form"
-      name: "form"
-      file: 'app/content/forms/demoForm.md'
-      fields:
-      - label: 'Form Title'
-        name: 'title'
-        widget: 'string'        
-      - label: 'Form Content'
-        name: 'content'
-        widget: 'markdown'
-      - label: 'Form Fields (min = 1)'
-        name: 'fields'
-        widget: 'list'
-        fields:
-        - label: "Row Name"
-          name: "row_name"
-          widget: "string"
-        - label: 'Row'
-          name: 'row'
-          widget: 'list'
-          min: 1
-          max: 2
-          fields:
-          - label: 'Field Name'
-            name: 'name'
-            widget: 'string'
-          - label: 'Field Label'
-            name: 'label'
-            widget: 'string'
-          - label: 'Field Type'
-            name: 'type'
-            widget: 'select'
-            options:
-            - 'text'
-            - 'email'
-            - 'number'
-            - 'password'
-            - 'url'
-            - 'tel'
-            - 'color'
-            - 'date'
-            - 'time'
-            - 'datetime-local'
-            - 'month'
-            - 'week'
-            - 'textarea'
-            - 'file'
-            - 'dropdown'
-          - name: 'dropdown_values'
-            label: 'Dropdown Values'
-            widget: 'list'
-            required: false
-            fields:
-            - { label: 'Value', name: 'value', widget: 'string' }
-            - { label: 'Label', name: 'label', widget: 'string' }
-      - name: "privacy"
-        label: "Privacy Policy URL"
-        widget: "string"
-        required: false
   - name: "homepageSections"
     label: "Homepage Sections"
     files:
@@ -172,46 +21,253 @@ collections:
                 widget: "object"
                 fields:
                   - { label: "Type", name: "type", widget: "hidden", default: "hero" }
+                  - { label: "Layout Style", name: "style", widget: "select", options: ["centered", "split", "fullscreen"], default: "centered" }
                   - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Content", name: "content", widget: "string" }
+                  - { label: "Content", name: "content", widget: "markdown" }
+                  - { label: "Background Color", name: "bgColor", widget: "color", enableAlpha: true, allowInput: true, required: false }
+                  - { label: "Text Color", name: "textColor", widget: "color", enableAlpha: true, allowInput: true, required: false }
                   - label: "Images"
                     name: "images"
                     widget: "list"
                     fields:
                       - { label: "Image", name: "image", widget: "image" }
-              - label: "Features Section"
+                      - { label: "Alt Text", name: "alt", widget: "string" }
+                  - label: "Buttons"
+                    name: "buttons"
+                    widget: "list"
+                    required: false
+                    fields:
+                      - { label: "Text", name: "text", widget: "string" }
+                      - { label: "Link", name: "link", widget: "string" }
+                      - { label: "Style", name: "style", widget: "select", options: ["primary", "secondary", "outline"], default: "primary" }
+                  - { label: "Font Size", name: "fontSize", widget: "select", options: ["text-base", "text-lg", "text-xl", "text-2xl", "text-3xl", "text-4xl", "text-5xl"], default: "text-3xl" }
+                  - { label: "Custom CSS", name: "customCss", widget: "string", required: false }
+
+              - label: "Features Grid"
                 name: "features"
                 widget: "object"
                 fields:
                   - { label: "Type", name: "type", widget: "hidden", default: "features" }
                   - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+                  - { label: "Layout", name: "layout", widget: "select", options: ["grid", "list", "columns"], default: "grid" }
+                  - { label: "Items Per Row", name: "itemsPerRow", widget: "number", min: 2, max: 6, default: 4 }
+                  - { label: "Background Style", name: "bgStyle", widget: "select", options: ["light", "dark", "gradient", "image"], default: "light" }
                   - label: "Features"
                     name: "features"
                     widget: "list"
                     fields:
                       - { label: "Title", name: "title", widget: "string" }
+                      - { label: "Description", name: "description", widget: "markdown" }
                       - { label: "Icon", name: "icon", widget: "image" }
-              - label: "Image With Text Section"
-                name: "imageWithText"
+                      - { label: "Link", name: "link", widget: "string", required: false }
+
+              - label: "Content with Media"
+                name: "contentMedia"
                 widget: "object"
                 fields:
-                  - { label: "Type", name: "type", widget: "hidden", default: "imageWithText" }
+                  - { label: "Type", name: "type", widget: "hidden", default: "contentMedia" }
+                  - { label: "Layout", name: "layout", widget: "select", options: ["imageLeft", "imageRight", "imageTop", "imageBottom", "imageBackground"], default: "imageLeft" }
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Content", name: "content", widget: "markdown" }
-                  - { label: "Image", name: "image", widget: "image" }
-                  - { label: "Button Text", name: "buttonText", widget: "string", required: false }
-                  - { label: "Button Link", name: "buttonLink", widget: "string", required: false }
-              - label: "Promo Section"
-                name: "promo"
-                widget: "object"
-                fields:
-                  - { label: "Type", name: "type", widget: "hidden", default: "promo" }
-                  - label: "Promos"
-                    name: "promos"
+                  - { label: "Media Type", name: "mediaType", widget: "select", options: ["image", "video", "carousel"], default: "image" }
+                  - label: "Media Items"
+                    name: "mediaItems"
                     widget: "list"
                     fields:
-                      - { label: "Image", name: "image", widget: "image" }
+                      - { label: "File", name: "file", widget: "file" }
+                      - { label: "Alt Text", name: "alt", widget: "string" }
+                  - { label: "Background Color", name: "bgColor", widget: "color", enableAlpha: true, required: false }
+                  - label: "Call to Action"
+                    name: "cta"
+                    widget: "object"
+                    required: false
+                    fields:
+                      - { label: "Text", name: "text", widget: "string" }
+                      - { label: "Link", name: "link", widget: "string" }
+
+              - label: "Card Grid"
+                name: "cards"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "hidden", default: "cards" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Layout Style", name: "style", widget: "select", options: ["grid", "masonry", "carousel"], default: "grid" }
+                  - { label: "Cards Per Row", name: "cardsPerRow", widget: "number", min: 1, max: 4, default: 3 }
+                  - { label: "Show Card Border", name: "showBorder", widget: "boolean", default: true }
+                  - { label: "Enable Hover Effect", name: "hoverEffect", widget: "boolean", default: true }
+                  - label: "Cards"
+                    name: "cards"
+                    widget: "list"
+                    fields:
                       - { label: "Title", name: "title", widget: "string" }
                       - { label: "Content", name: "content", widget: "markdown" }
+                      - { label: "Image", name: "image", widget: "image", required: false }
+                      - { label: "Link", name: "link", widget: "string", required: false }
+                      - { label: "Button Text", name: "buttonText", widget: "string", required: false }
+
+              - label: "Testimonials Section"
+                name: "testimonials"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "hidden", default: "testimonials" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Layout", name: "layout", widget: "select", options: ["grid", "slider", "masonry"], default: "grid" }
+                  - { label: "Show Ratings", name: "showRatings", widget: "boolean", default: true }
+                  - label: "Testimonials"
+                    name: "testimonials"
+                    widget: "list"
+                    fields:
+                      - { label: "Author Name", name: "author", widget: "string" }
+                      - { label: "Author Title", name: "title", widget: "string", required: false }
+                      - { label: "Author Image", name: "image", widget: "image", required: false }
+                      - { label: "Content", name: "content", widget: "markdown" }
+                      - { label: "Rating", name: "rating", widget: "number", min: 1, max: 5, required: false }
+
+              - label: "Stats Section"
+                name: "stats"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "hidden", default: "stats" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Layout", name: "layout", widget: "select", options: ["row", "grid"], default: "row" }
+                  - { label: "Animation", name: "animation", widget: "select", options: ["none", "countUp", "fade"], default: "none" }
+                  - label: "Stats"
+                    name: "stats"
+                    widget: "list"
+                    fields:
+                      - { label: "Label", name: "label", widget: "string" }
+                      - { label: "Value", name: "value", widget: "string" }
+                      - { label: "Icon", name: "icon", widget: "image", required: false }
+                      - { label: "Prefix", name: "prefix", widget: "string", required: false }
+                      - { label: "Suffix", name: "suffix", widget: "string", required: false }
+
+              - label: "FAQ Section"
+                name: "faq"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "hidden", default: "faq" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Layout", name: "layout", widget: "select", options: ["accordion", "tabs", "grid"], default: "accordion" }
+                  - label: "Categories"
+                    name: "categories"
+                    widget: "list"
+                    required: false
+                    fields:
+                      - { label: "Name", name: "name", widget: "string" }
+                  - label: "Questions"
+                    name: "questions"
+                    widget: "list"
+                    fields:
+                      - { label: "Question", name: "question", widget: "string" }
+                      - { label: "Answer", name: "answer", widget: "markdown" }
+                      - { label: "Category", name: "category", widget: "string", required: false }
+
+              - label: "Team Section"
+                name: "team"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "hidden", default: "team" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Layout", name: "layout", widget: "select", options: ["grid", "list", "carousel"], default: "grid" }
+                  - label: "Members"
+                    name: "members"
+                    widget: "list"
+                    fields:
+                      - { label: "Name", name: "name", widget: "string" }
+                      - { label: "Position", name: "position", widget: "string" }
+                      - { label: "Image", name: "image", widget: "image" }
+                      - { label: "Bio", name: "bio", widget: "markdown", required: false }
+                      - label: "Social Links"
+                        name: "social"
+                        widget: "list"
+                        required: false
+                        fields:
+                          - { label: "Platform", name: "platform", widget: "select", options: ["linkedin", "twitter", "facebook", "instagram"] }
+                          - { label: "URL", name: "url", widget: "string" }
+
+              - label: "Timeline Section"
+                name: "timeline"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "hidden", default: "timeline" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Layout", name: "layout", widget: "select", options: ["vertical", "horizontal"], default: "vertical" }
+                  - label: "Events"
+                    name: "events"
+                    widget: "list"
+                    fields:
+                      - { label: "Date", name: "date", widget: "string" }
+                      - { label: "Title", name: "title", widget: "string" }
+                      - { label: "Content", name: "content", widget: "markdown" }
+                      - { label: "Image", name: "image", widget: "image", required: false }
+
+              - label: "Pricing Tables"
+                name: "pricing"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "hidden", default: "pricing" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+                  - { label: "Period Toggle", name: "showPeriodToggle", widget: "boolean", default: true }
+                  - label: "Plans"
+                    name: "plans"
+                    widget: "list"
+                    fields:
+                      - { label: "Name", name: "name", widget: "string" }
+                      - { label: "Monthly Price", name: "monthlyPrice", widget: "string" }
+                      - { label: "Annual Price", name: "annualPrice", widget: "string" }
+                      - { label: "Currency", name: "currency", widget: "string", default: "$" }
+                      - { label: "Popular", name: "popular", widget: "boolean", default: false }
+                      - label: "Features"
+                        name: "features"
+                        widget: "list"
+                        field: { label: "Feature", name: "feature", widget: "string" }
+                      - { label: "Button Text", name: "buttonText", widget: "string" }
+                      - { label: "Button Link", name: "buttonLink", widget: "string" }
+
+              - label: "CTA Section"
+                name: "cta"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "hidden", default: "cta" }
+                  - { label: "Style", name: "style", widget: "select", options: ["simple", "withImage", "fullWidth", "newsletter"], default: "simple" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Content", name: "content", widget: "markdown" }
+                  - { label: "Background Image", name: "bgImage", widget: "image", required: false }
+                  - { label: "Background Color", name: "bgColor", widget: "color", required: false }
+                  - label: "Buttons"
+                    name: "buttons"
+                    widget: "list"
+                    fields:
+                      - { label: "Text", name: "text", widget: "string" }
                       - { label: "Link", name: "link", widget: "string" }
-                      - { label: "Link Text", name: "linkText", widget: "string" }
+                      - { label: "Style", name: "style", widget: "select", options: ["primary", "secondary", "outline"], default: "primary" }
+              - label: "Alert/Notice Section"
+                name: "alert"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "hidden", default: "alert" }
+                  - { label: "Message", name: "message", widget: "markdown" }
+                  - { label: "Background Color", name: "bgColor", widget: "color", required: false }
+                  - { label: "Text Color", name: "textColor", widget: "color", required: false }
+                  - { label: "Icon", name: "icon", widget: "image", required: false }
+                  - { label: "Font Size", name: "fontSize", widget: "select", options: ["text-base", "text-lg", "text-xl", "text-2xl"], default: "text-lg" }
+              - label: "Divider"
+                name: "divider"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "hidden", default: "divider" }
+                  - { label: "Style", name: "style", widget: "select", options: ["solid", "dashed", "dotted", "double"], default: "solid" }
+                  - { label: "Color", name: "color", widget: "color", required: false }
+                  - { label: "Thickness", name: "thickness", widget: "number", min: 1, max: 10, default: 2 }
+              - label: "Rich Text Section"
+                name: "richText"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "hidden", default: "richText" }
+                  - { label: "Content", name: "content", widget: "markdown" }
+                  - { label: "Font Size", name: "fontSize", widget: "select", options: ["text-base", "text-lg", "text-xl", "text-2xl", "text-3xl"], default: "text-lg" }
+                  - { label: "Text Color", name: "textColor", widget: "color", required: false }
+                  - { label: "Background Color", name: "bgColor", widget: "color", required: false }
+                  - { label: "Custom CSS", name: "customCss", widget: "string", required: false }

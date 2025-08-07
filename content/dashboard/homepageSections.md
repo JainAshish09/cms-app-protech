@@ -1,61 +1,20 @@
 ---
 sections:
-  - type: hero
-    title: THIS IS A HERO SECTION
-    content: hELLO THIS IS A CONTENT OF HERO SECTION
+  - fontSize: text-5xl
+    style: centered
+    customCss: "background: blue;"
+    textColor: "#2e5d22"
+    title: This is a Hero Section
     images:
       - image: images/about-img-1.jpeg
-  - type: features
-    title: tHIS IS A fUTURE sECTION
-    features:
-      - title: sECURE
-        icon: images/accountability.svg
-      - title: eASY TO USE
-        icon: images/access-product-collateral.svg
-      - title: tEST
-        icon: images/default-blog-img.jpg
-      - title: mnop
-        icon: images/gallery6.png
-      - title: okokokok
-        icon: images/assa-abloy-logo-header.svg
-  - type: imageWithText
-    title: tHIS IS A IMGAE wITH TEXT SECTION
-    content: tHIS IS A TEXT OF THIS SECTION
-    image: images/homepage-header.png
-    buttonText: clICK ME
-    buttonLink: WW.GOOGLE.COM
-  - type: hero
-    title: hELLO tHIS IS A HERO SECTION 2
-    content: hELLO uSER
-    images:
-      - image: images/toggleMenuImage1.png
-  - type: promo
-    promos:
-      - image: images/gallery6.png
-        title: tHIS IS A PROMO SECTION
-        content: tHIS IS A PROMOSECTION CON1
-        link: abcd
-        linkText: abc
-      - content: |-
-          
-
-
-          # WINDOW MYSQL 8 REMOVE FULL GROUP BY
-        image: images/home2.png
-        title: "this is is "
-        link: opop
-        linkText: qrs
-      - content: |-
-          
-
-
-
-
-
-
-          # WINDOW MYSQL 8 REMOVE FULL GROUP BY
-        title: "   WINDOW MYSQL 8 REMOVE FULL GROUP BY"
-        image: images/about-img-2.jpeg
-        link: njnjn
-        linkText: mkmkmk
+        alt: ok
+    content: In a rapidly changing world, the concept of lifelong learning has
+      become more important than ever. Gone are the days when formal education
+      ***ended with a diploma or degree. Today, learning is a continuous
+      process*** that extends well beyond the classroom and lasts throughout an
+      individual’s life. Lifelong learning is not just about acquiring new
+      skills; it's abo*ut maintainin*g a curious mindset, adapting to new
+      challenges, and staying relevant in a constantly evolving society.
+    type: hero
+    bgColor: "#f4eeee"
 ---
