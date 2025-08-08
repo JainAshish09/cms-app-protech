@@ -1,20 +1,33 @@
 ---
 sections:
-  - fontSize: text-5xl
+  - buttons:
+      - style: primary
+        text: "Button1 "
+        link: This is a button
+      - style: secondary
+        text: Button 2
+        link: Button 2
+      - style: outline
+        text: Button 3
+        link: Button 3
+    titleTextSettings:
+      fontSize: text-3xl
+      textColor: "#182583"
+    contentTextSettings:
+      fontSize: text-base
+      textColor: "#c21616"
     style: centered
-    customCss: "background: blue;"
-    textColor: "#2e5d22"
-    title: This is a Hero Section
+    title: Welcome to ProTech – Project Management Made for Door & Frame Manufacturers
     images:
+      - image: images/about-img-2.jpeg
+        alt: Image 1
       - image: images/about-img-1.jpeg
-        alt: ok
-    content: In a rapidly changing world, the concept of lifelong learning has
-      become more important than ever. Gone are the days when formal education
-      ***ended with a diploma or degree. Today, learning is a continuous
-      process*** that extends well beyond the classroom and lasts throughout an
-      individual’s life. Lifelong learning is not just about acquiring new
-      skills; it's abo*ut maintainin*g a curious mindset, adapting to new
-      challenges, and staying relevant in a constantly evolving society.
+        alt: Image 2
+      - image: images/gallery5.png
+        alt: Image 3
+    content: >-
+      
+      At **ProTech**, we understand the unique challenges that door and frame manufacturers face. From juggling multiple vendors, staying on top of change orders, tracking inventory, and meeting strict delivery deadlines, your workflow demands a system that's not just efficient — but tailored to your industry.
     type: hero
-    bgColor: "#f4eeee"
+    bgColor: "#e6d1d1"
 ---

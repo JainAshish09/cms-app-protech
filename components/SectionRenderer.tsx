@@ -1,7 +1,9 @@
 "use client"
 import React from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import HeroSection from './Sections/hero';
 
 interface SectionRendererProps {
   section: any;
@@ -343,29 +345,8 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ section }) => {
   const shapeBottom = section.shapeDividerBottom ? <ShapeDivider {...section.shapeDividerBottom} /> : null;
 
   switch (section.type) {
-    case 'hero': {
-      let layoutClass = '';
-      if (section.style === 'split') layoutClass = 'md:flex-row';
-      else if (section.style === 'fullscreen') layoutClass = 'min-h-[70vh]';
-      return (
-        <section className={`w-full py-20 md:py-32 flex flex-col items-center justify-center relative overflow-hidden ${layoutClass}`} style={sectionStyle}>
-          <div className="max-w-5xl w-full flex flex-col items-center z-10">
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 text-center leading-tight drop-shadow-lg" style={{ color: section.textColor }}>{section.title}</h1>
-            <div className="prose md:prose-lg text-center mb-8 max-w-2xl" style={{ color: section.textColor }} dangerouslySetInnerHTML={{ __html: section.content }} />
-            {section.images && (
-              <div className="flex gap-4 w-full max-w-4xl justify-center mb-6 flex-wrap">
-                {section.images.map((img: any, i: number) => (
-                  <div key={i} className="relative w-[180px] h-[120px] md:w-[320px] md:h-[200px] rounded-2xl shadow-lg overflow-hidden">
-                    <Image src={`/${img.image}`} alt={img.alt || 'Hero Image'} layout='fill' objectFit='cover' className='rounded-2xl' />
-                  </div>
-                ))}
-              </div>
-            )}
-            {section.buttons && renderButtons(section.buttons)}
-          </div>
-        </section>
-      );
-    }
+    case 'hero':
+      return <HeroSection section={section} />;
     case 'features': {
       let gridClass = 'grid-cols-1 sm:grid-cols-2 md:grid-cols-4';
       if (section.layout === 'columns' && section.itemsPerRow) gridClass = `grid-cols-1 sm:grid-cols-2 md:grid-cols-${section.itemsPerRow}`;
