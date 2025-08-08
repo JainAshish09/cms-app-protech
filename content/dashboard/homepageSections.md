@@ -29,19 +29,24 @@ sections:
       At **ProTech**, we understand the unique challenges that door and frame manufacturers face. From juggling multiple vendors, staying on top of change orders, tracking inventory, and meeting strict delivery deadlines, your workflow demands a system that's not just efficient — but tailored to your industry.
     type: hero
     bgColor: "#e6d1d1"
-  - type: features
-    layout: grid
-    itemsPerRow: 4
-    bgStyle: light
-    title: "This is a Future grid "
+  - layout: grid
+    bgStyle: color
+    titleControls:
+      align: left
+      fontSize: "30"
+      color: "#112236"
+    contentControls:
+      align: left
+      fontSize: "20"
+      color: "#ae7878"
     subtitle: Future Grid Subtitle
+    title: "This is a Future grid "
+    type: features
     features:
       - title: tHIS IS A fUTURE 1
         description: fUTURE 1
         icon: images/about-img-2.jpeg
         link: OK
-    titleControls:
-      align: right
-      fontSize: "50"
-      color: "#2379df"
+    itemsPerRow: 2
+    bgColor: "#dea9a9"
 ---
