@@ -1,6 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
 
+function getTextStyle(controls: any) {
+    return {
+        textAlign: controls?.align || undefined,
+        fontSize: controls?.fontSize || undefined,
+        color: controls?.color || undefined,
+    };
+}
+
 const SimpleSlider = ({ children }: { children: React.ReactNode }) => {
     const [idx, setIdx] = React.useState(0);
     const count = React.Children.count(children);
@@ -24,16 +32,13 @@ const SimpleSlider = ({ children }: { children: React.ReactNode }) => {
 
 const TestimonialsSection = ({ section }: { section: any }) => {
     let layout = section.layout || 'grid';
+    // Use controls from CMS config
     const titleStyle = {
-        textAlign: section.titleAlign || 'center',
-        color: section.titleColor,
-        fontSize: section.titleFontSize,
+        ...getTextStyle(section.titleControls),
         ...section.titleStyle,
     };
     const contentStyle = {
-        textAlign: section.contentAlign || 'center',
-        color: section.contentColor,
-        fontSize: section.contentFontSize,
+        ...getTextStyle(section.contentControls),
         ...section.contentStyle,
     };
     if (layout === 'slider') {
@@ -64,8 +69,10 @@ const TestimonialsSection = ({ section }: { section: any }) => {
                 <div className={`grid gap-8 ${gridClass}`}>
                     {section.testimonials?.map((t: any, i: number) => (
                         <div key={i} className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center border border-gray-100">
+                            {t.image && <div className="relative w-16 h-16 mb-2"><Image src={`/${t.image}`} alt={t.author} layout="fill" objectFit="cover" className="rounded-full" /></div>}
                             <blockquote className="italic mb-2 text-gray-700 text-center">“{t.content}”</blockquote>
                             <div className="font-bold text-blue-700 text-center">{t.author}</div>
+                            {t.title && <div className="text-gray-500 text-sm text-center">{t.title}</div>}
                             {section.showRatings && t.rating && <div className="text-yellow-400 mt-2 text-center">{'★'.repeat(t.rating)}</div>}
                         </div>
                     ))}

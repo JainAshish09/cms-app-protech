@@ -1,6 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
 
+function getTextStyle(controls: any) {
+    return {
+        textAlign: controls?.align || undefined,
+        fontSize: controls?.fontSize || undefined,
+        color: controls?.color || undefined,
+    };
+}
+
 const ContentMediaSection = ({ section }: { section: any }) => {
     let flexClass = 'flex-col md:flex-row';
     if (section.layout === 'imageRight') flexClass = 'flex-col md:flex-row-reverse';
@@ -8,16 +16,13 @@ const ContentMediaSection = ({ section }: { section: any }) => {
     if (section.layout === 'imageBottom') flexClass = 'flex-col-reverse';
     if (section.layout === 'imageBackground') flexClass = 'relative flex-col justify-center items-center';
 
+    // Use controls from CMS config
     const titleStyle = {
-        textAlign: section.titleAlign || 'left',
-        color: section.titleColor,
-        fontSize: section.titleFontSize,
+        ...getTextStyle(section.titleControls),
         ...section.titleStyle,
     };
     const contentStyle = {
-        textAlign: section.contentAlign || 'left',
-        color: section.contentColor,
-        fontSize: section.contentFontSize,
+        ...getTextStyle(section.contentControls),
         ...section.contentStyle,
     };
 

@@ -1,22 +1,27 @@
 import React from 'react';
 import Image from 'next/image';
 
+function getTextStyle(controls: any) {
+    return {
+        textAlign: controls?.align || undefined,
+        fontSize: controls?.fontSize || undefined,
+        color: controls?.color || undefined,
+    };
+}
+
 const CardsSection = ({ section }: { section: any }) => {
     let gridClass = 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3';
     if (section.style === 'masonry') gridClass = 'md:grid-cols-3';
     if (section.style === 'carousel') gridClass = 'grid-cols-1';
     if (section.cardsPerRow) gridClass = `grid-cols-1 sm:grid-cols-2 md:grid-cols-${section.cardsPerRow}`;
 
+    // Use controls from CMS config
     const titleStyle = {
-        textAlign: section.titleAlign || 'center',
-        color: section.titleColor,
-        fontSize: section.titleFontSize,
+        ...getTextStyle(section.titleControls),
         ...section.titleStyle,
     };
     const contentStyle = {
-        textAlign: section.contentAlign || 'center',
-        color: section.contentColor,
-        fontSize: section.contentFontSize,
+        ...getTextStyle(section.contentControls),
         ...section.contentStyle,
     };
 

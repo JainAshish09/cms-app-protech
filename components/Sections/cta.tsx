@@ -1,16 +1,21 @@
 import React from 'react';
 
+function getTextStyle(controls: any) {
+    return {
+        textAlign: controls?.align || undefined,
+        fontSize: controls?.fontSize || undefined,
+        color: controls?.color || undefined,
+    };
+}
+
 const CTASection = ({ section, renderButtons }: { section: any, renderButtons: (buttons: any[]) => JSX.Element }) => {
+    // Use controls from CMS config
     const titleStyle = {
-        textAlign: section.titleAlign || 'center',
-        color: section.titleColor,
-        fontSize: section.titleFontSize,
+        ...getTextStyle(section.titleControls),
         ...section.titleStyle,
     };
     const contentStyle = {
-        textAlign: section.contentAlign || 'center',
-        color: section.contentColor,
-        fontSize: section.contentFontSize,
+        ...getTextStyle(section.contentControls),
         ...section.contentStyle,
     };
     return (

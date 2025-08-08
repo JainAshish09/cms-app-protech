@@ -1,6 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
 
+function getTextStyle(controls: any) {
+    return {
+        textAlign: controls?.align || undefined,
+        fontSize: controls?.fontSize || undefined,
+        color: controls?.color || undefined,
+    };
+}
+
 const CountUp = ({ end, prefix = '', suffix = '' }: { end: any, prefix?: string, suffix?: string }) => {
     const [val, setVal] = React.useState(0);
     React.useEffect(() => {
@@ -29,10 +37,21 @@ const StatsSection = ({ section }: { section: any }) => {
     let gridClass = 'grid-cols-1 sm:grid-cols-2 md:grid-cols-4';
     if (section.layout === 'row') gridClass = `grid-cols-${section.stats.length}`;
     if (section.layout === 'grid' && section.stats.length) gridClass = `grid-cols-1 sm:grid-cols-2 md:grid-cols-${section.stats.length}`;
+
+    // Use controls from CMS config
+    const titleStyle = {
+        ...getTextStyle(section.titleControls),
+        ...section.titleStyle,
+    };
+    const contentStyle = {
+        ...getTextStyle(section.contentControls),
+        ...section.contentStyle,
+    };
+
     return (
         <section className="w-full py-16 bg-white">
             <div className="container mx-auto">
-                <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">{section.title}</h2>
+                <h2 style={titleStyle} className="text-2xl md:text-3xl font-bold text-center mb-10">{section.title}</h2>
                 <div className={`grid gap-8 ${gridClass}`}>
                     {section.stats?.map((stat: any, i: number) => (
                         <div key={i} className="flex flex-col items-center text-center p-6 bg-[#F7FAFC] rounded-xl shadow">

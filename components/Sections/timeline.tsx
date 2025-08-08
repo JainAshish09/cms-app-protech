@@ -1,17 +1,22 @@
 import React from 'react';
 import Image from 'next/image';
 
+function getTextStyle(controls: any) {
+    return {
+        textAlign: controls?.align || undefined,
+        fontSize: controls?.fontSize || undefined,
+        color: controls?.color || undefined,
+    };
+}
+
 const TimelineSection = ({ section }: { section: any }) => {
+    // Use controls from CMS config
     const titleStyle = {
-        textAlign: section.titleAlign || 'center',
-        color: section.titleColor,
-        fontSize: section.titleFontSize,
+        ...getTextStyle(section.titleControls),
         ...section.titleStyle,
     };
     const contentStyle = {
-        textAlign: section.contentAlign || 'left',
-        color: section.contentColor,
-        fontSize: section.contentFontSize,
+        ...getTextStyle(section.contentControls),
         ...section.contentStyle,
     };
     return (

@@ -9,8 +9,9 @@ sections:
       textColor: "#c21616"
     titleControls:
       align: left
-      fontSize: "30"
-    style: centered
+      fontSize: "50"
+      color: "#2912b5"
+    style: split
     title: Welcome to ProTech – Project Management Made for Door & Frame Manufacturers
     images:
       - image: images/about-img-2.jpeg
@@ -35,4 +36,8 @@ sections:
         description: fUTURE 1
         icon: images/about-img-2.jpeg
         link: OK
+    titleControls:
+      align: right
+      fontSize: "50"
+      color: "#2379df"
 ---

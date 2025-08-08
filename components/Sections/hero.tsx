@@ -15,24 +15,8 @@ interface ButtonType {
     style: 'primary' | 'secondary' | 'outline';
 }
 
-interface TextSettings {
-    fontSize: string;
-    textColor?: string;
-}
-
 interface HeroSectionProps {
-    section: {
-        type: string;
-        style?: 'centered' | 'split' | 'fullscreen';
-        title: string;
-        content: string;
-        bgColor?: string;
-        images?: ImageType[];
-        buttons?: ButtonType[];
-        titleTextSettings?: TextSettings;
-        contentTextSettings?: TextSettings;
-        customCss?: string;
-    };
+    section: any;
     sectionStyle?: React.CSSProperties;
 }
 
@@ -40,6 +24,14 @@ interface HeroSectionProps {
 function formatImageSrc(src: string) {
     if (!src) return '';
     return src.startsWith('/') || src.startsWith('http') ? src : `/${src}`;
+}
+
+function getTextStyle(controls: any) {
+    return {
+        textAlign: controls?.align || undefined,
+        fontSize: controls?.fontSize || undefined,
+        color: controls?.color || undefined,
+    };
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
@@ -50,6 +42,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
                 ? 'min-h-[70vh]'
                 : '';
 
+    // Use controls from CMS config
+    const titleStyle = {
+        ...getTextStyle(section.titleControls),
+        ...section.titleTextSettings,
+    };
+    const contentStyle = {
+        ...getTextStyle(section.contentControls),
+        ...section.contentTextSettings,
+    };
+
     return (
         <section
             className={`w-full pt-20 md:pt-32 pb-5 flex flex-col items-center justify-center relative overflow-hidden ${layoutClass} ${section.customCss || ''}`}
@@ -58,18 +60,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
             <div className="max-w-5xl w-full flex flex-col items-center z-10 px-4 md:px-0">
                 {/* Title */}
                 <h1
-                    className={`mb-4 text-center leading-tight drop-shadow-lg ${section.titleTextSettings?.fontSize || 'text-3xl'
-                        } font-bold`}
-                    style={{ color: section.titleTextSettings?.textColor || undefined }}
+                    className={`mb-4 leading-tight drop-shadow-lg font-bold`}
+                    style={titleStyle}
                 >
                     {section.title}
                 </h1>
 
                 {/* Content */}
                 <div
-                    className={`prose md:prose-lg text-center max-w-2xl ${section.contentTextSettings?.fontSize || 'text-base'
-                        }`}
-                    style={{ color: section.contentTextSettings?.textColor || undefined }}
+                    className={`prose md:prose-lg max-w-2xl`}
+                    style={contentStyle}
                     dangerouslySetInnerHTML={{ __html: section.content }}
                 />
 
@@ -89,7 +89,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
                             dynamicHeight={false}
                             className="rounded-2xl overflow-hidden shadow-lg"
                         >
-                            {section.images.map((img, i) => (
+                            {section.images.map((img: ImageType, i: number) => (
                                 <div
                                     key={i}
                                     className="relative w-full h-[200px] md:h-[400px]"
