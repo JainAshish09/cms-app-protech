@@ -1,15 +1,6 @@
 ---
 sections:
-  - buttons:
-      - style: primary
-        text: "Button1 "
-        link: This is a button
-      - style: secondary
-        text: Button 2
-        link: Button 2
-      - style: outline
-        text: Button 3
-        link: Button 3
+  - buttons: []
     titleTextSettings:
       fontSize: text-3xl
       textColor: "#182583"
