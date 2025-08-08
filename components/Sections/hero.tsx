@@ -4,72 +4,128 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import ButtonGroup from '../widgets/ButtonGroup';
 
-interface ImageType {
+// ---------- TypeScript interfaces matching your CMS schema ----------
+
+interface HeroSectionImage {
     image: string;
     alt?: string;
 }
 
-interface ButtonType {
+interface HeroSectionButton {
     text: string;
     link: string;
     style: 'primary' | 'secondary' | 'outline';
 }
 
+interface TextSettings {
+    fontSize?: string;   // e.g., "text-3xl" or "50" (pixels)
+    textColor?: string;  // e.g., "#182583"
+}
+
+interface ControlSettings {
+    align?: 'left' | 'center' | 'right';
+    fontSize?: string;   // e.g., "text-lg" or "48"
+    color?: string;      // e.g., "#2912b5"
+}
+
+interface HeroSectionData {
+    type: 'hero';
+    style: 'centered' | 'split' | 'fullscreen';
+    title: string;
+    content: string; // Assumed HTML string already (converted markdown)
+    bgColor?: string;
+    images?: HeroSectionImage[];
+    buttons?: HeroSectionButton[];
+    titleControls?: ControlSettings;
+    contentControls?: ControlSettings;
+    titleTextSettings?: TextSettings;
+    contentTextSettings?: TextSettings;
+    customCss?: string;
+    [key: string]: any;
+}
+
 interface HeroSectionProps {
-    section: any;
+    section: HeroSectionData;
     sectionStyle?: React.CSSProperties;
 }
 
-// Helper function to ensure image path starts with '/'
+// ---------- Utility functions ----------
+
+// Fix image src to have leading slash or absolute URL
 function formatImageSrc(src: string) {
     if (!src) return '';
     return src.startsWith('/') || src.startsWith('http') ? src : `/${src}`;
 }
 
-function getTextStyle(controls: any) {
-    return {
-        textAlign: controls?.align || undefined,
-        fontSize: controls?.fontSize || undefined,
-        color: controls?.color || undefined,
-    };
+// Map CMS align to Tailwind text-align class
+function getTextAlignClass(align?: string) {
+    if (align === 'left') return 'text-left';
+    if (align === 'right') return 'text-right';
+    return 'text-center';
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
-    const layoutClass =
-        section.style === 'split'
-            ? 'md:flex-row'
-            : section.style === 'fullscreen'
-                ? 'min-h-[70vh]'
-                : '';
+// Return font size Tailwind class if applicable
+function getFontSizeClass(fontSize?: string) {
+    if (!fontSize) return '';
+    if (fontSize.startsWith('text-')) return fontSize;
+    return '';
+}
 
-    // Use controls from CMS config
-    const titleStyle = {
-        ...getTextStyle(section.titleControls),
-        ...section.titleTextSettings,
-    };
-    const contentStyle = {
-        ...getTextStyle(section.contentControls),
-        ...section.contentTextSettings,
-    };
+// Generate inline styles for fontSize (if numeric px) and color
+function getStyleOverride(fontSize?: string, color?: string): React.CSSProperties {
+    const style: React.CSSProperties = {};
+    if (fontSize && !fontSize.startsWith('text-') && !isNaN(Number(fontSize))) {
+        style.fontSize = `${fontSize}px`;
+    }
+    if (color) {
+        style.color = color;
+    }
+    return style;
+}
+
+// ---------- HeroSection component ----------
+
+const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
+    // Compute classes and inline styles for title
+    const titleAlignClass = getTextAlignClass(section.titleControls?.align);
+    const titleFontSizeClass =
+        getFontSizeClass(section.titleControls?.fontSize) || getFontSizeClass(section.titleTextSettings?.fontSize);
+    const titleInlineStyle = getStyleOverride(
+        section.titleControls?.fontSize || section.titleTextSettings?.fontSize,
+        section.titleControls?.color || section.titleTextSettings?.textColor
+    );
+
+    // Compute classes and inline styles for content
+    const contentAlignClass = getTextAlignClass(section.contentControls?.align);
+    const contentFontSizeClass =
+        getFontSizeClass(section.contentControls?.fontSize) || getFontSizeClass(section.contentTextSettings?.fontSize);
+    const contentInlineStyle = getStyleOverride(
+        section.contentControls?.fontSize || section.contentTextSettings?.fontSize,
+        section.contentControls?.color || section.contentTextSettings?.textColor
+    );
+
+    // Layout style classes based on CMS style field
+    const layoutClass =
+        section.style === 'split' ? 'md:flex-row' : section.style === 'fullscreen' ? 'min-h-[70vh]' : '';
 
     return (
         <section
-            className={`w-full pt-20 md:pt-32 pb-5 flex flex-col items-center justify-center relative overflow-hidden ${layoutClass} ${section.customCss || ''}`}
-            style={{ backgroundColor: section.bgColor || undefined, ...sectionStyle }}
+            className={`w-full pt-20 md:pt-32 pb-5 flex flex-col items-center justify-center relative overflow-hidden ${layoutClass} ${section.customCss ?? ''}`}
+            style={{ backgroundColor: section.bgColor, ...sectionStyle }}
         >
             <div className="max-w-5xl w-full flex flex-col items-center z-10 px-4 md:px-0">
                 {/* Title */}
                 <h1
-                    className={`mb-4 leading-tight drop-shadow-lg font-bold`}
-                    style={titleStyle}
+                    className={`mb-4 leading-tight drop-shadow-lg font-bold w-full ${titleAlignClass} ${titleFontSizeClass}`}
+                    style={titleInlineStyle}
                 >
                     {section.title}
                 </h1>
 
                 {/* Content */}
                 <div
-                    className={`prose md:prose-lg max-w-2xl`}
-                    style={contentStyle}
+                    className={`prose md:prose-lg max-w-2xl w-full ${contentAlignClass} ${contentFontSizeClass}`}
+                    style={contentInlineStyle}
                     dangerouslySetInnerHTML={{ __html: section.content }}
                 />
 
@@ -89,19 +145,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
                             dynamicHeight={false}
                             className="rounded-2xl overflow-hidden shadow-lg"
                         >
-                            {section.images.map((img: ImageType, i: number) => (
-                                <div
-                                    key={i}
-                                    className="relative w-full h-[200px] md:h-[400px]"
-                                    style={{ position: 'relative' }}
-                                >
+                            {section.images.map((img, i) => (
+                                <div key={i} className="relative w-full h-[200px] md:h-[400px]">
                                     <Image
                                         src={formatImageSrc(img.image)}
                                         alt={img.alt || 'Hero Image'}
                                         layout="fill"
                                         objectFit="cover"
                                         className="rounded-2xl"
-                                        priority={i === 0} // preload first image
+                                        priority={i === 0}
                                     />
                                 </div>
                             ))}
@@ -110,7 +162,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
                 )}
 
                 {/* Buttons */}
-                {section.buttons && <ButtonGroup buttons={section.buttons} />}
+                {section.buttons && section.buttons.length > 0 && <ButtonGroup buttons={section.buttons} />}
             </div>
         </section>
     );
