@@ -39,19 +39,20 @@ collections:
                       - { label: "Text", name: "text", widget: "string" }
                       - { label: "Link", name: "link", widget: "string" }
                       - { label: "Style", name: "style", widget: "select", options: ["primary", "secondary", "outline"], default: "primary" }
-                  - label: "Title Text Settings"
-                    name: "titleTextSettings"
+                  - label: "Title Controls"
+                    name: "titleControls"
                     widget: "object"
                     fields:
-                      - { label: "Font Size", name: "fontSize", widget: "select", options: ["text-base", "text-lg", "text-xl", "text-2xl", "text-3xl", "text-4xl", "text-5xl"], default: "text-3xl" }
-                      - { label: "Text Color", name: "textColor", widget: "color", enableAlpha: true, allowInput: true, required: false }
-
-                  - label: "Content Text Settings"
-                    name: "contentTextSettings"
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+                  - label: "Content Controls"
+                    name: "contentControls"
                     widget: "object"
                     fields:
-                      - { label: "Font Size", name: "fontSize", widget: "select", options: ["text-base", "text-lg", "text-xl", "text-2xl", "text-3xl"], default: "text-base" }
-                      - { label: "Text Color", name: "textColor", widget: "color", enableAlpha: true, allowInput: true, required: false }
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
 
               - label: "Features Grid"
                 name: "features"
@@ -63,6 +64,20 @@ collections:
                   - { label: "Layout", name: "layout", widget: "select", options: ["grid", "list", "columns"], default: "grid" }
                   - { label: "Items Per Row", name: "itemsPerRow", widget: "number", min: 2, max: 6, default: 4 }
                   - { label: "Background Style", name: "bgStyle", widget: "select", options: ["light", "dark", "gradient", "image"], default: "light" }
+                  - label: "Title Controls"
+                    name: "titleControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+                  - label: "Content Controls"
+                    name: "contentControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
                   - label: "Features"
                     name: "features"
                     widget: "list"
@@ -95,6 +110,20 @@ collections:
                     fields:
                       - { label: "Text", name: "text", widget: "string" }
                       - { label: "Link", name: "link", widget: "string" }
+                  - label: "Title Controls"
+                    name: "titleControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+                  - label: "Content Controls"
+                    name: "contentControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
 
               - label: "Card Grid"
                 name: "cards"
@@ -106,6 +135,20 @@ collections:
                   - { label: "Cards Per Row", name: "cardsPerRow", widget: "number", min: 1, max: 4, default: 3 }
                   - { label: "Show Card Border", name: "showBorder", widget: "boolean", default: true }
                   - { label: "Enable Hover Effect", name: "hoverEffect", widget: "boolean", default: true }
+                  - label: "Title Controls"
+                    name: "titleControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+                  - label: "Content Controls"
+                    name: "contentControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
                   - label: "Cards"
                     name: "cards"
                     widget: "list"
@@ -124,6 +167,20 @@ collections:
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Layout", name: "layout", widget: "select", options: ["grid", "slider", "masonry"], default: "grid" }
                   - { label: "Show Ratings", name: "showRatings", widget: "boolean", default: true }
+                  - label: "Title Controls"
+                    name: "titleControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+                  - label: "Content Controls"
+                    name: "contentControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
                   - label: "Testimonials"
                     name: "testimonials"
                     widget: "list"
@@ -142,6 +199,20 @@ collections:
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Layout", name: "layout", widget: "select", options: ["row", "grid"], default: "row" }
                   - { label: "Animation", name: "animation", widget: "select", options: ["none", "countUp", "fade"], default: "none" }
+                  - label: "Title Controls"
+                    name: "titleControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+                  - label: "Content Controls"
+                    name: "contentControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
                   - label: "Stats"
                     name: "stats"
                     widget: "list"
@@ -159,6 +230,20 @@ collections:
                   - { label: "Type", name: "type", widget: "hidden", default: "faq" }
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Layout", name: "layout", widget: "select", options: ["accordion", "tabs", "grid"], default: "accordion" }
+                  - label: "Title Controls"
+                    name: "titleControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+                  - label: "Content Controls"
+                    name: "contentControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
                   - label: "Categories"
                     name: "categories"
                     widget: "list"
@@ -179,6 +264,20 @@ collections:
                 fields:
                   - { label: "Type", name: "type", widget: "hidden", default: "team" }
                   - { label: "Title", name: "title", widget: "string" }
+                  - label: "Title Controls"
+                    name: "titleControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+                  - label: "Content Controls"
+                    name: "contentControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
                   - { label: "Layout", name: "layout", widget: "select", options: ["grid", "list", "carousel"], default: "grid" }
                   - label: "Members"
                     name: "members"
@@ -202,6 +301,20 @@ collections:
                 fields:
                   - { label: "Type", name: "type", widget: "hidden", default: "timeline" }
                   - { label: "Title", name: "title", widget: "string" }
+                  - label: "Title Controls"
+                    name: "titleControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+                  - label: "Content Controls"
+                    name: "contentControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
                   - { label: "Layout", name: "layout", widget: "select", options: ["vertical", "horizontal"], default: "vertical" }
                   - label: "Events"
                     name: "events"
@@ -220,6 +333,20 @@ collections:
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
                   - { label: "Period Toggle", name: "showPeriodToggle", widget: "boolean", default: true }
+                  - label: "Title Controls"
+                    name: "titleControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+                  - label: "Content Controls"
+                    name: "contentControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
                   - label: "Plans"
                     name: "plans"
                     widget: "list"
@@ -246,13 +373,21 @@ collections:
                   - { label: "Content", name: "content", widget: "markdown" }
                   - { label: "Background Image", name: "bgImage", widget: "image", required: false }
                   - { label: "Background Color", name: "bgColor", widget: "color", required: false }
-                  - label: "Buttons"
-                    name: "buttons"
-                    widget: "list"
+                  - label: "Title Controls"
+                    name: "titleControls"
+                    widget: "object"
                     fields:
-                      - { label: "Text", name: "text", widget: "string" }
-                      - { label: "Link", name: "link", widget: "string" }
-                      - { label: "Style", name: "style", widget: "select", options: ["primary", "secondary", "outline"], default: "primary" }
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+                  - label: "Content Controls"
+                    name: "contentControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+
               - label: "Alert/Notice Section"
                 name: "alert"
                 widget: "object"
@@ -263,6 +398,21 @@ collections:
                   - { label: "Text Color", name: "textColor", widget: "color", required: false }
                   - { label: "Icon", name: "icon", widget: "image", required: false }
                   - { label: "Font Size", name: "fontSize", widget: "select", options: ["text-base", "text-lg", "text-xl", "text-2xl"], default: "text-lg" }
+                  - label: "Title Controls"
+                    name: "titleControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+                  - label: "Content Controls"
+                    name: "contentControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+
               - label: "Divider"
                 name: "divider"
                 widget: "object"
@@ -271,6 +421,21 @@ collections:
                   - { label: "Style", name: "style", widget: "select", options: ["solid", "dashed", "dotted", "double"], default: "solid" }
                   - { label: "Color", name: "color", widget: "color", required: false }
                   - { label: "Thickness", name: "thickness", widget: "number", min: 1, max: 10, default: 2 }
+                  - label: "Title Controls"
+                    name: "titleControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+                  - label: "Content Controls"
+                    name: "contentControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+
               - label: "Rich Text Section"
                 name: "richText"
                 widget: "object"
@@ -281,3 +446,17 @@ collections:
                   - { label: "Text Color", name: "textColor", widget: "color", required: false }
                   - { label: "Background Color", name: "bgColor", widget: "color", required: false }
                   - { label: "Custom CSS", name: "customCss", widget: "string", required: false }
+                  - label: "Title Controls"
+                    name: "titleControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }
+                  - label: "Content Controls"
+                    name: "contentControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size (optional)", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color (optional)", name: "color", widget: "color", required: false }

@@ -5,11 +5,25 @@ const FeaturesSection = ({ section }: { section: any }) => {
     let gridClass = 'grid-cols-1 sm:grid-cols-2 md:grid-cols-4';
     if (section.layout === 'columns' && section.itemsPerRow) gridClass = `grid-cols-1 sm:grid-cols-2 md:grid-cols-${section.itemsPerRow}`;
     if (section.layout === 'list') gridClass = 'grid-cols-1';
+
+    const titleStyle = {
+        textAlign: section.titleAlign || 'center',
+        color: section.titleColor,
+        fontSize: section.titleFontSize,
+        ...section.titleStyle,
+    };
+    const contentStyle = {
+        textAlign: section.contentAlign || 'center',
+        color: section.contentColor,
+        fontSize: section.contentFontSize,
+        ...section.contentStyle,
+    };
+
     return (
         <section className="w-full py-16">
             <div className="container mx-auto">
-                <h2 className="text-2xl md:text-4xl font-bold text-center mb-2">{section.title}</h2>
-                {section.subtitle && <p className="text-center text-lg mb-8">{section.subtitle}</p>}
+                <h2 style={titleStyle} className="text-2xl md:text-4xl font-bold mb-2">{section.title}</h2>
+                {section.subtitle && <p style={contentStyle} className="text-lg mb-8">{section.subtitle}</p>}
                 <div className={`grid gap-8 px-2 md:px-10 ${gridClass}`}>
                     {section.features?.map((feature: any, i: number) => (
                         <div key={i} className="flex flex-col items-center text-center p-6 bg-[#F7FAFC] rounded-xl shadow hover:shadow-lg transition-all">

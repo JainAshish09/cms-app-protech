@@ -7,6 +7,20 @@ const ContentMediaSection = ({ section }: { section: any }) => {
     if (section.layout === 'imageTop') flexClass = 'flex-col';
     if (section.layout === 'imageBottom') flexClass = 'flex-col-reverse';
     if (section.layout === 'imageBackground') flexClass = 'relative flex-col justify-center items-center';
+
+    const titleStyle = {
+        textAlign: section.titleAlign || 'left',
+        color: section.titleColor,
+        fontSize: section.titleFontSize,
+        ...section.titleStyle,
+    };
+    const contentStyle = {
+        textAlign: section.contentAlign || 'left',
+        color: section.contentColor,
+        fontSize: section.contentFontSize,
+        ...section.contentStyle,
+    };
+
     return (
         <section className={`w-full py-16`}>
             <div className={`max-w-7xl mx-auto flex ${flexClass} items-center gap-10 px-4 md:px-8`}>
@@ -19,8 +33,8 @@ const ContentMediaSection = ({ section }: { section: any }) => {
                         )}
                         <div className="relative z-10 w-full flex flex-col md:flex-row items-center justify-center gap-10 py-10">
                             <div className="flex-1 max-w-xl">
-                                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-800">{section.title}</h2>
-                                <div className="text-gray-700 text-base md:text-lg leading-relaxed mb-6" dangerouslySetInnerHTML={{ __html: section.content }} />
+                                <h2 style={titleStyle}>{section.title}</h2>
+                                <div style={contentStyle} dangerouslySetInnerHTML={{ __html: section.content }} />
                                 {section.cta && <a href={section.cta.link} className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-blue-700 transition">{section.cta.text}</a>}
                             </div>
                         </div>
@@ -35,8 +49,8 @@ const ContentMediaSection = ({ section }: { section: any }) => {
                             </div>
                         )}
                         <div className="flex-1 max-w-xl">
-                            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-800">{section.title}</h2>
-                            <div className="text-gray-700 text-base md:text-lg leading-relaxed mb-6" dangerouslySetInnerHTML={{ __html: section.content }} />
+                            <h2 style={titleStyle}>{section.title}</h2>
+                            <div style={contentStyle} dangerouslySetInnerHTML={{ __html: section.content }} />
                             {section.cta && <a href={section.cta.link} className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-blue-700 transition">{section.cta.text}</a>}
                         </div>
                     </>

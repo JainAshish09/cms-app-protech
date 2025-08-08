@@ -6,10 +6,25 @@ const CardsSection = ({ section }: { section: any }) => {
     if (section.style === 'masonry') gridClass = 'md:grid-cols-3';
     if (section.style === 'carousel') gridClass = 'grid-cols-1';
     if (section.cardsPerRow) gridClass = `grid-cols-1 sm:grid-cols-2 md:grid-cols-${section.cardsPerRow}`;
+
+    const titleStyle = {
+        textAlign: section.titleAlign || 'center',
+        color: section.titleColor,
+        fontSize: section.titleFontSize,
+        ...section.titleStyle,
+    };
+    const contentStyle = {
+        textAlign: section.contentAlign || 'center',
+        color: section.contentColor,
+        fontSize: section.contentFontSize,
+        ...section.contentStyle,
+    };
+
     return (
         <section className="w-full py-16 bg-[#F7FAFC]">
             <div className="container mx-auto">
-                <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">{section.title}</h2>
+                <h2 style={titleStyle} className="text-2xl md:text-3xl font-bold mb-10">{section.title}</h2>
+                {section.subtitle && <p style={contentStyle} className="mb-10">{section.subtitle}</p>}
                 <div className={`grid gap-8 ${gridClass}`}>
                     {section.cards?.map((card: any, i: number) => (
                         <div key={i} className={`bg-white rounded-xl shadow-lg p-8 flex flex-col items-center ${section.showBorder ? 'border border-gray-200' : ''} ${section.hoverEffect ? 'hover:scale-105 transition-transform' : ''}`}>

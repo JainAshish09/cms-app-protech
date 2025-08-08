@@ -1,19 +1,33 @@
 import React from 'react';
 
-const FaqSection = ({ section }: { section: any }) => (
-    <section className="w-full py-16 bg-[#F7FAFC]">
-        <div className="container mx-auto max-w-3xl">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">{section.title}</h2>
-            <div className="space-y-4">
-                {section.questions?.map((q: any, i: number) => (
-                    <details key={i} className="bg-white rounded-lg shadow p-4">
-                        <summary className="font-semibold cursor-pointer text-blue-700">{q.question}</summary>
-                        <div className="mt-2 text-gray-700" dangerouslySetInnerHTML={{ __html: q.answer }} />
-                    </details>
-                ))}
+const FaqSection = ({ section }: { section: any }) => {
+    const titleStyle = {
+        textAlign: section.titleAlign || 'center',
+        color: section.titleColor,
+        fontSize: section.titleFontSize,
+        ...section.titleStyle,
+    };
+    const contentStyle = {
+        textAlign: section.contentAlign || 'left',
+        color: section.contentColor,
+        fontSize: section.contentFontSize,
+        ...section.contentStyle,
+    };
+    return (
+        <section className="w-full py-16 bg-[#F7FAFC]">
+            <div className="container mx-auto max-w-3xl">
+                <h2 style={titleStyle} className="text-2xl md:text-3xl font-bold mb-10">{section.title}</h2>
+                <div className="space-y-4">
+                    {section.questions?.map((q: any, i: number) => (
+                        <details key={i} className="bg-white rounded-lg shadow p-4">
+                            <summary className="font-semibold cursor-pointer text-blue-700" style={contentStyle}>{q.question}</summary>
+                            <div className="mt-2 text-gray-700" dangerouslySetInnerHTML={{ __html: q.answer }} />
+                        </details>
+                    ))}
+                </div>
             </div>
-        </div>
-    </section>
-);
+        </section>
+    );
+};
 
 export default FaqSection;

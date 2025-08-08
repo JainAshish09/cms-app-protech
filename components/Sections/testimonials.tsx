@@ -24,11 +24,23 @@ const SimpleSlider = ({ children }: { children: React.ReactNode }) => {
 
 const TestimonialsSection = ({ section }: { section: any }) => {
     let layout = section.layout || 'grid';
+    const titleStyle = {
+        textAlign: section.titleAlign || 'center',
+        color: section.titleColor,
+        fontSize: section.titleFontSize,
+        ...section.titleStyle,
+    };
+    const contentStyle = {
+        textAlign: section.contentAlign || 'center',
+        color: section.contentColor,
+        fontSize: section.contentFontSize,
+        ...section.contentStyle,
+    };
     if (layout === 'slider') {
         return (
             <section className="w-full py-16 bg-gradient-to-b from-white to-[#F7FAFC]">
                 <div className="container mx-auto">
-                    <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">{section.title}</h2>
+                    <h2 style={titleStyle}>{section.title}</h2>
                     <SimpleSlider>
                         {section.testimonials?.map((t: any, i: number) => (
                             <div key={i} className="bg-white rounded-xl shadow-md p-8 max-w-md flex flex-col items-center border border-gray-100 mx-auto">
@@ -48,7 +60,7 @@ const TestimonialsSection = ({ section }: { section: any }) => {
     return (
         <section className="w-full py-16 bg-gradient-to-b from-white to-[#F7FAFC]">
             <div className="container mx-auto">
-                <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">{section.title}</h2>
+                <h2 style={titleStyle}>{section.title}</h2>
                 <div className={`grid gap-8 ${gridClass}`}>
                     {section.testimonials?.map((t: any, i: number) => (
                         <div key={i} className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center border border-gray-100">
