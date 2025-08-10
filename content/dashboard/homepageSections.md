@@ -9,7 +9,7 @@ sections:
       textColor: "#c21616"
     titleControls:
       align: left
-      fontSize: "30"
+      fontSize: "50"
       color: "#ada8cc"
     contentControls:
       align: right
@@ -33,12 +33,12 @@ sections:
     bgStyle: color
     titleControls:
       align: left
-      fontSize: "30"
-      color: "#658ebe"
+      fontSize: "50"
+      color: "#122e4f"
     contentControls:
-      align: left
-      fontSize: "10"
-      color: "#ae7878"
+      align: right
+      fontSize: "40"
+      color: "#2d0d0d"
     subtitle: This is a Subtitle
     title: "This is a Future grid "
     type: features
@@ -81,4 +81,26 @@ sections:
         link: OKOK
     itemsPerRow: 5
     bgColor: "#d4ddc6"
+  - layout: imageLeft
+    titleControls:
+      align: left
+      fontSize: "40"
+      color: "#0a0a63"
+    contentControls:
+      align: left
+      fontSize: "20"
+      color: "#0d2126"
+    cta:
+      text: This is a call to action
+      link: www.google.com
+    title: This is a content with image
+    content: http://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSections
+    type: contentMedia
+    mediaItems:
+      - file: images/about-img-2.jpeg
+        alt: This is a image 2
+      - alt: ijij
+        file: images/about-img-1.jpeg
+    mediaType: image
+    bgColor: "#fc9f9f"
 ---
