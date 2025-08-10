@@ -172,7 +172,7 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
                     </div>
 
                     {cta && (
-                        <div className={getTextAlignClass(ctaControls?.align)}>
+                        <div className={getTextAlignClass(contentControls?.align)}>
                             <a
                                 href={cta.link}
                                 className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-blue-700 transition"
