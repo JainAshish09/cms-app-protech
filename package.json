@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tailwindcss/line-clamp": "^0.4.4",
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
+    "react-markdown": "^10.1.0",
     "react-responsive-carousel": "^3.2.23",
     "remark": "^15.0.1",
     "remark-breaks": "^4.0.0",

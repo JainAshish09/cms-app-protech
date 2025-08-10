@@ -61,8 +61,7 @@ collections:
                   - { label: "Type", name: "type", widget: "hidden", default: "features" }
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-                  - { label: "Layout", name: "layout", widget: "select", options: ["grid", "list", "columns"], default: "grid" }
-                  - { label: "Items Per Row", name: "itemsPerRow", widget: "number", min: 2, max: 6, default: 4 }
+                  - { label: "Items Per Row (This will be used only if Layout is column) ", name: "itemsPerRow", widget: "number", min: 2, max: 5, default: 4 }
                   - { label: "Background Style", name: "bgStyle", widget: "select", options: ["light", "dark", "gradient", "image", "color"], default: "light" }
                   - { label: "Background Color (This will be used only if bgStyle === 'color')", name: "bgColor", widget: "color", enableAlpha: true, required: false }
                   - label: "Title Controls"

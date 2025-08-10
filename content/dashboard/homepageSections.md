@@ -8,14 +8,14 @@ sections:
       fontSize: text-base
       textColor: "#c21616"
     titleControls:
-      align: center
-      fontSize: "50"
-      color: "#2912b5"
-    contentControls:
       align: left
-      fontSize: "10"
-      color: "#101a48"
-    style: split
+      fontSize: "30"
+      color: "#ada8cc"
+    contentControls:
+      align: right
+      fontSize: "15"
+      color: "#b5d989"
+    style: fullscreen
     title: Welcome to ProTech – Project Management Made for Door & Frame Manufacturers
     images:
       - image: images/about-img-2.jpeg
@@ -28,18 +28,18 @@ sections:
       
       At **ProTech**, we understand the unique challenges that door and frame manufacturers face. From juggling multiple vendors, staying on top of change orders, tracking inventory, and meeting strict delivery deadlines, your workflow demands a system that's not just efficient — but tailored to your industry.
     type: hero
-    bgColor: "#e6d1d1"
+    bgColor: "#0e1752"
   - layout: grid
     bgStyle: color
     titleControls:
-      align: left
+      align: right
       fontSize: "30"
       color: "#112236"
     contentControls:
-      align: left
-      fontSize: "20"
+      align: right
+      fontSize: "10"
       color: "#ae7878"
-    subtitle: Future Grid Subtitle
+    subtitle: This is a Subtitle
     title: "This is a Future grid "
     type: features
     features:
@@ -47,6 +47,37 @@ sections:
         description: fUTURE 1
         icon: images/about-img-2.jpeg
         link: OK
-    itemsPerRow: 2
+      - title: Feature 2
+        description: This is a feature 2
+        icon: images/about-img-1.jpeg
+        link: ALT
+      - title: Feature 3
+        description: This is a feature 3
+        icon: images/close-svgrepo-com.svg
+        link: "3"
+      - title: f4
+        description: f4
+        icon: images/chevron-right.svg
+      - title: F5
+        description: This is a image 5
+        icon: images/assa-abloy-logo-header.svg
+      - title: f6
+        description: >-
+          
+          f6http://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSections
+
+
+
+          f6http://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSections
+
+
+
+          f6http://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSections
+
+
+
+          f6http://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSections
+        icon: images/about-img-1.jpeg
+    itemsPerRow: 3
     bgColor: "#dea9a9"
 ---

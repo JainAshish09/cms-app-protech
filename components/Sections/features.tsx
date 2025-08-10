@@ -1,172 +1,162 @@
 import React from 'react';
-import Image from 'next/image';
+import ReactMarkdown from 'react-markdown';
 
-interface ControlSettings {
+type BgStyle = 'light' | 'dark' | 'gradient' | 'image' | 'color';
+
+interface TitleControls {
     align?: 'left' | 'center' | 'right';
-    fontSize?: string; // e.g. 'text-lg' or pixel value like '20'
+    fontSize?: string; // e.g. "text-xl", "text-2xl"
+    color?: string; // CSS color string, supports alpha
+}
+
+interface ContentControls {
+    align?: 'left' | 'center' | 'right';
+    fontSize?: string;
     color?: string;
 }
 
 interface FeatureItem {
     title: string;
-    description?: string; // HTML string (converted from Markdown)
-    icon: string; // image path or URL
+    description: string;
+    icon?: string;
     link?: string;
 }
 
-interface FeaturesSectionData {
-    type: 'features';
-    title: string;
-    subtitle?: string;
-    layout: 'grid' | 'list' | 'columns';
-    itemsPerRow: number;
-    bgStyle: 'light' | 'dark' | 'gradient' | 'image' | 'color';
-    bgColor?: string; // Used only if bgStyle === 'color'
-    titleControls?: ControlSettings;
-    contentControls?: ControlSettings;
-    titleStyle?: React.CSSProperties;    // optional inline style overrides
-    contentStyle?: React.CSSProperties;  // optional inline style overrides
-    features?: FeatureItem[];
-    [key: string]: any;
-}
-
 interface FeaturesSectionProps {
-    section: FeaturesSectionData;
+    section: {
+        title: string;
+        subtitle?: string;
+        itemsPerRow?: number; // 2 to 5
+        bgStyle?: BgStyle;
+        bgColor?: string; // e.g. rgba()
+        titleControls?: TitleControls;
+        contentControls?: ContentControls;
+        features: FeatureItem[];
+        backgroundImageUrl?: string;
+    };
 }
 
-// Map CMS align to Tailwind alignment classes
-function getTextAlignClass(align?: string) {
-    if (align === 'left') return 'text-left';
-    if (align === 'right') return 'text-right';
-    return 'text-center';
-}
-
-// Return Tailwind font size class if valid
-function getFontSizeClass(fontSize?: string) {
-    if (!fontSize) return '';
-    if (fontSize.startsWith('text-')) return fontSize;
-    return '';
-}
-
-// Generate inline style for pixel font size and color
-function getStyleOverride(fontSize?: string, color?: string): React.CSSProperties {
-    const style: React.CSSProperties = {};
-    if (fontSize && !fontSize.startsWith('text-') && !isNaN(Number(fontSize))) {
-        style.fontSize = `${fontSize}px`;
-    }
-    if (color) {
-        style.color = color;
-    }
-    return style;
-}
+const bgStyleClasses: Record<BgStyle, string> = {
+    light: 'bg-white text-gray-900',
+    dark: 'bg-gray-900 text-white',
+    gradient: 'bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white',
+    image: '', // handled with inline styles
+    color: '', // handled with inline styles
+};
 
 const FeaturesSection: React.FC<FeaturesSectionProps> = ({ section }) => {
-    // Determine grid columns based on layout and itemsPerRow with safety limits
-    let gridClass = 'grid-cols-1 sm:grid-cols-2 md:grid-cols-4';
+    const {
+        title,
+        subtitle,
+        itemsPerRow = 4,
+        bgStyle = 'light',
+        bgColor,
+        titleControls,
+        contentControls,
+        features,
+        backgroundImageUrl,
+    } = section;
 
-    if (section.layout === 'columns' && section.itemsPerRow) {
-        const cols = Math.min(Math.max(section.itemsPerRow, 2), 6);
-        gridClass = `grid-cols-1 sm:grid-cols-2 md:grid-cols-${cols}`;
-    } else if (section.layout === 'list') {
-        gridClass = 'grid-cols-1';
-    } else if (section.layout === 'grid') {
-        gridClass = 'grid-cols-1 sm:grid-cols-2 md:grid-cols-4';
-    }
+    // Clamp itemsPerRow between 2 and 5
+    const validItemsPerRow = Math.min(Math.max(itemsPerRow, 2), 5);
 
-    // Compose title styles and classes
-    const titleAlignClass = getTextAlignClass(section.titleControls?.align);
-    const titleFontSizeClass = getFontSizeClass(section.titleControls?.fontSize);
-    const titleInlineStyle = {
-        ...getStyleOverride(
-            section.titleControls?.fontSize,
-            section.titleControls?.color
-        ),
-        ...section.titleStyle,
-    };
+    // Grid cols class for Tailwind
+    const gridColsClass = {
+        2: 'grid-cols-2',
+        3: 'grid-cols-3',
+        4: 'grid-cols-4',
+        5: 'grid-cols-5',
+    }[validItemsPerRow];
 
-    // Compose content styles and classes (for subtitle)
-    const contentAlignClass = getTextAlignClass(section.contentControls?.align);
-    const contentFontSizeClass = getFontSizeClass(section.contentControls?.fontSize);
-    const contentInlineStyle = {
-        ...getStyleOverride(
-            section.contentControls?.fontSize,
-            section.contentControls?.color
-        ),
-        ...section.contentStyle,
-    };
+    // Title alignment class
+    const titleAlignClass =
+        titleControls?.align === 'left'
+            ? 'text-left'
+            : titleControls?.align === 'right'
+                ? 'text-right'
+                : 'text-center';
 
-    // Background styles handling
-    const isColorBg = section.bgStyle === 'color';
+    // Content alignment class
+    const contentAlignClass =
+        contentControls?.align === 'left'
+            ? 'text-left'
+            : contentControls?.align === 'right'
+                ? 'text-right'
+                : 'text-center';
 
-    const bgStyleClassMap: Record<string, string> = {
-        light: 'bg-white',
-        dark: 'bg-gray-900 text-white',
-        gradient: 'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white',
-        image: '',
-    };
+    // Title font size class fallback
+    const titleFontSizeClass = titleControls?.fontSize || 'text-3xl';
 
-    const bgClass = !isColorBg ? (bgStyleClassMap[section.bgStyle] || 'bg-white') : '';
-    const bgColorStyle = isColorBg && section.bgColor ? { backgroundColor: section.bgColor } : {};
+    // Content font size class fallback
+    const contentFontSizeClass = contentControls?.fontSize || 'text-base';
+
+    // Inline color styles
+    const titleStyle = titleControls?.color ? { color: titleControls.color } : undefined;
+    const contentStyle = contentControls?.color ? { color: contentControls.color } : undefined;
+
+    // Background inline styles for color or image
+    const backgroundStyle =
+        bgStyle === 'color'
+            ? { backgroundColor: bgColor }
+            : bgStyle === 'image' && backgroundImageUrl
+                ? {
+                    backgroundImage: `url(${backgroundImageUrl})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                }
+                : {};
 
     return (
         <section
-            className={`w-full py-16 ${bgClass}`}
-            style={{ ...bgColorStyle }}
+            className={`py-16 px-6 ${bgStyle !== 'color' && bgStyle !== 'image' ? bgStyleClasses[bgStyle] : ''
+                }`}
+            style={backgroundStyle}
         >
-            <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
                 {/* Title */}
                 <h2
-                    className={`font-bold mb-2 ${titleAlignClass} ${titleFontSizeClass}`}
-                    style={titleInlineStyle}
+                    className={`${titleFontSizeClass} font-bold mb-4 ${titleAlignClass}`}
+                    style={titleStyle}
                 >
-                    {section.title}
+                    {title}
                 </h2>
 
                 {/* Subtitle */}
-                {section.subtitle && (
+                {subtitle && (
                     <p
-                        className={`mb-8 ${contentAlignClass} ${contentFontSizeClass}`}
-                        style={contentInlineStyle}
+                        className={`${contentFontSizeClass} mb-12 max-w-3xl mx-auto ${contentAlignClass}`}
+                        style={contentStyle}
                     >
-                        {section.subtitle}
+                        {subtitle}
                     </p>
                 )}
 
-                {/* Features Grid/List */}
-                <div className={`grid gap-8 ${gridClass}`}>
-                    {section.features?.map((feature, i) => (
+                {/* Features Grid */}
+                <div className={`grid gap-8 ${gridColsClass} sm:grid-cols-2`}>
+                    {features.map(({ title, description, icon, link }, idx) => (
                         <div
-                            key={i}
-                            className={`flex flex-col ${section.layout === 'list' ? 'items-start text-left' : 'items-center text-center'
-                                } p-6 bg-[#F7FAFC] rounded-xl shadow hover:shadow-lg transition-all`}
+                            key={idx}
+                            className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md flex flex-col"
                         >
-                            <div className="mb-4 relative w-16 h-16">
-                                <Image
-                                    src={feature.icon.startsWith('http') ? feature.icon : `/${feature.icon}`}
-                                    alt={feature.title}
-                                    layout="fill"
-                                    objectFit="contain"
-                                    priority={false}
-                                />
-                            </div>
-
-                            <p className="font-semibold text-base md:text-lg text-gray-800 mb-2">
-                                {feature.title}
-                            </p>
-
-                            {feature.description && (
-                                <div
-                                    className="text-gray-600 mb-4"
-                                    dangerouslySetInnerHTML={{ __html: feature.description }}
+                            {icon && (
+                                <img
+                                    src={icon}
+                                    alt={title}
+                                    className="w-16 h-16 object-contain mb-4 mx-auto"
+                                    loading="lazy"
                                 />
                             )}
-
-                            {feature.link && (
+                            <h3 className="font-semibold text-lg mb-2 text-center">{title}</h3>
+                            <div className="prose prose-sm prose-indigo text-gray-700 flex-grow overflow-hidden break-words">
+                                <ReactMarkdown>{description}</ReactMarkdown>
+                            </div>
+                            {link && (
                                 <a
-                                    href={feature.link}
-                                    className="text-blue-600 underline"
+                                    href={link}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    className="mt-4 text-indigo-600 hover:text-indigo-800 text-center underline"
                                 >
                                     Learn more
                                 </a>
