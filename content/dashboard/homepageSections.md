@@ -32,11 +32,11 @@ sections:
   - layout: grid
     bgStyle: color
     titleControls:
-      align: right
+      align: left
       fontSize: "30"
-      color: "#112236"
+      color: "#658ebe"
     contentControls:
-      align: right
+      align: left
       fontSize: "10"
       color: "#ae7878"
     subtitle: This is a Subtitle
@@ -78,6 +78,7 @@ sections:
 
           f6http://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSections
         icon: images/about-img-1.jpeg
-    itemsPerRow: 3
-    bgColor: "#dea9a9"
+        link: OKOK
+    itemsPerRow: 5
+    bgColor: "#d4ddc6"
 ---

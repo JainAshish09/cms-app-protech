@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 type BgStyle = 'light' | 'dark' | 'gradient' | 'image' | 'color';
 
 interface TitleControls {
     align?: 'left' | 'center' | 'right';
-    fontSize?: string; // e.g. "text-xl", "text-2xl"
-    color?: string; // CSS color string, supports alpha
+    fontSize?: string;
+    color?: string;
 }
 
 interface ContentControls {
@@ -19,20 +19,20 @@ interface FeatureItem {
     title: string;
     description: string;
     icon?: string;
-    link?: string;
+    link?: string; // CMS has it, but not used
 }
 
 interface FeaturesSectionProps {
     section: {
         title: string;
         subtitle?: string;
-        itemsPerRow?: number; // 2 to 5
+        itemsPerRow?: number;
         bgStyle?: BgStyle;
-        bgColor?: string; // e.g. rgba()
+        bgColor?: string;
+        backgroundImageUrl?: string;
         titleControls?: TitleControls;
         contentControls?: ContentControls;
         features: FeatureItem[];
-        backgroundImageUrl?: string;
     };
 }
 
@@ -40,8 +40,8 @@ const bgStyleClasses: Record<BgStyle, string> = {
     light: 'bg-white text-gray-900',
     dark: 'bg-gray-900 text-white',
     gradient: 'bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white',
-    image: '', // handled with inline styles
-    color: '', // handled with inline styles
+    image: '',
+    color: '',
 };
 
 const FeaturesSection: React.FC<FeaturesSectionProps> = ({ section }) => {
@@ -51,116 +51,116 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ section }) => {
         itemsPerRow = 4,
         bgStyle = 'light',
         bgColor,
+        backgroundImageUrl,
         titleControls,
         contentControls,
         features,
-        backgroundImageUrl,
     } = section;
 
-    // Clamp itemsPerRow between 2 and 5
-    const validItemsPerRow = Math.min(Math.max(itemsPerRow, 2), 5);
+    const [expandedIndexes, setExpandedIndexes] = useState<number[]>([]);
 
-    // Grid cols class for Tailwind
-    const gridColsClass = {
-        2: 'grid-cols-2',
-        3: 'grid-cols-3',
-        4: 'grid-cols-4',
-        5: 'grid-cols-5',
-    }[validItemsPerRow];
+    const toggleExpand = (index: number) => {
+        setExpandedIndexes((prev) =>
+            prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+        );
+    };
 
-    // Title alignment class
-    const titleAlignClass =
-        titleControls?.align === 'left'
-            ? 'text-left'
-            : titleControls?.align === 'right'
-                ? 'text-right'
-                : 'text-center';
+    const isExpanded = (index: number) => expandedIndexes.includes(index);
 
-    // Content alignment class
-    const contentAlignClass =
-        contentControls?.align === 'left'
-            ? 'text-left'
-            : contentControls?.align === 'right'
-                ? 'text-right'
-                : 'text-center';
+    // Clamp to range between 2 and 5
+    const columns = Math.min(Math.max(itemsPerRow, 2), 5);
 
-    // Title font size class fallback
+    // Tailwind grid class
+    const gridColsClass = `grid-cols-1 sm:grid-cols-2 md:grid-cols-${columns}`;
+
+    // Title alignment, font size, and color
+    const titleAlignClass = titleControls?.align === 'left' ? 'text-left'
+        : titleControls?.align === 'right' ? 'text-right'
+            : 'text-center';
+
+    const contentAlignClass = contentControls?.align === 'left' ? 'text-left'
+        : contentControls?.align === 'right' ? 'text-right'
+            : 'text-center';
+
     const titleFontSizeClass = titleControls?.fontSize || 'text-3xl';
-
-    // Content font size class fallback
     const contentFontSizeClass = contentControls?.fontSize || 'text-base';
 
-    // Inline color styles
-    const titleStyle = titleControls?.color ? { color: titleControls.color } : undefined;
-    const contentStyle = contentControls?.color ? { color: contentControls.color } : undefined;
+    const titleStyle = titleControls?.color ? { color: titleControls.color } : {};
+    const contentStyle = contentControls?.color ? { color: contentControls.color } : {};
 
-    // Background inline styles for color or image
     const backgroundStyle =
-        bgStyle === 'color'
-            ? { backgroundColor: bgColor }
-            : bgStyle === 'image' && backgroundImageUrl
+        bgStyle === 'color' ? { backgroundColor: bgColor } :
+            bgStyle === 'image' && backgroundImageUrl
                 ? {
                     backgroundImage: `url(${backgroundImageUrl})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
                 }
                 : {};
 
     return (
         <section
-            className={`py-16 px-6 ${bgStyle !== 'color' && bgStyle !== 'image' ? bgStyleClasses[bgStyle] : ''
-                }`}
+            className={`py-16 px-6 ${bgStyle !== 'color' && bgStyle !== 'image' ? bgStyleClasses[bgStyle] : ''}`}
             style={backgroundStyle}
         >
             <div className="max-w-7xl mx-auto">
-                {/* Title */}
                 <h2
-                    className={`${titleFontSizeClass} font-bold mb-4 ${titleAlignClass}`}
+                    className={`font-bold mb-4 ${titleFontSizeClass} ${titleAlignClass}`}
                     style={titleStyle}
                 >
                     {title}
                 </h2>
 
-                {/* Subtitle */}
                 {subtitle && (
                     <p
-                        className={`${contentFontSizeClass} mb-12 max-w-3xl mx-auto ${contentAlignClass}`}
+                        className={`mb-12 max-w-3xl mx-auto ${contentFontSizeClass} ${contentAlignClass}`}
                         style={contentStyle}
                     >
                         {subtitle}
                     </p>
                 )}
 
-                {/* Features Grid */}
-                <div className={`grid gap-8 ${gridColsClass} sm:grid-cols-2`}>
-                    {features.map(({ title, description, icon, link }, idx) => (
+                <div className={`grid gap-8 ${gridColsClass}`}>
+                    {features.map((feature, index) => (
                         <div
-                            key={idx}
-                            className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md flex flex-col"
+                            key={index}
+                            className="bg-white rounded-xl p-6 shadow-md flex flex-col items-center text-center"
                         >
-                            {icon && (
+                            {feature.icon && (
                                 <img
-                                    src={icon}
-                                    alt={title}
-                                    className="w-16 h-16 object-contain mb-4 mx-auto"
+                                    src={feature.icon}
+                                    alt={feature.title}
+                                    className="w-12 h-12 object-contain mb-4"
                                     loading="lazy"
                                 />
                             )}
-                            <h3 className="font-semibold text-lg mb-2 text-center">{title}</h3>
-                            <div className="prose prose-sm prose-indigo text-gray-700 flex-grow overflow-hidden break-words">
-                                <ReactMarkdown>{description}</ReactMarkdown>
-                            </div>
-                            {link && (
-                                <a
-                                    href={link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="mt-4 text-indigo-600 hover:text-indigo-800 text-center underline"
+
+                            <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
+
+                            <div className="text-gray-700 text-sm w-full break-words">
+                                <div
+                                    className={`transition-all duration-300 ease-in-out ${isExpanded(index) ? '' : 'line-clamp-2'
+                                        } whitespace-pre-wrap break-words`}
+                                    style={{ wordBreak: 'break-word' }}
                                 >
-                                    Learn more
-                                </a>
-                            )}
+                                    <ReactMarkdown
+                                        components={{
+                                            a: ({ node, ...props }) => <span {...props} />, // Remove actual links
+                                        }}
+                                    >
+                                        {feature.description}
+                                    </ReactMarkdown>
+                                </div>
+
+                                {feature.description.length > 100 && (
+                                    <button
+                                        className="text-indigo-600 mt-2 text-sm font-medium focus:outline-none"
+                                        onClick={() => toggleExpand(index)}
+                                    >
+                                        {isExpanded(index) ? 'Show less' : 'Read more'}
+                                    </button>
+                                )}
+                            </div>
                         </div>
                     ))}
                 </div>
