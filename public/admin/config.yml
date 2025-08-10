@@ -20,89 +20,302 @@ collections:
                 name: "hero"
                 widget: "object"
                 fields:
-                  - { label: "Type", name: "type", widget: "hidden", default: "hero" }
-                  - { label: "Layout Style", name: "style", widget: "select", options: ["centered", "split", "fullscreen"], default: "centered" }
+                  - {
+                      label: "Type",
+                      name: "type",
+                      widget: "hidden",
+                      default: "hero",
+                    }
+                  - {
+                      label: "Layout Style",
+                      name: "style",
+                      widget: "select",
+                      options: ["centered", "split", "fullscreen"],
+                      default: "centered",
+                    }
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Content", name: "content", widget: "markdown" }
-                  - { label: "Background Color", name: "bgColor", widget: "color", enableAlpha: true, allowInput: true, required: false }
+                  - {
+                      label: "Background Color",
+                      name: "bgColor",
+                      widget: "color",
+                      enableAlpha: true,
+                      allowInput: true,
+                      required: false,
+                    }
                   - label: "Images"
                     name: "images"
                     widget: "list"
                     fields:
                       - { label: "Image", name: "image", widget: "image" }
                       - { label: "Alt Text", name: "alt", widget: "string" }
+
                   - label: "Buttons"
                     name: "buttons"
                     widget: "list"
                     required: false
                     fields:
-                      - { label: "Text", name: "text", widget: "string" }
-                      - { label: "Link", name: "link", widget: "string" }
-                      - { label: "Style", name: "style", widget: "select", options: ["primary", "secondary", "outline"], default: "primary" }
+                      - {
+                          label: "Text",
+                          name: "text",
+                          widget: "string",
+                          required: true,
+                        }
+                      - {
+                          label: "Link",
+                          name: "link",
+                          widget: "string",
+                          required: true,
+                        }
+                      - {
+                          label: "Style",
+                          name: "style",
+                          widget: "select",
+                          options: ["primary", "secondary", "outline"],
+                          default: "primary",
+                        }
+                      - {
+                          label: "Open in new tab",
+                          name: "newTab",
+                          widget: "boolean",
+                          default: false,
+                        }
+                      - {
+                          label: "Icon",
+                          name: "icon",
+                          widget: "image",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          default: "#000000",
+                          enableAlpha: true,
+                          allowInput: true,
+                          required: false,
+                        }
+                      - {
+                          label: "Background Color",
+                          name: "backgroundColor",
+                          widget: "color",
+                          default: "#ffffff",
+                          enableAlpha: true,
+                          allowInput: true,
+                          required: false,
+                        }
+                      - {
+                          label: "Border",
+                          name: "border",
+                          widget: "string",
+                          default: "1px solid transparent",
+                          required: false,
+                        }
+                      - {
+                          label: "Radius",
+                          name: "radius",
+                          widget: "string",
+                          default: "4px",
+                          required: false,
+                        }
+
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
+
                   - label: "Content Controls"
                     name: "contentControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size(Should be less than 30) ", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size (Should be less than 30)",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
 
               - label: "Features Grid"
                 name: "features"
                 widget: "object"
                 fields:
-                  - { label: "Type", name: "type", widget: "hidden", default: "features" }
+                  - {
+                      label: "Type",
+                      name: "type",
+                      widget: "hidden",
+                      default: "features",
+                    }
                   - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-                  - { label: "Items Per Row (This will be used only if Layout is column) ", name: "itemsPerRow", widget: "number", min: 2, max: 5, default: 4 }
-                  - { label: "Background Style", name: "bgStyle", widget: "select", options: ["light", "dark", "gradient", "color"], default: "light" }
-                  - { label: "Background Color (This will be used only if bgStyle === 'color')", name: "bgColor", widget: "color", enableAlpha: true, required: false }
+                  - {
+                      label: "Subtitle",
+                      name: "subtitle",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Items Per Row (This will be used only if Layout is column) ",
+                      name: "itemsPerRow",
+                      widget: "number",
+                      min: 2,
+                      max: 5,
+                      default: 4,
+                    }
+                  - {
+                      label: "Background Style",
+                      name: "bgStyle",
+                      widget: "select",
+                      options: ["light", "dark", "gradient", "color"],
+                      default: "light",
+                    }
+                  - {
+                      label: "Background Color (This will be used only if bgStyle === 'color')",
+                      name: "bgColor",
+                      widget: "color",
+                      enableAlpha: true,
+                      required: false,
+                    }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Content Controls"
                     name: "contentControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Features"
                     name: "features"
                     widget: "list"
                     fields:
                       - { label: "Title", name: "title", widget: "string" }
-                      - { label: "Description", name: "description", widget: "markdown" }
+                      - {
+                          label: "Description",
+                          name: "description",
+                          widget: "markdown",
+                        }
                       - { label: "Icon", name: "icon", widget: "image" }
-                      - { label: "Link", name: "link", widget: "string", required: false }
+                      - {
+                          label: "Link",
+                          name: "link",
+                          widget: "string",
+                          required: false,
+                        }
 
               - label: "Content with Media"
                 name: "contentMedia"
                 widget: "object"
                 fields:
-                  - { label: "Type", name: "type", widget: "hidden", default: "contentMedia" }
-                  - { label: "Layout", name: "layout", widget: "select", options: ["imageLeft", "imageRight", "imageTop", "imageBottom", "imageBackground"], default: "imageLeft" }
+                  - {
+                      label: "Type",
+                      name: "type",
+                      widget: "hidden",
+                      default: "contentMedia",
+                    }
+                  - {
+                      label: "Layout",
+                      name: "layout",
+                      widget: "select",
+                      options:
+                        [
+                          "imageLeft",
+                          "imageRight",
+                          "imageTop",
+                          "imageBottom",
+                          "imageBackground",
+                        ],
+                      default: "imageLeft",
+                    }
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Content", name: "content", widget: "markdown" }
-                  - { label: "Media Type", name: "mediaType", widget: "select", options: ["image", "video", "carousel"], default: "image" }
+                  - {
+                      label: "Media Type",
+                      name: "mediaType",
+                      widget: "select",
+                      options: ["image", "video", "carousel"],
+                      default: "image",
+                    }
                   - label: "Media Items"
                     name: "mediaItems"
                     widget: "list"
                     fields:
                       - { label: "File", name: "file", widget: "file" }
                       - { label: "Alt Text", name: "alt", widget: "string" }
-                  - { label: "Background Color", name: "bgColor", widget: "color", enableAlpha: true, required: false }
+                  - {
+                      label: "Background Color",
+                      name: "bgColor",
+                      widget: "color",
+                      enableAlpha: true,
+                      required: false,
+                    }
                   - label: "Call to Action"
                     name: "cta"
                     widget: "object"
@@ -114,136 +327,427 @@ collections:
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Content Controls"
                     name: "contentControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
 
               - label: "Card Grid"
                 name: "cards"
                 widget: "object"
                 fields:
-                  - { label: "Type", name: "type", widget: "hidden", default: "cards" }
+                  - {
+                      label: "Type",
+                      name: "type",
+                      widget: "hidden",
+                      default: "cards",
+                    }
                   - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Layout Style", name: "style", widget: "select", options: ["grid", "masonry", "carousel"], default: "grid" }
-                  - { label: "Cards Per Row", name: "cardsPerRow", widget: "number", min: 1, max: 4, default: 3 }
-                  - { label: "Show Card Border", name: "showBorder", widget: "boolean", default: true }
-                  - { label: "Enable Hover Effect", name: "hoverEffect", widget: "boolean", default: true }
+                  - {
+                      label: "Layout Style",
+                      name: "style",
+                      widget: "select",
+                      options: ["grid", "masonry", "carousel"],
+                      default: "grid",
+                    }
+                  - {
+                      label: "Cards Per Row",
+                      name: "cardsPerRow",
+                      widget: "number",
+                      min: 1,
+                      max: 4,
+                      default: 3,
+                    }
+                  - {
+                      label: "Show Card Border",
+                      name: "showBorder",
+                      widget: "boolean",
+                      default: true,
+                    }
+                  - {
+                      label: "Enable Hover Effect",
+                      name: "hoverEffect",
+                      widget: "boolean",
+                      default: true,
+                    }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Content Controls"
                     name: "contentControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Cards"
                     name: "cards"
                     widget: "list"
                     fields:
                       - { label: "Title", name: "title", widget: "string" }
-                      - { label: "Content", name: "content", widget: "markdown" }
-                      - { label: "Image", name: "image", widget: "image", required: false }
-                      - { label: "Link", name: "link", widget: "string", required: false }
-                      - { label: "Button Text", name: "buttonText", widget: "string", required: false }
+                      - {
+                          label: "Content",
+                          name: "content",
+                          widget: "markdown",
+                        }
+                      - {
+                          label: "Image",
+                          name: "image",
+                          widget: "image",
+                          required: false,
+                        }
+                      - {
+                          label: "Link",
+                          name: "link",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Button Text",
+                          name: "buttonText",
+                          widget: "string",
+                          required: false,
+                        }
 
               - label: "Testimonials Section"
                 name: "testimonials"
                 widget: "object"
                 fields:
-                  - { label: "Type", name: "type", widget: "hidden", default: "testimonials" }
+                  - {
+                      label: "Type",
+                      name: "type",
+                      widget: "hidden",
+                      default: "testimonials",
+                    }
                   - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Layout", name: "layout", widget: "select", options: ["grid", "slider", "masonry"], default: "grid" }
-                  - { label: "Show Ratings", name: "showRatings", widget: "boolean", default: true }
+                  - {
+                      label: "Layout",
+                      name: "layout",
+                      widget: "select",
+                      options: ["grid", "slider", "masonry"],
+                      default: "grid",
+                    }
+                  - {
+                      label: "Show Ratings",
+                      name: "showRatings",
+                      widget: "boolean",
+                      default: true,
+                    }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Content Controls"
                     name: "contentControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Testimonials"
                     name: "testimonials"
                     widget: "list"
                     fields:
-                      - { label: "Author Name", name: "author", widget: "string" }
-                      - { label: "Author Title", name: "title", widget: "string", required: false }
-                      - { label: "Author Image", name: "image", widget: "image", required: false }
-                      - { label: "Content", name: "content", widget: "markdown" }
-                      - { label: "Rating", name: "rating", widget: "number", min: 1, max: 5, required: false }
+                      - {
+                          label: "Author Name",
+                          name: "author",
+                          widget: "string",
+                        }
+                      - {
+                          label: "Author Title",
+                          name: "title",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Author Image",
+                          name: "image",
+                          widget: "image",
+                          required: false,
+                        }
+                      - {
+                          label: "Content",
+                          name: "content",
+                          widget: "markdown",
+                        }
+                      - {
+                          label: "Rating",
+                          name: "rating",
+                          widget: "number",
+                          min: 1,
+                          max: 5,
+                          required: false,
+                        }
 
               - label: "Stats Section"
                 name: "stats"
                 widget: "object"
                 fields:
-                  - { label: "Type", name: "type", widget: "hidden", default: "stats" }
+                  - {
+                      label: "Type",
+                      name: "type",
+                      widget: "hidden",
+                      default: "stats",
+                    }
                   - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Layout", name: "layout", widget: "select", options: ["row", "grid"], default: "row" }
-                  - { label: "Animation", name: "animation", widget: "select", options: ["none", "countUp", "fade"], default: "none" }
+                  - {
+                      label: "Layout",
+                      name: "layout",
+                      widget: "select",
+                      options: ["row", "grid"],
+                      default: "row",
+                    }
+                  - {
+                      label: "Animation",
+                      name: "animation",
+                      widget: "select",
+                      options: ["none", "countUp", "fade"],
+                      default: "none",
+                    }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Content Controls"
                     name: "contentControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Stats"
                     name: "stats"
                     widget: "list"
                     fields:
                       - { label: "Label", name: "label", widget: "string" }
                       - { label: "Value", name: "value", widget: "string" }
-                      - { label: "Icon", name: "icon", widget: "image", required: false }
-                      - { label: "Prefix", name: "prefix", widget: "string", required: false }
-                      - { label: "Suffix", name: "suffix", widget: "string", required: false }
+                      - {
+                          label: "Icon",
+                          name: "icon",
+                          widget: "image",
+                          required: false,
+                        }
+                      - {
+                          label: "Prefix",
+                          name: "prefix",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Suffix",
+                          name: "suffix",
+                          widget: "string",
+                          required: false,
+                        }
 
               - label: "FAQ Section"
                 name: "faq"
                 widget: "object"
                 fields:
-                  - { label: "Type", name: "type", widget: "hidden", default: "faq" }
+                  - {
+                      label: "Type",
+                      name: "type",
+                      widget: "hidden",
+                      default: "faq",
+                    }
                   - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Layout", name: "layout", widget: "select", options: ["accordion", "tabs", "grid"], default: "accordion" }
+                  - {
+                      label: "Layout",
+                      name: "layout",
+                      widget: "select",
+                      options: ["accordion", "tabs", "grid"],
+                      default: "accordion",
+                    }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Content Controls"
                     name: "contentControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Categories"
                     name: "categories"
                     widget: "list"
@@ -254,209 +758,643 @@ collections:
                     name: "questions"
                     widget: "list"
                     fields:
-                      - { label: "Question", name: "question", widget: "string" }
+                      - {
+                          label: "Question",
+                          name: "question",
+                          widget: "string",
+                        }
                       - { label: "Answer", name: "answer", widget: "markdown" }
-                      - { label: "Category", name: "category", widget: "string", required: false }
+                      - {
+                          label: "Category",
+                          name: "category",
+                          widget: "string",
+                          required: false,
+                        }
 
               - label: "Team Section"
                 name: "team"
                 widget: "object"
                 fields:
-                  - { label: "Type", name: "type", widget: "hidden", default: "team" }
+                  - {
+                      label: "Type",
+                      name: "type",
+                      widget: "hidden",
+                      default: "team",
+                    }
                   - { label: "Title", name: "title", widget: "string" }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Content Controls"
                     name: "contentControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
-                  - { label: "Layout", name: "layout", widget: "select", options: ["grid", "list", "carousel"], default: "grid" }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
+                  - {
+                      label: "Layout",
+                      name: "layout",
+                      widget: "select",
+                      options: ["grid", "list", "carousel"],
+                      default: "grid",
+                    }
                   - label: "Members"
                     name: "members"
                     widget: "list"
                     fields:
                       - { label: "Name", name: "name", widget: "string" }
-                      - { label: "Position", name: "position", widget: "string" }
+                      - {
+                          label: "Position",
+                          name: "position",
+                          widget: "string",
+                        }
                       - { label: "Image", name: "image", widget: "image" }
-                      - { label: "Bio", name: "bio", widget: "markdown", required: false }
+                      - {
+                          label: "Bio",
+                          name: "bio",
+                          widget: "markdown",
+                          required: false,
+                        }
                       - label: "Social Links"
                         name: "social"
                         widget: "list"
                         required: false
                         fields:
-                          - { label: "Platform", name: "platform", widget: "select", options: ["linkedin", "twitter", "facebook", "instagram"] }
+                          - {
+                              label: "Platform",
+                              name: "platform",
+                              widget: "select",
+                              options:
+                                [
+                                  "linkedin",
+                                  "twitter",
+                                  "facebook",
+                                  "instagram",
+                                ],
+                            }
                           - { label: "URL", name: "url", widget: "string" }
 
               - label: "Timeline Section"
                 name: "timeline"
                 widget: "object"
                 fields:
-                  - { label: "Type", name: "type", widget: "hidden", default: "timeline" }
+                  - {
+                      label: "Type",
+                      name: "type",
+                      widget: "hidden",
+                      default: "timeline",
+                    }
                   - { label: "Title", name: "title", widget: "string" }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Content Controls"
                     name: "contentControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
-                  - { label: "Layout", name: "layout", widget: "select", options: ["vertical", "horizontal"], default: "vertical" }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
+                  - {
+                      label: "Layout",
+                      name: "layout",
+                      widget: "select",
+                      options: ["vertical", "horizontal"],
+                      default: "vertical",
+                    }
                   - label: "Events"
                     name: "events"
                     widget: "list"
                     fields:
                       - { label: "Date", name: "date", widget: "string" }
                       - { label: "Title", name: "title", widget: "string" }
-                      - { label: "Content", name: "content", widget: "markdown" }
-                      - { label: "Image", name: "image", widget: "image", required: false }
+                      - {
+                          label: "Content",
+                          name: "content",
+                          widget: "markdown",
+                        }
+                      - {
+                          label: "Image",
+                          name: "image",
+                          widget: "image",
+                          required: false,
+                        }
 
               - label: "Pricing Tables"
                 name: "pricing"
                 widget: "object"
                 fields:
-                  - { label: "Type", name: "type", widget: "hidden", default: "pricing" }
+                  - {
+                      label: "Type",
+                      name: "type",
+                      widget: "hidden",
+                      default: "pricing",
+                    }
                   - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-                  - { label: "Period Toggle", name: "showPeriodToggle", widget: "boolean", default: true }
+                  - {
+                      label: "Subtitle",
+                      name: "subtitle",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Period Toggle",
+                      name: "showPeriodToggle",
+                      widget: "boolean",
+                      default: true,
+                    }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Content Controls"
                     name: "contentControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Plans"
                     name: "plans"
                     widget: "list"
                     fields:
                       - { label: "Name", name: "name", widget: "string" }
-                      - { label: "Monthly Price", name: "monthlyPrice", widget: "string" }
-                      - { label: "Annual Price", name: "annualPrice", widget: "string" }
-                      - { label: "Currency", name: "currency", widget: "string", default: "$" }
-                      - { label: "Popular", name: "popular", widget: "boolean", default: false }
+                      - {
+                          label: "Monthly Price",
+                          name: "monthlyPrice",
+                          widget: "string",
+                        }
+                      - {
+                          label: "Annual Price",
+                          name: "annualPrice",
+                          widget: "string",
+                        }
+                      - {
+                          label: "Currency",
+                          name: "currency",
+                          widget: "string",
+                          default: "$",
+                        }
+                      - {
+                          label: "Popular",
+                          name: "popular",
+                          widget: "boolean",
+                          default: false,
+                        }
                       - label: "Features"
                         name: "features"
                         widget: "list"
-                        field: { label: "Feature", name: "feature", widget: "string" }
-                      - { label: "Button Text", name: "buttonText", widget: "string" }
-                      - { label: "Button Link", name: "buttonLink", widget: "string" }
+                        field:
+                          {
+                            label: "Feature",
+                            name: "feature",
+                            widget: "string",
+                          }
+                      - {
+                          label: "Button Text",
+                          name: "buttonText",
+                          widget: "string",
+                        }
+                      - {
+                          label: "Button Link",
+                          name: "buttonLink",
+                          widget: "string",
+                        }
 
               - label: "CTA Section"
                 name: "cta"
                 widget: "object"
                 fields:
-                  - { label: "Type", name: "type", widget: "hidden", default: "cta" }
-                  - { label: "Style", name: "style", widget: "select", options: ["simple", "withImage", "fullWidth", "newsletter"], default: "simple" }
+                  - {
+                      label: "Type",
+                      name: "type",
+                      widget: "hidden",
+                      default: "cta",
+                    }
+                  - {
+                      label: "Style",
+                      name: "style",
+                      widget: "select",
+                      options:
+                        ["simple", "withImage", "fullWidth", "newsletter"],
+                      default: "simple",
+                    }
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Content", name: "content", widget: "markdown" }
-                  - { label: "Background Image", name: "bgImage", widget: "image", required: false }
-                  - { label: "Background Color", name: "bgColor", widget: "color", required: false }
+                  - {
+                      label: "Background Image",
+                      name: "bgImage",
+                      widget: "image",
+                      required: false,
+                    }
+                  - {
+                      label: "Background Color",
+                      name: "bgColor",
+                      widget: "color",
+                      required: false,
+                    }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Content Controls"
                     name: "contentControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
 
               - label: "Alert/Notice Section"
                 name: "alert"
                 widget: "object"
                 fields:
-                  - { label: "Type", name: "type", widget: "hidden", default: "alert" }
+                  - {
+                      label: "Type",
+                      name: "type",
+                      widget: "hidden",
+                      default: "alert",
+                    }
                   - { label: "Message", name: "message", widget: "markdown" }
-                  - { label: "Background Color", name: "bgColor", widget: "color", required: false }
-                  - { label: "Text Color", name: "textColor", widget: "color", required: false }
-                  - { label: "Icon", name: "icon", widget: "image", required: false }
-                  - { label: "Font Size", name: "fontSize", widget: "select", options: ["text-base", "text-lg", "text-xl", "text-2xl"], default: "text-lg" }
+                  - {
+                      label: "Background Color",
+                      name: "bgColor",
+                      widget: "color",
+                      required: false,
+                    }
+                  - {
+                      label: "Text Color",
+                      name: "textColor",
+                      widget: "color",
+                      required: false,
+                    }
+                  - {
+                      label: "Icon",
+                      name: "icon",
+                      widget: "image",
+                      required: false,
+                    }
+                  - {
+                      label: "Font Size",
+                      name: "fontSize",
+                      widget: "select",
+                      options: ["text-base", "text-lg", "text-xl", "text-2xl"],
+                      default: "text-lg",
+                    }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Content Controls"
                     name: "contentControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
 
               - label: "Divider"
                 name: "divider"
                 widget: "object"
                 fields:
-                  - { label: "Type", name: "type", widget: "hidden", default: "divider" }
-                  - { label: "Style", name: "style", widget: "select", options: ["solid", "dashed", "dotted", "double"], default: "solid" }
-                  - { label: "Color", name: "color", widget: "color", required: false }
-                  - { label: "Thickness", name: "thickness", widget: "number", min: 1, max: 10, default: 2 }
+                  - {
+                      label: "Type",
+                      name: "type",
+                      widget: "hidden",
+                      default: "divider",
+                    }
+                  - {
+                      label: "Style",
+                      name: "style",
+                      widget: "select",
+                      options: ["solid", "dashed", "dotted", "double"],
+                      default: "solid",
+                    }
+                  - {
+                      label: "Color",
+                      name: "color",
+                      widget: "color",
+                      required: false,
+                    }
+                  - {
+                      label: "Thickness",
+                      name: "thickness",
+                      widget: "number",
+                      min: 1,
+                      max: 10,
+                      default: 2,
+                    }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Content Controls"
                     name: "contentControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
 
               - label: "Rich Text Section"
                 name: "richText"
                 widget: "object"
                 fields:
-                  - { label: "Type", name: "type", widget: "hidden", default: "richText" }
+                  - {
+                      label: "Type",
+                      name: "type",
+                      widget: "hidden",
+                      default: "richText",
+                    }
                   - { label: "Content", name: "content", widget: "markdown" }
-                  - { label: "Font Size", name: "fontSize", widget: "select", options: ["text-base", "text-lg", "text-xl", "text-2xl", "text-3xl"], default: "text-lg" }
-                  - { label: "Text Color", name: "textColor", widget: "color", required: false }
-                  - { label: "Background Color", name: "bgColor", widget: "color", required: false }
-                  - { label: "Custom CSS", name: "customCss", widget: "string", required: false }
+                  - {
+                      label: "Font Size",
+                      name: "fontSize",
+                      widget: "select",
+                      options:
+                        [
+                          "text-base",
+                          "text-lg",
+                          "text-xl",
+                          "text-2xl",
+                          "text-3xl",
+                        ],
+                      default: "text-lg",
+                    }
+                  - {
+                      label: "Text Color",
+                      name: "textColor",
+                      widget: "color",
+                      required: false,
+                    }
+                  - {
+                      label: "Background Color",
+                      name: "bgColor",
+                      widget: "color",
+                      required: false,
+                    }
+                  - {
+                      label: "Custom CSS",
+                      name: "customCss",
+                      widget: "string",
+                      required: false,
+                    }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }
                   - label: "Content Controls"
                     name: "contentControls"
                     widget: "object"
                     fields:
-                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
-                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
-                      - { label: "Color", name: "color", widget: "color", required: false }
+                      - {
+                          label: "Alignment",
+                          name: "align",
+                          widget: "select",
+                          options: ["left", "center", "right"],
+                          required: false,
+                        }
+                      - {
+                          label: "Font Size",
+                          name: "fontSize",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          required: false,
+                        }

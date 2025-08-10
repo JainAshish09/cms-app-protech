@@ -1,6 +1,14 @@
 ---
 sections:
-  - buttons: []
+  - buttons:
+      - style: outline
+        text: This is a button 1.
+        link: ww.
+        newTab: true
+        color: ""
+        backgroundColor: ""
+        border: ""
+        radius: "20"
     titleTextSettings:
       fontSize: text-3xl
       textColor: "#182583"
@@ -28,7 +36,7 @@ sections:
       
       At **ProTech**, we understand the unique challenges that door and frame manufacturers face. From juggling multiple vendors, staying on top of change orders, tracking inventory, and meeting strict delivery deadlines, your workflow demands a system that's not just efficient — but tailored to your industry.
     type: hero
-    bgColor: "#0e1752"
+    bgColor: "#d8daeb"
   - layout: grid
     bgStyle: color
     titleControls:
@@ -103,4 +111,28 @@ sections:
         file: images/about-img-1.jpeg
     mediaType: image
     bgColor: "#fc9f9f"
+  - cardsPerRow: 2
+    cards:
+      - title: Card 1
+        content: tHIS IS A CARD 1
+        image: images/about-img-2.jpeg
+        link: wokok
+      - title: crad 2
+        content: This is a card 2
+        image: images/about-img-1.jpeg
+        link: "Card 2 "
+        buttonText: OKOK
+    showBorder: true
+    hoverEffect: true
+    titleControls:
+      align: left
+      fontSize: "40"
+      color: "#2e0e50"
+    contentControls:
+      align: left
+      fontSize: "10"
+      color: "#a71f1f"
+    style: masonry
+    title: This si a card grid
+    type: cards
 ---
