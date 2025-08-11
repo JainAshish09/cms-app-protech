@@ -1,47 +1,123 @@
 import React from 'react';
-import Image from 'next/image';
+import MediaTextCard from '../widgets/MediaTextCard'; // Adjust path if needed
 
-function getTextStyle(controls: any) {
-    return {
-        textAlign: controls?.align || undefined,
-        fontSize: controls?.fontSize || undefined,
-        color: controls?.color || undefined,
-    };
+interface ButtonProps {
+    text?: string;
+    link?: string;
+    style?: 'primary' | 'secondary' | 'outline';
+    newTab?: boolean;
+    icon?: string;
+    color?: string;
+    backgroundColor?: string;
+    border?: string;
+    radius?: string;
 }
 
-const CardsSection = ({ section }: { section: any }) => {
-    let gridClass = 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3';
-    if (section.style === 'masonry') gridClass = 'md:grid-cols-3';
-    if (section.style === 'carousel') gridClass = 'grid-cols-1';
-    if (section.cardsPerRow) gridClass = `grid-cols-1 sm:grid-cols-2 md:grid-cols-${section.cardsPerRow}`;
+interface CardControls {
+    titleColor?: string;
+    titleFontSize?: string;
+    textColor?: string;
+    textFontSize?: string;
+    backgroundColor?: string;
+}
 
-    // Use controls from CMS config
-    const titleStyle = {
-        ...getTextStyle(section.titleControls),
-        ...section.titleStyle,
+interface Card {
+    title: string;
+    content: string;
+    image?: string;
+    link?: string;
+    buttons?: ButtonProps;
+    cardControls?: CardControls;
+}
+
+interface Controls {
+    align?: 'left' | 'center' | 'right';
+    fontSize?: string;
+    color?: string;
+}
+
+interface CardsSectionType {
+    title?: string;
+    cardsPerRow?: number;
+    showBorder?: boolean;
+    hoverEffect?: boolean;
+    titleControls?: Controls;
+    cards: Card[];
+}
+
+const CardsSection: React.FC<{ section: CardsSectionType }> = ({ section }) => {
+    const {
+        title,
+        cardsPerRow = 3,
+        showBorder = true,
+        hoverEffect = true,
+        titleControls,
+        cards,
+    } = section;
+
+    const gridColsClass = {
+        2: 'grid-cols-2',
+        3: 'grid-cols-3',
+        4: 'grid-cols-4',
+    }[cardsPerRow] || 'grid-cols-3';
+
+    const getTextAlignClass = (align?: string) => {
+        if (align === 'left') return 'text-left';
+        if (align === 'right') return 'text-right';
+        return 'text-center';
     };
-    const contentStyle = {
-        ...getTextStyle(section.contentControls),
-        ...section.contentStyle,
+
+    const getStyleOverride = (fontSize?: string, color?: string): React.CSSProperties => {
+        const style: React.CSSProperties = {};
+        if (fontSize && !fontSize.startsWith('text-') && !isNaN(Number(fontSize))) {
+            style.fontSize = `${fontSize}px`;
+        }
+        if (color) {
+            style.color = color;
+        }
+        return style;
     };
 
     return (
-        <section className="w-full py-16 bg-[#F7FAFC]">
-            <div className="container mx-auto">
-                <h2 style={titleStyle} className="text-2xl md:text-3xl font-bold mb-10">{section.title}</h2>
-                {section.subtitle && <p style={contentStyle} className="mb-10">{section.subtitle}</p>}
-                <div className={`grid gap-8 ${gridClass}`}>
-                    {section.cards?.map((card: any, i: number) => (
-                        <div key={i} className={`bg-white rounded-xl shadow-lg p-8 flex flex-col items-center ${section.showBorder ? 'border border-gray-200' : ''} ${section.hoverEffect ? 'hover:scale-105 transition-transform' : ''}`}>
-                            {card.image && <div className="relative w-full h-40 mb-4"><Image src={`/${card.image}`} alt={card.title} layout="fill" objectFit="cover" className="rounded-xl" /></div>}
-                            <h3 className="font-bold text-lg mb-2 text-center text-gray-800">{card.title}</h3>
-                            <div className="text-gray-600 mb-4 text-center" dangerouslySetInnerHTML={{ __html: card.content }} />
-                            {card.buttonText && (
-                                <a href={card.link || '#'} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mt-2 inline-block font-semibold shadow">{card.buttonText}</a>
-                            )}
+        <section className="max-w-7xl mx-auto px-4 md:px-8 py-12">
+            {title && (
+                <h2
+                    className={`font-bold mb-8 ${getTextAlignClass(titleControls?.align)}`}
+                    style={getStyleOverride(titleControls?.fontSize, titleControls?.color)}
+                >
+                    {title}
+                </h2>
+            )}
+
+            <div className={`grid gap-6 ${gridColsClass}`}>
+                {cards.map((card, idx) => {
+                    const normalizedImage = card.image
+                        ? card.image.startsWith('/')
+                            ? card.image
+                            : `/${card.image}`
+                        : undefined;
+
+                    return (
+                        <div
+                            key={idx}
+                            className={`rounded-lg overflow-hidden ${showBorder ? 'border border-gray-200' : ''
+                                } ${hoverEffect ? 'hover:shadow-lg transition-shadow' : ''}`}
+                            style={{
+                                backgroundColor: card.cardControls?.backgroundColor || '#ffffff',
+                                cursor: card.link ? 'pointer' : 'default',
+                            }}
+                        >
+                            <MediaTextCard
+                                title={card.title}
+                                content={card.content}
+                                image={normalizedImage ? { src: normalizedImage } : undefined}
+                                link={card.link}
+                                button={card.buttons}
+                                cardControls={card.cardControls}
+                            />
                         </div>
-                    ))}
-                </div>
+                    );
+                })}
             </div>
         </section>
     );

@@ -41,7 +41,7 @@ sections:
     bgStyle: color
     titleControls:
       align: left
-      fontSize: "50"
+      fontSize: "30"
       color: "#122e4f"
     contentControls:
       align: right
@@ -115,32 +115,63 @@ sections:
     mediaItems:
       - file: images/about-img-2.jpeg
         alt: This is a image 2
-      - alt: ijij
-        file: images/about-img-1.jpeg
     mediaType: image
     bgColor: "#fc9f9f"
   - cardsPerRow: 2
     cards:
       - title: Card 1
-        content: tHIS IS A CARD 1
+        content: "`This is a
+          cardhttp://localhost:3000/admin/index.html#/collections/homepageSecti\
+          ons/entries/homepageSectionshttp://localhost:3000/admin/index.html#/c\
+          ollections/homepageSections/entries/homepageSectionshttp://localhost:\
+          3000/admin/index.html#/collections/homepageSections/entries/homepageS\
+          ectionshttp://localhost:3000/admin/index.html#/collections/homepageSe\
+          ctions/entries/homepageSectionshttp://localhost:3000/admin/index.html\
+          #/collections/homepageSections/entries/homepageSectionshttp://localho\
+          st:3000/admin/index.html#/collections/homepageSections/entries/homepa\
+          geSections`"
         image: images/about-img-2.jpeg
         link: wokok
+        buttons:
+          text: "Button 1 "
+          link: "This is a Button 1 "
+          style: primary
+          icon: images/accountability.svg
+          color: "#1fef78"
+          backgroundColor: "#1d3063"
+          border: "padding: 0;"
       - title: crad 2
         content: This is a card 2
         image: images/about-img-1.jpeg
         link: "Card 2 "
         buttonText: OKOK
+      - buttons:
+          style: outline
+          newTab: false
+          color: ""
+          backgroundColor: ""
+          border: ""
+          radius: ""
+          text: Button 1
+          link: This is a Buttonn 1
+        title: "card3 "
+        content: This is a card 3 content
+        image: images/gallery6.png
+        link: THis is a Button 0f card 1
+    cardControls:
+      textColor: "#85d866"
+      titleColor: "#5445d1"
     showBorder: true
-    hoverEffect: true
+    hoverEffect: false
     titleControls:
       align: left
       fontSize: "40"
       color: "#2e0e50"
     contentControls:
-      align: left
-      fontSize: "10"
+      align: right
+      fontSize: "30"
       color: "#a71f1f"
-    style: masonry
+    style: grid
     title: This si a card grid
     type: cards
 ---

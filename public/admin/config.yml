@@ -444,17 +444,10 @@ collections:
                     }
                   - { label: "Title", name: "title", widget: "string" }
                   - {
-                      label: "Layout Style",
-                      name: "style",
-                      widget: "select",
-                      options: ["grid", "masonry", "carousel"],
-                      default: "grid",
-                    }
-                  - {
                       label: "Cards Per Row",
                       name: "cardsPerRow",
                       widget: "number",
-                      min: 1,
+                      min: 2,
                       max: 4,
                       default: 3,
                     }
@@ -493,29 +486,43 @@ collections:
                           widget: "color",
                           required: false,
                         }
-                  - label: "Content Controls"
-                    name: "contentControls"
+                  - label: "Card Controls"
+                    name: "cardControls"
                     widget: "object"
                     fields:
                       - {
-                          label: "Alignment",
-                          name: "align",
-                          widget: "select",
-                          options: ["left", "center", "right"],
-                          required: false,
-                        }
-                      - {
-                          label: "Font Size",
-                          name: "fontSize",
-                          widget: "string",
-                          required: false,
-                        }
-                      - {
-                          label: "Color",
-                          name: "color",
+                          label: "Title Color",
+                          name: "titleColor",
                           widget: "color",
                           required: false,
                         }
+                      - {
+                          label: "Title Font Size",
+                          name: "titleFontSize",
+                          widget: "string",
+                          required: false,
+                          hint: "e.g. 24 or 32 (in pixels)",
+                        }
+                      - {
+                          label: "Text Color",
+                          name: "textColor",
+                          widget: "color",
+                          required: false,
+                        }
+                      - {
+                          label: "Text Font Size",
+                          name: "textFontSize",
+                          widget: "string",
+                          required: false,
+                          hint: "e.g. 16 or 18 (in pixels)",
+                        }
+                      - {
+                          label: "Background Color",
+                          name: "backgroundColor",
+                          widget: "color",
+                          required: false,
+                        }
+
                   - label: "Cards"
                     name: "cards"
                     widget: "list"
@@ -538,12 +545,76 @@ collections:
                           widget: "string",
                           required: false,
                         }
-                      - {
-                          label: "Button Text",
-                          name: "buttonText",
-                          widget: "string",
-                          required: false,
-                        }
+                      - label: "Buttons"
+                        name: "buttons"
+                        widget: "object"
+                        required: false
+                        fields:
+                          - {
+                              label: "Text",
+                              name: "text",
+                              widget: "string",
+                              required: false,
+                            }
+                          - {
+                              label: "Link",
+                              name: "link",
+                              widget: "string",
+                              required: false,
+                            }
+                          - {
+                              label: "Style",
+                              name: "style",
+                              widget: "select",
+                              options: ["primary", "secondary", "outline"],
+                              default: "primary",
+                              required: false,
+                            }
+                          - {
+                              label: "Open in new tab",
+                              name: "newTab",
+                              widget: "boolean",
+                              default: false,
+                              required: false,
+                            }
+                          - {
+                              label: "Icon",
+                              name: "icon",
+                              widget: "image",
+                              required: false,
+                            }
+                          - {
+                              label: "Color",
+                              name: "color",
+                              widget: "color",
+                              default: "#000000",
+                              enableAlpha: true,
+                              allowInput: true,
+                              required: false,
+                            }
+                          - {
+                              label: "Background Color",
+                              name: "backgroundColor",
+                              widget: "color",
+                              default: "#ffffff",
+                              enableAlpha: true,
+                              allowInput: true,
+                              required: false,
+                            }
+                          - {
+                              label: "Border",
+                              name: "border",
+                              widget: "string",
+                              default: "1px solid transparent",
+                              required: false,
+                            }
+                          - {
+                              label: "Radius",
+                              name: "radius",
+                              widget: "string",
+                              default: "4px",
+                              required: false,
+                            }
 
               - label: "Testimonials Section"
                 name: "testimonials"
