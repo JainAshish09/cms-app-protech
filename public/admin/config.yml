@@ -709,88 +709,57 @@ collections:
                 name: "faq"
                 widget: "object"
                 fields:
-                  - {
-                      label: "Type",
-                      name: "type",
-                      widget: "hidden",
-                      default: "faq",
-                    }
+                  - { label: "Type", name: "type", widget: "hidden", default: "faq" }
                   - { label: "Title", name: "title", widget: "string" }
-                  - {
-                      label: "Layout",
-                      name: "layout",
-                      widget: "select",
-                      options: ["accordion", "tabs", "grid"],
-                      default: "accordion",
+
+                  - { 
+                      label: "Layout", 
+                      name: "layout", 
+                      widget: "select", 
+                      options: ["accordion", "tabs", "grid"], 
+                      default: "accordion" 
                     }
+
+                  - label: "Section Background Color"
+                    name: "sectionBgColor"
+                    widget: "color"
+                    required: false
+
+                  - label: "Question Background Color"
+                    name: "questionBgColor"
+                    widget: "color"
+                    required: false
+
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - {
-                          label: "Alignment",
-                          name: "align",
-                          widget: "select",
-                          options: ["left", "center", "right"],
-                          required: false,
-                        }
-                      - {
-                          label: "Font Size",
-                          name: "fontSize",
-                          widget: "string",
-                          required: false,
-                        }
-                      - {
-                          label: "Color",
-                          name: "color",
-                          widget: "color",
-                          required: false,
-                        }
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color", name: "color", widget: "color", required: false }
+
                   - label: "Content Controls"
                     name: "contentControls"
                     widget: "object"
                     fields:
-                      - {
-                          label: "Alignment",
-                          name: "align",
-                          widget: "select",
-                          options: ["left", "center", "right"],
-                          required: false,
-                        }
-                      - {
-                          label: "Font Size",
-                          name: "fontSize",
-                          widget: "string",
-                          required: false,
-                        }
-                      - {
-                          label: "Color",
-                          name: "color",
-                          widget: "color",
-                          required: false,
-                        }
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color", name: "color", widget: "color", required: false }
+
                   - label: "Categories"
                     name: "categories"
                     widget: "list"
                     required: false
                     fields:
                       - { label: "Name", name: "name", widget: "string" }
+
                   - label: "Questions"
                     name: "questions"
                     widget: "list"
                     fields:
-                      - {
-                          label: "Question",
-                          name: "question",
-                          widget: "string",
-                        }
+                      - { label: "Question", name: "question", widget: "string" }
                       - { label: "Answer", name: "answer", widget: "markdown" }
-                      - {
-                          label: "Category",
-                          name: "category",
-                          widget: "string",
-                          required: false,
-                        }
+                      - { label: "Category", name: "category", widget: "string", required: false }
 
               - label: "Team Section"
                 name: "team"

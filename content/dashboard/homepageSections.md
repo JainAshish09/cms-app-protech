@@ -87,7 +87,7 @@ sections:
           f6http://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSections
         icon: images/about-img-1.jpeg
         link: OKOK
-    itemsPerRow: 5
+    itemsPerRow: 4
     bgColor: "#d4ddc6"
   - buttons:
       text: ""
@@ -234,4 +234,27 @@ sections:
         prefix: This is a pre
       - label: This is a Stats 2
         value: "2000"
+  - layout: grid
+    questions:
+      - question: THIS IS A QUESTION 1
+        answer: THIS IS A Answer1
+        category: TECH
+      - question: THIS IS A QUESTION 2
+        answer: THIS IS A ANSWER 2
+        category: Pricing
+    titleControls:
+      align: left
+      fontSize: "25"
+      color: "#094281"
+    contentControls:
+      align: left
+      fontSize: "20"
+      color: "#190303"
+    title: This is a FAQ section
+    questionBgColor: "#cf9999"
+    sectionBgColor: "#a36c6c"
+    type: faq
+    categories:
+      - name: TECH
+      - name: Pricing
 ---
