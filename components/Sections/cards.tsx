@@ -1,5 +1,5 @@
 import React from 'react';
-import MediaTextCard from '../widgets/MediaTextCard'; // Adjust path if needed
+import MediaTextCard from '../widgets/MediaTextCard'; // Adjust path as needed
 
 interface ButtonProps {
     text?: string;
@@ -27,7 +27,6 @@ interface Card {
     image?: string;
     link?: string;
     buttons?: ButtonProps;
-    cardControls?: CardControls;
 }
 
 interface Controls {
@@ -42,6 +41,7 @@ interface CardsSectionType {
     showBorder?: boolean;
     hoverEffect?: boolean;
     titleControls?: Controls;
+    cardControls?: CardControls;
     cards: Card[];
 }
 
@@ -52,6 +52,7 @@ const CardsSection: React.FC<{ section: CardsSectionType }> = ({ section }) => {
         showBorder = true,
         hoverEffect = true,
         titleControls,
+        cardControls,
         cards,
     } = section;
 
@@ -103,7 +104,7 @@ const CardsSection: React.FC<{ section: CardsSectionType }> = ({ section }) => {
                             className={`rounded-lg overflow-hidden ${showBorder ? 'border border-gray-200' : ''
                                 } ${hoverEffect ? 'hover:shadow-lg transition-shadow' : ''}`}
                             style={{
-                                backgroundColor: card.cardControls?.backgroundColor || '#ffffff',
+                                backgroundColor: cardControls?.backgroundColor || '#ffffff', // ✅ section-wide bg
                                 cursor: card.link ? 'pointer' : 'default',
                             }}
                         >
@@ -113,7 +114,7 @@ const CardsSection: React.FC<{ section: CardsSectionType }> = ({ section }) => {
                                 image={normalizedImage ? { src: normalizedImage } : undefined}
                                 link={card.link}
                                 button={card.buttons}
-                                cardControls={card.cardControls}
+                                CardControls={cardControls} // ✅ pass section-level styles
                             />
                         </div>
                     );

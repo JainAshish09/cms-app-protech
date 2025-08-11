@@ -159,14 +159,17 @@ sections:
         image: images/gallery6.png
         link: THis is a Button 0f card 1
     cardControls:
-      textColor: "#85d866"
+      textColor: "#8d6c98"
       titleColor: "#5445d1"
+      titleFontSize: "20"
+      textFontSize: "15"
+      backgroundColor: ""
     showBorder: true
-    hoverEffect: false
+    hoverEffect: true
     titleControls:
-      align: left
-      fontSize: "40"
-      color: "#2e0e50"
+      align: center
+      fontSize: "30"
+      color: "#338910"
     contentControls:
       align: right
       fontSize: "30"

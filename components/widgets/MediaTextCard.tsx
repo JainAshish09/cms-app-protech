@@ -1,10 +1,18 @@
-// components/widgets/MediaTextCard.tsx
-
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import Button, { ButtonProps } from './Button';
+
+interface CardControlProps {
+    titleColor?: string;
+    titleFontSize?: string;
+    textColor?: string;
+    textFontSize?: string;
+    backgroundColor?: string;
+    borderRadius?: string;
+    padding?: string;
+}
 
 interface MediaTextCardProps {
     title: string;
@@ -15,13 +23,7 @@ interface MediaTextCardProps {
     };
     link?: string; // card-level link
     button?: ButtonProps;
-    CardControls?: {
-        titleColor?: string;
-        titleFontSize?: string;
-        textColor?: string;
-        textFontSize?: string;
-        backgroundColor?: string;
-    };
+    CardControls?: CardControlProps;
 }
 
 const MediaTextCard: React.FC<MediaTextCardProps> = ({
@@ -30,15 +32,28 @@ const MediaTextCard: React.FC<MediaTextCardProps> = ({
     image,
     link,
     button,
-    CardControls,
+    CardControls = {},
 }) => {
     const {
         titleColor = '#000000',
-        titleFontSize = '1.125rem', // text-lg default
+        titleFontSize = '1.125rem', // text-lg
         textColor = '#333333',
-        textFontSize = '0.875rem', // text-sm default
+        textFontSize = '0.875rem', // text-sm
         backgroundColor = '#ffffff',
-    } = CardControls || {};
+        borderRadius = '0.5rem',
+        padding = '1rem',
+    } = CardControls;
+
+    // Utility to ensure font size has units
+    const parseFontSize = (size: string | undefined, fallback: string) => {
+        if (!size) return fallback;
+        if (typeof size === 'number') return `${size}px`;
+        if (/^\d+$/.test(size)) return `${size}px`;
+        return size;
+    };
+
+    const parsedTitleFontSize = parseFontSize(titleFontSize, '1.125rem');
+    const parsedTextFontSize = parseFontSize(textFontSize, '0.875rem');
 
     const CardWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) =>
         link ? (
@@ -51,38 +66,52 @@ const MediaTextCard: React.FC<MediaTextCardProps> = ({
 
     return (
         <div
-            className="rounded-lg shadow-sm p-4 flex h-full bg-white"
-            style={{ backgroundColor }}
+            className="shadow-sm flex h-full"
+            style={{
+                backgroundColor,
+                borderRadius,
+                padding,
+            }}
         >
             {/* Image section */}
             {image?.src && (
-                <div className="relative w-1/2 h-full rounded-lg overflow-hidden shadow-sm">
+                <div
+                    className="relative w-1/2 h-full overflow-hidden shadow-sm"
+                    style={{ borderRadius }}
+                >
                     <CardWrapper>
                         <Image
                             src={image.src}
                             alt={image.alt || 'Media Image'}
                             fill
-                            className="object-cover rounded-lg"
+                            style={{
+                                objectFit: 'cover',
+                                borderRadius,
+                            }}
                         />
                     </CardWrapper>
                 </div>
             )}
 
             {/* Content section */}
-            <div className={`w-1/2 flex flex-col justify-between pl-6`}>
+            <div className="w-1/2 flex flex-col justify-between pl-6">
                 <CardWrapper>
                     <div>
+                        {/* Card Title */}
                         <h3
                             className="font-semibold"
-                            style={{ color: titleColor, fontSize: titleFontSize }}
+                            style={{
+                                color: titleColor,
+                                fontSize: parsedTitleFontSize,
+                                marginBottom: '0.5rem',
+                            }}
                         >
                             {title}
                         </h3>
+
+                        {/* Card Content (Markdown styled with CMS controls) */}
                         <div
-                            className="prose max-w-none"
                             style={{
-                                color: textColor,
-                                fontSize: textFontSize,
                                 display: '-webkit-box',
                                 WebkitLineClamp: 10,
                                 WebkitBoxOrient: 'vertical',
@@ -94,22 +123,42 @@ const MediaTextCard: React.FC<MediaTextCardProps> = ({
                                 maxWidth: '100%',
                             }}
                         >
-                            <ReactMarkdown>{content}</ReactMarkdown>
+                            <ReactMarkdown
+                                components={{
+                                    p: ({ node, ...props }) => (
+                                        <p {...props} style={{ color: textColor, fontSize: parsedTextFontSize, margin: 0 }} />
+                                    ),
+                                    ul: ({ node, ...props }) => (
+                                        <ul {...props} style={{ color: textColor, fontSize: parsedTextFontSize, margin: 0 }} />
+                                    ),
+                                    li: ({ node, ...props }) => (
+                                        <li {...props} style={{ color: textColor, fontSize: parsedTextFontSize }} />
+                                    ),
+                                    h1: ({ node, ...props }) => (
+                                        <h1 {...props} style={{ color: titleColor, fontSize: `calc(${parsedTitleFontSize} * 1.5)`, fontWeight: 700, margin: 0 }} />
+                                    ),
+                                    h2: ({ node, ...props }) => (
+                                        <h2 {...props} style={{ color: titleColor, fontSize: `calc(${parsedTitleFontSize} * 1.2)`, fontWeight: 600, margin: 0 }} />
+                                    ),
+                                    h3: ({ node, ...props }) => (
+                                        <h3 {...props} style={{ color: titleColor, fontSize: parsedTitleFontSize, fontWeight: 600, margin: 0 }} />
+                                    ),
+                                }}
+                            >
+                                {content}
+                            </ReactMarkdown>
                         </div>
-
                     </div>
                 </CardWrapper>
 
                 {/* Button */}
-                {
-                    button?.text && button?.link && (
-                        <div className="mt-4">
-                            <Button {...button} />
-                        </div>
-                    )
-                }
-            </div >
-        </div >
+                {button?.text && button?.link && (
+                    <div className="mt-4">
+                        <Button {...button} />
+                    </div>
+                )}
+            </div>
+        </div>
     );
 };
 
