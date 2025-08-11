@@ -205,4 +205,33 @@ sections:
     showRatings: true
     type: testimonials
     roleCompanyColor: "#61df30"
+  - styles:
+      titleAlign: left
+      titleSize: "20"
+      titleColor: "#e99f9f"
+      contentAlign: left
+      contentSize: "15"
+      contentColor: "#e26f6f"
+    animation: countUp
+    sectionBg: "#4545d3"
+    layout: masonry
+    titleControls:
+      align: left
+      fontSize: "50"
+      color: "#44ee69"
+    contentControls:
+      align: left
+      color: "#e7f1e8"
+      fontSize: "40"
+    subtitle: okok
+    title: This is  a Stats Section
+    statBg: "#676554"
+    type: stats
+    stats:
+      - label: States 1
+        value: "10"
+        icon: images/about-img-3.jpeg
+        prefix: This is a pre
+      - label: This is a Stats 2
+        value: "2000"
 ---

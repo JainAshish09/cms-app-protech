@@ -37,7 +37,7 @@ export default function Testimonials({ section }: { section: SectionProps }) {
     const testimonial = section.testimonials[current];
 
     return (
-        <section style={{ backgroundColor: section.backgroundColor }} className="py-12">
+        <section style={{ backgroundColor: section.backgroundColor }} className="py-12 ">
             {/* Title */}
             <h2
                 style={{
@@ -47,7 +47,7 @@ export default function Testimonials({ section }: { section: SectionProps }) {
                     paddingLeft: "2rem",
                     paddingRight: "2rem",
                 }}
-                className="font-bold mb-2"
+                className="font-bold mb-2 max-w-7xl mx-auto"
             >
                 {section.title}
             </h2>
@@ -61,7 +61,7 @@ export default function Testimonials({ section }: { section: SectionProps }) {
                     paddingLeft: "2rem",
                     paddingRight: "2rem",
                 }}
-                className="mb-8"
+                className="mb-8 "
             >
                 {section.subtitle}
             </p>

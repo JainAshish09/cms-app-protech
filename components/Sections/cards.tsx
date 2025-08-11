@@ -90,7 +90,7 @@ const CardsSection: React.FC<{ section: CardsSectionType }> = ({ section }) => {
                 </h2>
             )}
 
-            <div className={`grid gap-6 ${gridColsClass}`}>
+            <div className={`grid gap-6 grid-cols-1 sm:grid-cols-2 md:${gridColsClass}`}>
                 {cards.map((card, idx) => {
                     const normalizedImage = card.image
                         ? card.image.startsWith('/')

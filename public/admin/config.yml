@@ -675,97 +675,35 @@ collections:
                 name: "stats"
                 widget: "object"
                 fields:
-                  - {
-                      label: "Type",
-                      name: "type",
-                      widget: "hidden",
-                      default: "stats",
-                    }
+                  - { label: "Type", name: "type", widget: "hidden", default: "stats" }
                   - { label: "Title", name: "title", widget: "string" }
-                  - {
-                      label: "Layout",
-                      name: "layout",
-                      widget: "select",
-                      options: ["row", "grid"],
-                      default: "row",
-                    }
-                  - {
-                      label: "Animation",
-                      name: "animation",
-                      widget: "select",
-                      options: ["none", "countUp", "fade"],
-                      default: "none",
-                    }
+                  - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+                  - { label: "Animation", name: "animation", widget: "select", options: ["none", "countUp", "fade"], default: "none" }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - {
-                          label: "Alignment",
-                          name: "align",
-                          widget: "select",
-                          options: ["left", "center", "right"],
-                          required: false,
-                        }
-                      - {
-                          label: "Font Size",
-                          name: "fontSize",
-                          widget: "string",
-                          required: false,
-                        }
-                      - {
-                          label: "Color",
-                          name: "color",
-                          widget: "color",
-                          required: false,
-                        }
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color", name: "color", widget: "color", required: false }
                   - label: "Content Controls"
                     name: "contentControls"
                     widget: "object"
                     fields:
-                      - {
-                          label: "Alignment",
-                          name: "align",
-                          widget: "select",
-                          options: ["left", "center", "right"],
-                          required: false,
-                        }
-                      - {
-                          label: "Font Size",
-                          name: "fontSize",
-                          widget: "string",
-                          required: false,
-                        }
-                      - {
-                          label: "Color",
-                          name: "color",
-                          widget: "color",
-                          required: false,
-                        }
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color", name: "color", widget: "color", required: false }
+                  - { label: "Section Background Color", name: "sectionBg", widget: "color", required: false }
+                  - { label: "Stat Background Color", name: "statBg", widget: "color", required: false }
                   - label: "Stats"
                     name: "stats"
                     widget: "list"
                     fields:
                       - { label: "Label", name: "label", widget: "string" }
                       - { label: "Value", name: "value", widget: "string" }
-                      - {
-                          label: "Icon",
-                          name: "icon",
-                          widget: "image",
-                          required: false,
-                        }
-                      - {
-                          label: "Prefix",
-                          name: "prefix",
-                          widget: "string",
-                          required: false,
-                        }
-                      - {
-                          label: "Suffix",
-                          name: "suffix",
-                          widget: "string",
-                          required: false,
-                        }
+                      - { label: "Icon", name: "icon", widget: "image", required: false }
+                      - { label: "Prefix", name: "prefix", widget: "string", required: false }
+                      - { label: "Suffix", name: "suffix", widget: "string", required: false }
 
               - label: "FAQ Section"
                 name: "faq"

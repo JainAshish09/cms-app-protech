@@ -1,71 +1,142 @@
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import { motion } from "framer-motion";
+import CountUp from "react-countup";
 
-function getTextStyle(controls: any) {
-    return {
-        textAlign: controls?.align || undefined,
-        fontSize: controls?.fontSize || undefined,
-        color: controls?.color || undefined,
+interface Stat {
+    icon?: string;
+    value: string | number;
+    label: string;
+    suffix?: string;
+    prefix?: string;
+}
+
+interface Controls {
+    align?: "left" | "center" | "right";
+    fontSize?: string;
+    color?: string;
+}
+
+interface StatsSectionProps {
+    section: {
+        type?: string;
+        title?: string;
+        subtitle?: string;
+        animation?: "countUp" | "none" | "fade";
+        titleControls?: Controls;
+        contentControls?: Controls;
+        sectionBg?: string;
+        statBg?: string;
+        stats: Stat[];
     };
 }
 
-const CountUp = ({ end, prefix = '', suffix = '' }: { end: any, prefix?: string, suffix?: string }) => {
-    const [val, setVal] = React.useState(0);
-    React.useEffect(() => {
-        let start = 0;
-        const target = parseFloat(end);
-        if (isNaN(target)) return setVal(end);
-        const duration = 1200;
-        const step = Math.max(target / (duration / 16), 1);
-        let raf: any;
-        function animate() {
-            start += step;
-            if (start < target) {
-                setVal(Math.floor(start));
-                raf = requestAnimationFrame(animate);
-            } else {
-                setVal(target);
-            }
-        }
-        animate();
-        return () => raf && cancelAnimationFrame(raf);
-    }, [end]);
-    return <span>{prefix}{val}{suffix}</span>;
-};
+export default function StatsSection({ section }: StatsSectionProps) {
+    const {
+        title,
+        subtitle,
+        animation = "countUp",
+        titleControls = {},
+        contentControls = {},
+        sectionBg,
+        statBg,
+        stats = [],
+    } = section;
 
-const StatsSection = ({ section }: { section: any }) => {
-    let gridClass = 'grid-cols-1 sm:grid-cols-2 md:grid-cols-4';
-    if (section.layout === 'row') gridClass = `grid-cols-${section.stats.length}`;
-    if (section.layout === 'grid' && section.stats.length) gridClass = `grid-cols-1 sm:grid-cols-2 md:grid-cols-${section.stats.length}`;
-
-    // Use controls from CMS config
-    const titleStyle = {
-        ...getTextStyle(section.titleControls),
-        ...section.titleStyle,
-    };
-    const contentStyle = {
-        ...getTextStyle(section.contentControls),
-        ...section.contentStyle,
+    const getFontSize = (size?: string, fallback = "2rem") => {
+        if (!size) return fallback;
+        // Ensure it includes unit
+        return /^\d+$/.test(size) ? `${size}px` : size;
     };
 
     return (
-        <section className="w-full py-16 bg-white">
-            <div className="container mx-auto">
-                <h2 style={titleStyle} className="text-2xl md:text-3xl font-bold text-center mb-10">{section.title}</h2>
-                <div className={`grid gap-8 ${gridClass}`}>
-                    {section.stats?.map((stat: any, i: number) => (
-                        <div key={i} className="flex flex-col items-center text-center p-6 bg-[#F7FAFC] rounded-xl shadow">
-                            {stat.icon && <Image src={`/${stat.icon}`} alt={stat.label} width={48} height={48} className="mb-2" />}
-                            <div className="text-3xl md:text-5xl font-bold text-blue-700 mb-2">
-                                {section.animation === 'countUp' ? <CountUp end={stat.value} prefix={stat.prefix} suffix={stat.suffix} /> : <>{stat.prefix}{stat.value}{stat.suffix}</>}
-                            </div>
-                            <div className="text-gray-700 text-lg">{stat.label}</div>
-                        </div>
-                    ))}
+        <section
+            className="py-12 px-6"
+            style={{
+                background: sectionBg || "linear-gradient(to bottom, #111827, #1f2937, #111827)",
+            }}
+        >
+            {/* Title */}
+            {(title || subtitle) && (
+                <div className="mb-10">
+                    {title && (
+                        <h2
+                            className="font-extrabold tracking-wide"
+                            style={{
+                                textAlign: titleControls.align || "center",
+                                fontSize: getFontSize(titleControls.fontSize, "2rem"),
+                                color: titleControls.color || "#fff",
+                            }}
+                        >
+                            {title}
+                        </h2>
+                    )}
+                    {subtitle && (
+                        <p
+                            className="mt-2 text-base"
+                            style={{
+                                textAlign: titleControls.align || "center",
+                                color: titleControls.color || "#fff"
+                            }}
+                        >
+                            {subtitle}
+                        </p>
+                    )}
                 </div>
+            )}
+
+            {/* Stats */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                {stats.map((stat, idx) => (
+                    <motion.div
+                        key={idx}
+                        className="p-6 rounded-2xl backdrop-blur-md border border-white/20 shadow-lg hover:scale-105 transition-transform relative overflow-hidden"
+                        style={{
+                            backgroundColor: statBg || "rgba(255, 255, 255, 0.05)",
+                        }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.1 }}
+                    >
+                        {/* Accent Bar */}
+                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 to-purple-500" />
+
+                        {/* Icon */}
+                        {stat.icon && (
+                            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center mb-4 shadow-md">
+                                <img src={stat.icon} alt={stat.label} className="w-8 h-8" />
+                            </div>
+                        )}
+
+                        {/* Value */}
+                        <div
+                            style={{
+                                textAlign: contentControls.align || "center",
+                                fontSize: getFontSize(contentControls.fontSize, "2rem"),
+                                color: contentControls.color || "#fff",
+                            }}
+                        >
+                            {stat.prefix && <span className="mr-1 text-lg">{stat.prefix}</span>}
+
+                            {animation === "countUp" ? (
+                                <CountUp
+                                    start={0}
+                                    end={isNaN(Number(stat.value)) ? 0 : Number(stat.value)}
+                                    duration={2}
+                                    separator=","
+                                />
+                            ) : (
+                                stat.value
+                            )}
+
+                            {stat.suffix && <span className="ml-1 text-lg">{stat.suffix}</span>}
+                        </div>
+
+                        {/* Label */}
+                        <p className="mt-2 text-gray-300 text-sm text-center">{stat.label}</p>
+                    </motion.div>
+                ))}
             </div>
         </section>
     );
-};
-
-export default StatsSection;
+}
