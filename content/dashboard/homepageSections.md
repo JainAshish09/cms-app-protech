@@ -89,13 +89,21 @@ sections:
         link: OKOK
     itemsPerRow: 5
     bgColor: "#d4ddc6"
-  - layout: imageLeft
+  - buttons:
+      text: ""
+      link: ""
+      style: outline
+      newTab: false
+      color: "#a6e7ac"
+      backgroundColor: "#372121"
+      radius: "20"
+    layout: imageLeft
     titleControls:
       align: left
       fontSize: "40"
       color: "#0a0a63"
     contentControls:
-      align: left
+      align: center
       fontSize: "20"
       color: "#0d2126"
     cta:

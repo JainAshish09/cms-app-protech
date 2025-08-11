@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
+import Button, { ButtonProps } from '../widgets/Button'; // ✅ Make sure path is correct
 
 interface ControlSettings {
     align?: 'left' | 'center' | 'right';
-    fontSize?: string;   // e.g., "text-lg" or "48"
-    color?: string;      // e.g., "#2912b5"
+    fontSize?: string;
+    color?: string;
 }
 
 interface MediaItem {
@@ -13,38 +14,25 @@ interface MediaItem {
     alt?: string;
 }
 
-interface CTA {
-    text: string;
-    link: string;
-}
-
 interface Section {
     layout: 'imageLeft' | 'imageRight' | 'imageBottom' | 'imageTop' | 'imageBackground';
     bgColor?: string;
     title: string;
     content: string;
-    cta?: CTA;
+    buttons?: ButtonProps; // ✅ Single button object
     mediaItems?: MediaItem[];
     titleControls?: ControlSettings;
     contentControls?: ControlSettings;
     ctaControls?: ControlSettings;
 }
 
-// Utility to map align to tailwind class
+// Utility functions
 function getTextAlignClass(align?: string) {
     if (align === 'left') return 'text-left';
     if (align === 'right') return 'text-right';
-    return 'text-center'; // default
+    return 'text-center';
 }
 
-// Utility to get font size tailwind class if provided, else ''
-function getFontSizeClass(fontSize?: string) {
-    if (!fontSize) return '';
-    if (fontSize.startsWith('text-')) return fontSize;
-    return '';
-}
-
-// Utility to generate inline style for fontSize(px) and color
 function getStyleOverride(fontSize?: string, color?: string): React.CSSProperties {
     const style: React.CSSProperties = {};
     if (fontSize && !fontSize.startsWith('text-') && !isNaN(Number(fontSize))) {
@@ -60,16 +48,14 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
     const {
         title,
         content,
-        cta,
+        buttons,
         mediaItems = [],
         titleControls,
         contentControls,
-        ctaControls,
         bgColor,
         layout,
     } = section;
 
-    // Determine layout flex classes
     const flexDirectionClass =
         layout === 'imageRight'
             ? 'md:flex-row-reverse'
@@ -81,23 +67,23 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
 
     const hasBgImage = layout === 'imageBackground' && mediaItems.length > 0;
 
-    // Carousel index state
     const [currentIndex, setCurrentIndex] = useState(0);
     const showArrows = mediaItems.length > 1;
 
     const handlePrev = () => {
         setCurrentIndex((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
     };
+
     const handleNext = () => {
         setCurrentIndex((prev) => (prev + 1) % mediaItems.length);
     };
 
     return (
         <section
-            className={`w-full py-16 relative ${hasBgImage ? 'relative' : ''}`}
+            className={`w-full py-16 relative`}
             style={hasBgImage ? {} : { backgroundColor: bgColor }}
         >
-            {/* Background image */}
+            {/* Background Image */}
             {hasBgImage && (
                 <div className="absolute inset-0 -z-10">
                     <Image
@@ -109,7 +95,10 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
                     />
                     <div
                         className="absolute inset-0"
-                        style={{ backgroundColor: bgColor || 'rgba(0,0,0,0.5)', mixBlendMode: 'multiply' }}
+                        style={{
+                            backgroundColor: bgColor || 'rgba(0,0,0,0.5)',
+                            mixBlendMode: 'multiply',
+                        }}
                     />
                 </div>
             )}
@@ -117,7 +106,7 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
             <div
                 className={`max-w-7xl mx-auto flex flex-col items-center justify-between gap-8 px-4 md:px-8 ${flexDirectionClass}`}
             >
-                {/* Media (except background image layout) */}
+                {/* Media Column */}
                 {!hasBgImage && mediaItems.length > 0 && (
                     <div className="relative w-full md:w-1/2 max-w-xl rounded-xl shadow overflow-hidden">
                         <Image
@@ -150,7 +139,7 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
                     </div>
                 )}
 
-                {/* Content */}
+                {/* Text Content Column */}
                 <div className="w-full md:w-1/2 max-w-xl space-y-6">
                     <h2
                         className={`font-bold drop-shadow-lg w-full ${getTextAlignClass(titleControls?.align)}`}
@@ -158,6 +147,7 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
                     >
                         {title}
                     </h2>
+
                     <div
                         className={`prose prose-blue max-w-none ${getTextAlignClass(contentControls?.align)}`}
                         style={{
@@ -171,15 +161,9 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
                         <ReactMarkdown>{content}</ReactMarkdown>
                     </div>
 
-                    {cta && (
+                    {buttons && buttons?.text && buttons?.link && (
                         <div className={getTextAlignClass(contentControls?.align)}>
-                            <a
-                                href={cta.link}
-                                className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-blue-700 transition"
-                                style={getStyleOverride(ctaControls?.fontSize, ctaControls?.color)}
-                            >
-                                {cta.text}
-                            </a>
+                            <Button {...buttons} />
                         </div>
                     )}
                 </div>

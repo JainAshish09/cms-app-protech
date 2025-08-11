@@ -252,6 +252,7 @@ collections:
                           widget: "color",
                           required: false,
                         }
+
                   - label: "Features"
                     name: "features"
                     widget: "list"
@@ -316,13 +317,74 @@ collections:
                       enableAlpha: true,
                       required: false,
                     }
-                  - label: "Call to Action"
-                    name: "cta"
+                  - label: "Buttons"
+                    name: "buttons"
                     widget: "object"
                     required: false
                     fields:
-                      - { label: "Text", name: "text", widget: "string" }
-                      - { label: "Link", name: "link", widget: "string" }
+                      - {
+                          label: "Text",
+                          name: "text",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Link",
+                          name: "link",
+                          widget: "string",
+                          required: false,
+                        }
+                      - {
+                          label: "Style",
+                          name: "style",
+                          widget: "select",
+                          options: ["primary", "secondary", "outline"],
+                          default: "primary",
+                        }
+                      - {
+                          label: "Open in new tab",
+                          name: "newTab",
+                          widget: "boolean",
+                          default: false,
+                        }
+                      - {
+                          label: "Icon",
+                          name: "icon",
+                          widget: "image",
+                          required: false,
+                        }
+                      - {
+                          label: "Color",
+                          name: "color",
+                          widget: "color",
+                          default: "#000000",
+                          enableAlpha: true,
+                          allowInput: true,
+                          required: false,
+                        }
+                      - {
+                          label: "Background Color",
+                          name: "backgroundColor",
+                          widget: "color",
+                          default: "#ffffff",
+                          enableAlpha: true,
+                          allowInput: true,
+                          required: false,
+                        }
+                      - {
+                          label: "Border",
+                          name: "border",
+                          widget: "string",
+                          default: "1px solid transparent",
+                          required: false,
+                        }
+                      - {
+                          label: "Radius",
+                          name: "radius",
+                          widget: "string",
+                          default: "4px",
+                          required: false,
+                        }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
