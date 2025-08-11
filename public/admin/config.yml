@@ -620,26 +620,8 @@ collections:
                 name: "testimonials"
                 widget: "object"
                 fields:
-                  - {
-                      label: "Type",
-                      name: "type",
-                      widget: "hidden",
-                      default: "testimonials",
-                    }
+                  - { label: "Type", name: "type", widget: "hidden", default: "testimonials" }
                   - { label: "Title", name: "title", widget: "string" }
-                  - {
-                      label: "Layout",
-                      name: "layout",
-                      widget: "select",
-                      options: ["grid", "slider", "masonry"],
-                      default: "grid",
-                    }
-                  - {
-                      label: "Show Ratings",
-                      name: "showRatings",
-                      widget: "boolean",
-                      default: true,
-                    }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
@@ -651,20 +633,12 @@ collections:
                           options: ["left", "center", "right"],
                           required: false,
                         }
-                      - {
-                          label: "Font Size",
-                          name: "fontSize",
-                          widget: "string",
-                          required: false,
-                        }
-                      - {
-                          label: "Color",
-                          name: "color",
-                          widget: "color",
-                          required: false,
-                        }
-                  - label: "Content Controls"
-                    name: "contentControls"
+                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color", name: "color", widget: "color", required: false }
+
+                  - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+                  - label: "Subtitle Controls"
+                    name: "subtitleControls"
                     widget: "object"
                     fields:
                       - {
@@ -674,52 +648,28 @@ collections:
                           options: ["left", "center", "right"],
                           required: false,
                         }
-                      - {
-                          label: "Font Size",
-                          name: "fontSize",
-                          widget: "string",
-                          required: false,
-                        }
-                      - {
-                          label: "Color",
-                          name: "color",
-                          widget: "color",
-                          required: false,
-                        }
+                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color", name: "color", widget: "color", required: false }
+
+                  - label: "Content Controls"
+                    name: "contentControls"
+                    widget: "object"
+                    fields:
+                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color", name: "color", widget: "color", required: false }
+
+                  - { label: "Role/Company Color", name: "roleCompanyColor", widget: "color", required: false }
+                  - { label: "Background Color", name: "backgroundColor", widget: "color", required: false }
+
                   - label: "Testimonials"
                     name: "testimonials"
                     widget: "list"
                     fields:
-                      - {
-                          label: "Author Name",
-                          name: "author",
-                          widget: "string",
-                        }
-                      - {
-                          label: "Author Title",
-                          name: "title",
-                          widget: "string",
-                          required: false,
-                        }
-                      - {
-                          label: "Author Image",
-                          name: "image",
-                          widget: "image",
-                          required: false,
-                        }
-                      - {
-                          label: "Content",
-                          name: "content",
-                          widget: "markdown",
-                        }
-                      - {
-                          label: "Rating",
-                          name: "rating",
-                          widget: "number",
-                          min: 1,
-                          max: 5,
-                          required: false,
-                        }
+                      - { label: "Author Name", name: "author", widget: "string" }
+                      - { label: "Author Title/Role", name: "title", widget: "string", required: false }
+                      - { label: "Author Image", name: "image", widget: "image", required: false }
+                      - { label: "Content", name: "content", widget: "markdown" }
+                      - { label: "Rating", name: "rating", widget: "number", min: 1, max: 5, required: false }
 
               - label: "Stats Section"
                 name: "stats"

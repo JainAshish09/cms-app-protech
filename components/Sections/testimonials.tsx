@@ -1,85 +1,120 @@
-import React from 'react';
-import Image from 'next/image';
+import React, { useState } from "react";
+import { FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa";
 
-function getTextStyle(controls: any) {
-    return {
-        textAlign: controls?.align || undefined,
-        fontSize: controls?.fontSize || undefined,
-        color: controls?.color || undefined,
-    };
+interface ControlProps {
+    align: string;
+    fontSize: string;
+    color: string;
 }
 
-const SimpleSlider = ({ children }: { children: React.ReactNode }) => {
-    const [idx, setIdx] = React.useState(0);
-    const count = React.Children.count(children);
-    if (count <= 1) return <>{children}</>;
-    return (
-        <div className="relative w-full flex flex-col items-center">
-            <div className="w-full flex justify-center">{React.Children.toArray(children)[idx]}</div>
-            <div className="flex gap-2 mt-4">
-                {Array.from({ length: count }).map((_, i) => (
-                    <button
-                        key={i}
-                        className={`w-3 h-3 rounded-full ${i === idx ? 'bg-blue-600' : 'bg-gray-300'}`}
-                        onClick={() => setIdx(i)}
-                        aria-label={`Go to slide ${i + 1}`}
-                    />
-                ))}
-            </div>
-        </div>
-    );
-};
+interface Testimonial {
+    author: string;
+    title: string;
+    image: string;
+    content: string;
+}
 
-const TestimonialsSection = ({ section }: { section: any }) => {
-    let layout = section.layout || 'grid';
-    // Use controls from CMS config
-    const titleStyle = {
-        ...getTextStyle(section.titleControls),
-        ...section.titleStyle,
-    };
-    const contentStyle = {
-        ...getTextStyle(section.contentControls),
-        ...section.contentStyle,
-    };
-    if (layout === 'slider') {
-        return (
-            <section className="w-full py-16 bg-gradient-to-b from-white to-[#F7FAFC]">
-                <div className="container mx-auto">
-                    <h2 style={titleStyle}>{section.title}</h2>
-                    <SimpleSlider>
-                        {section.testimonials?.map((t: any, i: number) => (
-                            <div key={i} className="bg-white rounded-xl shadow-md p-8 max-w-md flex flex-col items-center border border-gray-100 mx-auto">
-                                <blockquote className="italic mb-2 text-gray-700 text-center">“{t.content}”</blockquote>
-                                <div className="font-bold text-blue-700 text-center">{t.author}</div>
-                                {section.showRatings && t.rating && <div className="text-yellow-400 mt-2 text-center">{'★'.repeat(t.rating)}</div>}
-                            </div>
-                        ))}
-                    </SimpleSlider>
-                </div>
-            </section>
-        );
-    }
-    // grid or masonry
-    let gridClass = 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3';
-    if (layout === 'masonry') gridClass = 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4';
+interface SectionProps {
+    titleControls: ControlProps;
+    subtitleControls: ControlProps;
+    contentControls: ControlProps;
+    layout: string;
+    testimonials: Testimonial[];
+    backgroundColor: string;
+    subtitle: string;
+    title: string;
+    showRatings: boolean;
+    roleCompanyColor: string;
+}
+
+export default function Testimonials({ section }: { section: SectionProps }) {
+    const [current, setCurrent] = useState(0);
+    const total = section.testimonials.length;
+
+    const prevSlide = () => setCurrent((prev) => (prev - 1 + total) % total);
+    const nextSlide = () => setCurrent((prev) => (prev + 1) % total);
+
+    const testimonial = section.testimonials[current];
+
     return (
-        <section className="w-full py-16 bg-gradient-to-b from-white to-[#F7FAFC]">
-            <div className="container mx-auto">
-                <h2 style={titleStyle}>{section.title}</h2>
-                <div className={`grid gap-8 ${gridClass}`}>
-                    {section.testimonials?.map((t: any, i: number) => (
-                        <div key={i} className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center border border-gray-100">
-                            {t.image && <div className="relative w-16 h-16 mb-2"><Image src={`/${t.image}`} alt={t.author} layout="fill" objectFit="cover" className="rounded-full" /></div>}
-                            <blockquote className="italic mb-2 text-gray-700 text-center">“{t.content}”</blockquote>
-                            <div className="font-bold text-blue-700 text-center">{t.author}</div>
-                            {t.title && <div className="text-gray-500 text-sm text-center">{t.title}</div>}
-                            {section.showRatings && t.rating && <div className="text-yellow-400 mt-2 text-center">{'★'.repeat(t.rating)}</div>}
+        <section style={{ backgroundColor: section.backgroundColor }} className="py-12">
+            {/* Title */}
+            <h2
+                style={{
+                    textAlign: section.titleControls.align as any,
+                    fontSize: `${section.titleControls.fontSize}px`,
+                    color: section.titleControls.color,
+                    paddingLeft: "2rem",
+                    paddingRight: "2rem",
+                }}
+                className="font-bold mb-2"
+            >
+                {section.title}
+            </h2>
+
+            {/* Subtitle */}
+            <p
+                style={{
+                    textAlign: section.subtitleControls.align as any,
+                    fontSize: `${section.subtitleControls.fontSize}px`,
+                    color: section.subtitleControls.color,
+                    paddingLeft: "2rem",
+                    paddingRight: "2rem",
+                }}
+                className="mb-8"
+            >
+                {section.subtitle}
+            </p>
+
+            {/* Slider */}
+            <div className="flex items-center justify-center gap-4">
+                <button
+                    onClick={prevSlide}
+                    className="bg-white p-3 rounded-full shadow hover:bg-gray-200"
+                >
+                    <FaChevronLeft />
+                </button>
+
+                <div className="bg-white rounded-2xl p-8 w-full max-w-3xl shadow text-center">
+                    {section.showRatings && (
+                        <div className="flex justify-center mb-4 text-yellow-400">
+                            {[...Array(5)].map((_, idx) => (
+                                <FaStar key={idx} />
+                            ))}
                         </div>
-                    ))}
+                    )}
+
+                    <p
+                        style={{
+                            textAlign: section.contentControls.align as any,
+                            fontSize: `${section.contentControls.fontSize}px`,
+                            color: section.contentControls.color,
+                        }}
+                        className="italic mb-6"
+                    >
+                        “{testimonial.content}”
+                    </p>
+
+                    <div className="flex flex-col items-center gap-2">
+                        {testimonial.image && (
+                            <img
+                                src={testimonial.image}
+                                alt={testimonial.author}
+                                className="w-16 h-16 object-contain"
+                            />
+                        )}
+                        <span className="font-semibold">{testimonial.author}</span>
+                        <span style={{ color: section.roleCompanyColor }}>{testimonial.title}</span>
+                    </div>
                 </div>
+
+                <button
+                    onClick={nextSlide}
+                    className="bg-white p-3 rounded-full shadow hover:bg-gray-200"
+                >
+                    <FaChevronRight />
+                </button>
             </div>
         </section>
     );
-};
-
-export default TestimonialsSection;
+}

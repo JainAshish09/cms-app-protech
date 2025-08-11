@@ -365,6 +365,7 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ section }) => {
     case 'cards':
       return <CardsSection section={section} />;
     case 'testimonials':
+      console.log("THis is a test")
       return <TestimonialsSection section={section} />;
     case 'stats':
       return <StatsSection section={section} />;

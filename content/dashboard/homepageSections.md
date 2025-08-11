@@ -117,7 +117,7 @@ sections:
         alt: This is a image 2
     mediaType: image
     bgColor: "#fc9f9f"
-  - cardsPerRow: 2
+  - cardsPerRow: 3
     cards:
       - title: Card 1
         content: "`This is a
@@ -177,4 +177,32 @@ sections:
     style: grid
     title: This si a card grid
     type: cards
+  - layout: grid
+    titleControls:
+      align: left
+      fontSize: "40"
+      color: "#101a1e"
+    subtitleControls:
+      align: right
+      fontSize: "30"
+      color: "#2a1d70"
+    contentControls:
+      align: center
+      fontSize: "40"
+      color: "#73a1ec"
+    testimonials:
+      - author: MIKE
+        title: USER
+        image: images/generate-submittals.svg
+        content: This is really nice software.
+      - author: Mike
+        title: USER
+        image: images/access-product-collateral.svg
+        content: This is a really a nice software, it is a fast and secure.
+    backgroundColor: "#b58484"
+    subtitle: This is a subtitle
+    title: This is a Testimonial Section
+    showRatings: true
+    type: testimonials
+    roleCompanyColor: "#61df30"
 ---
