@@ -83,7 +83,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ section }) => {
             : 'text-center';
 
     const titleFontSize = titleControls?.fontSize;
-    const numericValue = parseInt(titleFontSize);
+    const numericValue = titleFontSize != null ? parseInt(titleFontSize) : null;
 
     // Use the arbitrary value syntax in Tailwind: text-[value]
     const titleFontSizeClass = numericValue && !isNaN(numericValue) && numericValue > 0

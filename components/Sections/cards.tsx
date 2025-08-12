@@ -128,7 +128,7 @@ const CardsSection: React.FC<{ section: CardsSectionType }> = ({ section }) => {
                                 image={normalizedImage ? { src: normalizedImage } : undefined}
                                 link={card.link}
                                 button={card.buttons}
-                                CardControls={cardControls} // ✅ pass section-level styles
+                                CardControls={cardControls}
                             />
                         </div>
                     );
