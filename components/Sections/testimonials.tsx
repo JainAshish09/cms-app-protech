@@ -44,8 +44,6 @@ export default function Testimonials({ section }: { section: SectionProps }) {
                     textAlign: section.titleControls.align as any,
                     fontSize: `${section.titleControls.fontSize}px`,
                     color: section.titleControls.color,
-                    paddingLeft: "2rem",
-                    paddingRight: "2rem",
                 }}
                 className="font-bold mb-2 max-w-7xl mx-auto"
             >
@@ -58,10 +56,8 @@ export default function Testimonials({ section }: { section: SectionProps }) {
                     textAlign: section.subtitleControls.align as any,
                     fontSize: `${section.subtitleControls.fontSize}px`,
                     color: section.subtitleControls.color,
-                    paddingLeft: "2rem",
-                    paddingRight: "2rem",
                 }}
-                className="mb-8 "
+                className="mb-8 max-w-7xl mx-auto"
             >
                 {section.subtitle}
             </p>

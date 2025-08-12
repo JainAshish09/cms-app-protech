@@ -261,8 +261,8 @@ sections:
     layout: list
     cardBgColor: ""
     titleControls:
-      align: center
-      fontSize: "50"
+      align: left
+      fontSize: "20"
       color: "#f8dfdf"
     contentControls:
       align: left
@@ -272,7 +272,7 @@ sections:
       cardBgColor: "#dcc1c1"
       nameColor: "#e7ff81"
       positionColor: "#1031ca"
-      bioColor: "#2a1111"
+      bioColor: "#64914b"
     title: This is a team section
     members:
       - name: TEST

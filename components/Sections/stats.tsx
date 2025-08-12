@@ -57,7 +57,7 @@ export default function StatsSection({ section }: StatsSectionProps) {
         >
             {/* Title */}
             {(title || subtitle) && (
-                <div className="mb-10">
+                <div className="mb-10 max-w-7xl mx-auto">
                     {title && (
                         <h2
                             className="font-extrabold tracking-wide"
