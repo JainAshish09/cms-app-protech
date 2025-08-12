@@ -44,6 +44,13 @@ const bgStyleClasses: Record<BgStyle, string> = {
     color: '',
 };
 
+const gridColumnMap: Record<number, string> = {
+    2: 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2',
+    3: 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3',
+    4: 'grid-cols-1 sm:grid-cols-2 md:grid-cols-4',
+    5: 'grid-cols-1 sm:grid-cols-2 md:grid-cols-5',
+};
+
 const FeaturesSection: React.FC<FeaturesSectionProps> = ({ section }) => {
     const {
         title,
@@ -67,36 +74,36 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ section }) => {
 
     const isExpanded = (index: number) => expandedIndexes.includes(index);
 
-    // Clamp to range between 2 and 5
     const columns = Math.min(Math.max(itemsPerRow, 2), 5);
+    const gridColsClass = gridColumnMap[columns] ?? gridColumnMap[4];
 
-    // Tailwind grid class
-    const gridColsClass = `grid-cols-1 sm:grid-cols-2 md:grid-cols-${columns}`;
+    // Text alignment
+    const titleAlignClass =
+        titleControls?.align === 'left' ? 'text-left'
+            : titleControls?.align === 'right' ? 'text-right'
+                : 'text-center';
 
-    // Title alignment, font size, and color
-    const titleAlignClass = titleControls?.align === 'left' ? 'text-left'
-        : titleControls?.align === 'right' ? 'text-right'
-            : 'text-center';
+    const contentAlignClass =
+        contentControls?.align === 'left' ? 'text-left'
+            : contentControls?.align === 'right' ? 'text-right'
+                : 'text-center';
 
-    const contentAlignClass = contentControls?.align === 'left' ? 'text-left'
-        : contentControls?.align === 'right' ? 'text-right'
-            : 'text-center';
-
+    // Font sizes with fallback
     const titleFontSize = titleControls?.fontSize;
-    const numericValue = titleFontSize != null ? parseInt(titleFontSize) : null;
-
-    // Use the arbitrary value syntax in Tailwind: text-[value]
+    const numericValue = parseInt(titleFontSize || '', 10);
     const titleFontSizeClass = numericValue && !isNaN(numericValue) && numericValue > 0
-        ? `text-[${numericValue}px]`  // For px values, or modify based on unit
-        : 'text-[20px]'; // Default to a custom size if invalid
+        ? `text-[${numericValue}px]`
+        : 'text-[20px]';
+
     const contentFontSizeClass = contentControls?.fontSize || 'text-base';
 
     const titleStyle = titleControls?.color ? { color: titleControls.color } : {};
     const contentStyle = contentControls?.color ? { color: contentControls.color } : {};
 
     const backgroundStyle =
-        bgStyle === 'color' ? { backgroundColor: bgColor } :
-            bgStyle === 'image' && backgroundImageUrl
+        bgStyle === 'color'
+            ? { backgroundColor: bgColor }
+            : bgStyle === 'image' && backgroundImageUrl
                 ? {
                     backgroundImage: `url(${backgroundImageUrl})`,
                     backgroundSize: 'cover',
@@ -127,10 +134,10 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ section }) => {
                 )}
 
                 <div className={`grid gap-8 ${gridColsClass}`}>
-                    {features != null && features.map((feature, index) => (
+                    {features?.map((feature, index) => (
                         <div
                             key={index}
-                            className="bg-white rounded-xl p-6  border border-[#D8E5EF] flex flex-col items-center text-center"
+                            className="bg-white rounded-xl p-6 border border-[#D8E5EF] flex flex-col items-center text-center"
                         >
                             {feature.icon && (
                                 <img
@@ -149,7 +156,6 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ section }) => {
                                 <div
                                     className={`transition-all duration-300 ease-in-out ${isExpanded(index) ? '' : 'line-clamp-2'
                                         } whitespace-pre-wrap break-words`}
-                                    style={{ wordBreak: 'break-word' }}
                                 >
                                     <ReactMarkdown
                                         components={{
