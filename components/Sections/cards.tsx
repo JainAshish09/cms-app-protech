@@ -93,7 +93,7 @@ const CardsSection: React.FC<{ section: CardsSectionType }> = ({ section }) => {
     };
 
     return (
-        <section className="max-w-fit mx-auto px-4 md:px-8 py-12"
+        <section className="max-w-9xl mx-auto px-4 md:px-8 py-12"
             style={sectionBackgroundImageStyle}>
             {title && (
                 <h2

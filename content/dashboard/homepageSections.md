@@ -15,7 +15,7 @@ sections:
       align: center
       fontSize: "22"
       color: "#000000"
-    style: fullscreen
+    style: centered
     title: PRO-TECH TITAN® Software for Door and  Hardware Distributors
     images:
       - image: images/homepage-header.png

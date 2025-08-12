@@ -110,7 +110,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
 
     return (
         <section
-            className={`w-full pt-20 md:pt-32 pb-5 flex flex-col items-center justify-center relative overflow-hidden ${layoutClass} ${section.customCss ?? ''}`}
+            className={`w-full max-w-9xl mx-auto pt-20 md:pt-32 pb-5 flex flex-col items-center justify-center relative overflow-hidden ${layoutClass} ${section.customCss ?? ''}`}
             style={{ backgroundColor: section.bgColor, ...sectionStyle, position: 'relative', zIndex: 3 }}
         >
             {/* Background Image Container */}

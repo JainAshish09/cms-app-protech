@@ -16,6 +16,10 @@ const config: Config = {
       fontFamily: {
         noto: "var(--font-noto)",
       },
+      spacing: {
+        '8xl': '88rem',
+        '9xl': '96rem',
+      },
     },
   },
   plugins: [],
