@@ -1,17 +1,6 @@
 import React from 'react';
 import MediaTextCard from '../widgets/MediaTextCard'; // Adjust path as needed
-
-interface ButtonProps {
-    text?: string;
-    link?: string;
-    style?: 'primary' | 'secondary' | 'outline';
-    newTab?: boolean;
-    icon?: string;
-    color?: string;
-    backgroundColor?: string;
-    border?: string;
-    radius?: string;
-}
+import type { ButtonProps } from '../widgets/Button';
 
 interface CardControls {
     titleColor?: string;
