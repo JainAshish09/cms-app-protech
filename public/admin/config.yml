@@ -765,100 +765,42 @@ collections:
                 name: "team"
                 widget: "object"
                 fields:
-                  - {
-                      label: "Type",
-                      name: "type",
-                      widget: "hidden",
-                      default: "team",
-                    }
+                  - { label: "Type", name: "type", widget: "hidden", default: "team" }
                   - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Section Background Color", name: "sectionBgColor", widget: "color", required: false }
+                  - { label: "Card Background Color", name: "cardBgColor", widget: "color", required: false }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
+                    required: false
                     fields:
-                      - {
-                          label: "Alignment",
-                          name: "align",
-                          widget: "select",
-                          options: ["left", "center", "right"],
-                          required: false,
-                        }
-                      - {
-                          label: "Font Size",
-                          name: "fontSize",
-                          widget: "string",
-                          required: false,
-                        }
-                      - {
-                          label: "Color",
-                          name: "color",
-                          widget: "color",
-                          required: false,
-                        }
-                  - label: "Content Controls"
-                    name: "contentControls"
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color", name: "color", widget: "color", required: false }
+                  - label: "Member Controls"
+                    name: "memberControls"
                     widget: "object"
+                    required: false
                     fields:
-                      - {
-                          label: "Alignment",
-                          name: "align",
-                          widget: "select",
-                          options: ["left", "center", "right"],
-                          required: false,
-                        }
-                      - {
-                          label: "Font Size",
-                          name: "fontSize",
-                          widget: "string",
-                          required: false,
-                        }
-                      - {
-                          label: "Color",
-                          name: "color",
-                          widget: "color",
-                          required: false,
-                        }
-                  - {
-                      label: "Layout",
-                      name: "layout",
-                      widget: "select",
-                      options: ["grid", "list", "carousel"],
-                      default: "grid",
-                    }
+                      - { label: "Name Color", name: "nameColor", widget: "color", required: false }
+                      - { label: "Position Color", name: "positionColor", widget: "color", required: false }
+                      - { label: "Bio Color", name: "bioColor", widget: "color", required: false }
+                      - { label: "Card Background Color", name: "cardBgColor", widget: "color", required: false }
+                  - { label: "Layout", name: "layout", widget: "select", options: ["grid", "list", "carousel"], default: "grid" }
                   - label: "Members"
                     name: "members"
                     widget: "list"
                     fields:
                       - { label: "Name", name: "name", widget: "string" }
-                      - {
-                          label: "Position",
-                          name: "position",
-                          widget: "string",
-                        }
+                      - { label: "Position", name: "position", widget: "string" }
                       - { label: "Image", name: "image", widget: "image" }
-                      - {
-                          label: "Bio",
-                          name: "bio",
-                          widget: "markdown",
-                          required: false,
-                        }
+                      - { label: "Bio", name: "bio", widget: "markdown", required: false }
                       - label: "Social Links"
                         name: "social"
                         widget: "list"
                         required: false
                         fields:
-                          - {
-                              label: "Platform",
-                              name: "platform",
-                              widget: "select",
-                              options:
-                                [
-                                  "linkedin",
-                                  "twitter",
-                                  "facebook",
-                                  "instagram",
-                                ],
-                            }
+                          - { label: "Platform", name: "platform", widget: "select", options: ["linkedin", "twitter", "facebook", "instagram"] }
                           - { label: "URL", name: "url", widget: "string" }
 
               - label: "Timeline Section"

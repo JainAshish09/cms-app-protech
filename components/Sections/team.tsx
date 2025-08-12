@@ -1,47 +1,165 @@
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import {
+    FaLinkedin,
+    FaTwitter,
+    FaFacebook,
+    FaInstagram,
+} from "react-icons/fa";
 
-function getTextStyle(controls: any) {
-    return {
-        textAlign: controls?.align || undefined,
-        fontSize: controls?.fontSize || undefined,
-        color: controls?.color || undefined,
+// TypeScript Interfaces
+interface SocialLink {
+    platform: "linkedin" | "twitter" | "facebook" | "instagram";
+    url: string;
+}
+
+interface Member {
+    name: string;
+    position: string;
+    image: string;
+    bio?: string;
+    social?: SocialLink[];
+}
+
+interface TitleControls {
+    align?: "left" | "center" | "right";
+    fontSize?: string;
+    color?: string;
+}
+
+interface MemberControls {
+    nameColor?: string;
+    positionColor?: string;
+    bioColor?: string;
+    cardBgColor?: string;
+}
+
+interface TeamSectionProps {
+    section: {
+        title: string;
+        sectionBgColor?: string;
+        cardBgColor?: string;
+        titleControls?: TitleControls;
+        memberControls?: MemberControls;
+        layout?: "grid" | "list" | "carousel";
+        members: Member[];
     };
 }
 
-const TeamSection = ({ section }: { section: any }) => {
-    let gridClass = 'grid-cols-1 sm:grid-cols-2 md:grid-cols-4';
-    if (section.layout === 'list') gridClass = 'grid-cols-1';
-    if (section.layout === 'carousel') gridClass = 'grid-cols-1';
+// Social Icon Map
+const socialIcons: Record<string, JSX.Element> = {
+    linkedin: <FaLinkedin />,
+    twitter: <FaTwitter />,
+    facebook: <FaFacebook />,
+    instagram: <FaInstagram />,
+};
 
-    // Use controls from CMS config
-    const titleStyle = {
-        ...getTextStyle(section.titleControls),
-        ...section.titleStyle,
-    };
-    const contentStyle = {
-        ...getTextStyle(section.contentControls),
-        ...section.contentStyle,
-    };
+// Helper for text alignment class
+const getTextAlignClass = (align?: string) => {
+    switch (align) {
+        case "left":
+            return "text-left";
+        case "right":
+            return "text-right";
+        case "center":
+        default:
+            return "text-center";
+    }
+};
+
+export default function TeamSection({ section }: TeamSectionProps) {
+    const {
+        title,
+        sectionBgColor,
+        cardBgColor,
+        titleControls,
+        memberControls,
+        members,
+    } = section;
 
     return (
-        <section className="w-full py-16 bg-white">
-            <div className="container mx-auto">
-                <h2 style={titleStyle} className="text-2xl md:text-3xl font-bold mb-10">{section.title}</h2>
-                <div className={`grid gap-8 ${gridClass}`}>
-                    {section.members?.map((member: any, i: number) => (
-                        <div key={i} className="bg-[#F7FAFC] rounded-xl shadow-lg p-8 flex flex-col items-center">
-                            {member.image && <div className="relative w-24 h-24 mb-4"><Image src={`/${member.image}`} alt={member.name} layout="fill" objectFit="cover" className="rounded-full" /></div>}
-                            <h3 className="font-bold text-lg mb-1 text-center text-gray-800">{member.name}</h3>
-                            <div className="text-blue-600 mb-2">{member.position}</div>
-                            {member.bio && <div className="text-gray-600 mb-2 text-center" style={contentStyle} dangerouslySetInnerHTML={{ __html: member.bio }} />}
-                            {member.social && <div className="flex gap-2 mt-2">{member.social.map((s: any, j: number) => <a key={j} href={s.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">{s.platform}</a>)}</div>}
+        <section
+            style={{ backgroundColor: sectionBgColor || "#f3f4f6" }}
+            className="py-16 px-6"
+        >
+            {/* Section Title */}
+            <h2
+                className={`font-bold mb-12 ${getTextAlignClass(titleControls?.align)}`}
+                style={{
+                    fontSize: titleControls?.fontSize || "1.875rem", // 3xl fallback
+                    color: titleControls?.color || "#111827", // default text-gray-900
+                }}
+            >
+                {title}
+            </h2>
+
+            {/* Member Grid */}
+            <div
+                className={`gap-10 ${section.layout === "list" ? "flex flex-col" : "grid sm:grid-cols-2 lg:grid-cols-3"
+                    }`}
+            >
+                {members.map((member, index) => (
+                    <div
+                        key={index}
+                        className="relative backdrop-blur-lg rounded-3xl shadow-xl border border-white/30 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                        style={{
+                            backgroundColor:
+                                memberControls?.cardBgColor ||
+                                cardBgColor ||
+                                "rgba(255,255,255,0.15)",
+                        }}
+                    >
+                        {/* Image on top */}
+                        <div className="absolute left-1/2 -top-12 transform -translate-x-1/2">
+                            <img
+                                src={member.image}
+                                alt={member.name}
+                                className="w-28 h-28 object-cover rounded-full border-4 border-white shadow-lg"
+                            />
                         </div>
-                    ))}
-                </div>
+
+                        {/* Card Content */}
+                        <div className="pt-20 p-6 text-center">
+                            <h3
+                                className="text-xl font-semibold"
+                                style={{ color: memberControls?.nameColor || "#ffffff" }}
+                            >
+                                {member.name}
+                            </h3>
+                            <p
+                                className="text-sm"
+                                style={{ color: memberControls?.positionColor || "#e5e7eb" }}
+                            >
+                                {member.position}
+                            </p>
+                            {member.bio && (
+                                <p
+                                    className="mt-3 text-sm leading-relaxed"
+                                    style={{ color: memberControls?.bioColor || "#f3f4f6" }}
+                                >
+                                    {member.bio}
+                                </p>
+                            )}
+
+                            {/* Social Links */}
+                            {member.social && member.social.length > 0 && (
+                                <div className="flex justify-center space-x-4 mt-5">
+                                    {member.social.map((link, i) => (
+                                        <a
+                                            key={i}
+                                            href={link.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-lg text-white/80 hover:text-white transition-colors"
+                                        >
+                                            {socialIcons[link.platform]}
+                                        </a>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                ))}
             </div>
         </section>
     );
-};
-
-export default TeamSection;
+}

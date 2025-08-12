@@ -257,4 +257,61 @@ sections:
     categories:
       - name: TECH
       - name: Pricing
+  - statBgColor: "#8f2828"
+    layout: carousel
+    titleControls:
+      align: center
+      fontSize: "50"
+      color: "#f8dfdf"
+    contentControls:
+      align: left
+      fontSize: "15"
+      color: "#9de60e"
+    memberControls:
+      cardBgColor: "#860f0f"
+      nameColor: "#e7ff81"
+      positionColor: "#1031ca"
+      bioColor: "#2a1111"
+    title: This is a team section
+    members:
+      - name: TEST
+        position: ENGINEER
+        image: images/create-hardware-sets.svg
+        bio: He is a test member
+        social:
+          - platform: linkedin
+            url: This is a linked
+          - platform: twitter
+            url: ok
+          - platform: facebook
+            url: fw
+          - platform: instagram
+            url: ins
+      - name: Member 2
+        position: ENG.
+        image: images/about-img-2.jpeg
+        bio: HE IS A DEVELOPER
+        social:
+          - platform: linkedin
+            url: OK
+      - name: Member 3
+        position: ABC
+        image: images/about-img-2.jpeg
+        bio: HE IS A PERSON
+        social:
+          - platform: linkedin
+            url: OK
+      - name: Member 2
+        position: ENG.
+        image: images/about-img-2.jpeg
+        bio: HELLO
+      - name: Member 2
+        position: ENG.
+        image: images/about-img-2.jpeg
+        bio: HE IS A DEVELOPER
+        social:
+          - platform: linkedin
+            url: OK
+    sectionBgColor: "#a3ceef"
+    type: team
 ---
