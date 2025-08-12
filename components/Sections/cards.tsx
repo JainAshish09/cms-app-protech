@@ -43,6 +43,7 @@ interface CardsSectionType {
     titleControls?: Controls;
     cardControls?: CardControls;
     cards: Card[];
+    sectionBackgroundImage?: string;
 }
 
 const CardsSection: React.FC<{ section: CardsSectionType }> = ({ section }) => {
@@ -54,8 +55,9 @@ const CardsSection: React.FC<{ section: CardsSectionType }> = ({ section }) => {
         titleControls,
         cardControls,
         cards,
+        sectionBackgroundImage,
     } = section;
-
+    const defaultBackgroundImage = '/images/Promo-background.png';
     const gridColsClass = {
         2: 'grid-cols-2',
         3: 'grid-cols-3',
@@ -79,8 +81,20 @@ const CardsSection: React.FC<{ section: CardsSectionType }> = ({ section }) => {
         return style;
     };
 
+    const backgroundImageUrl = sectionBackgroundImage && sectionBackgroundImage.trim() !== ''
+        ? sectionBackgroundImage
+        : defaultBackgroundImage;
+
+    const sectionBackgroundImageStyle = {
+        backgroundImage: `url(${backgroundImageUrl})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+    };
+
     return (
-        <section className="max-w-7xl mx-auto px-4 md:px-8 py-12">
+        <section className="max-w-fit mx-auto px-4 md:px-8 py-12"
+            style={sectionBackgroundImageStyle}>
             {title && (
                 <h2
                     className={`font-bold mb-8 ${getTextAlignClass(titleControls?.align)}`}

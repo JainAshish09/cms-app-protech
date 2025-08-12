@@ -23,7 +23,7 @@ sections:
     content: Submittals, estimates, quoting, scheduling, ordering and delivery
       details become automated, efficient and fast!
     type: hero
-    bgColor: ""
+    bgColor: "#D8F2F9"
   - type: features
     itemsPerRow: 4
     bgStyle: light

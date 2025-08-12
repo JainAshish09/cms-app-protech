@@ -82,7 +82,13 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ section }) => {
         : contentControls?.align === 'right' ? 'text-right'
             : 'text-center';
 
-    const titleFontSizeClass = titleControls?.fontSize || 'text-3xl';
+    const titleFontSize = titleControls?.fontSize;
+    const numericValue = parseInt(titleFontSize);
+
+    // Use the arbitrary value syntax in Tailwind: text-[value]
+    const titleFontSizeClass = numericValue && !isNaN(numericValue) && numericValue > 0
+        ? `text-[${numericValue}px]`  // For px values, or modify based on unit
+        : 'text-[20px]'; // Default to a custom size if invalid
     const contentFontSizeClass = contentControls?.fontSize || 'text-base';
 
     const titleStyle = titleControls?.color ? { color: titleControls.color } : {};
@@ -130,12 +136,14 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ section }) => {
                                 <img
                                     src={feature.icon}
                                     alt={feature.title}
-                                    className="w-12 h-12 object-contain mb-4"
+                                    className="w-12 h-12 object-contain mb-2"
                                     loading="lazy"
                                 />
                             )}
 
-                            <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
+                            {feature.title && feature.title.trim() === '' ? null : (
+                                <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
+                            )}
 
                             <div className="text-gray-700 text-sm w-full break-words">
                                 <div

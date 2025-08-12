@@ -444,6 +444,13 @@ collections:
                     }
                   - { label: "Title", name: "title", widget: "string" }
                   - {
+                      label: "Background Image",
+                      name: "backgroundImage",
+                      widget: "image",
+                      required: false,
+                      hint: "Upload a background image for the Section",
+                    }
+                  - {
                       label: "Cards Per Row",
                       name: "cardsPerRow",
                       widget: "number",

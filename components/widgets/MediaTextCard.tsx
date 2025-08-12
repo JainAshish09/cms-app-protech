@@ -76,7 +76,7 @@ const MediaTextCard: React.FC<MediaTextCardProps> = ({
             {/* Image section */}
             {image?.src && (
                 <div
-                    className="relative w-1/2 h-full overflow-hidden shadow-sm"
+                    className="relative w-[40%] h-full overflow-hidden shadow-sm"
                     style={{ borderRadius }}
                 >
                     <CardWrapper>
@@ -94,7 +94,7 @@ const MediaTextCard: React.FC<MediaTextCardProps> = ({
             )}
 
             {/* Content section */}
-            <div className="w-1/2 flex flex-col justify-between pl-6">
+            <div className="w-[60%] flex flex-col justify-between pl-6">
                 <CardWrapper>
                     <div>
                         {/* Card Title */}
