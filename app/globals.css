@@ -4,10 +4,29 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
-* {
-  font-family: 'Lato';
+/* ASSA Vesta font faces */
+@font-face {
+  font-family: 'ASSA Vesta';
+  src: url('/fonts/assa-vesta/AAVESLGT.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
+@font-face {
+  font-family: 'ASSA Vesta';
+  src: url('/fonts/assa-vesta/AAVESBOL.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Default font */
+* {
+  font-family: 'Lato', sans-serif;
+}
+
+/* Lists */
 ul {
   padding-left: 40px;
   list-style: disc;
@@ -18,8 +37,25 @@ ol {
   list-style: disc;
 }
 
+/* Line breaks */
 br {
   content: "";
   display: block;
   height: 15px;
+}
+
+/* Force Noto Sans on <p> and <p><code> */
+p,
+p>code {
+  font-family: var(--font-noto) !important;
+}
+
+/* Force ASSA Vesta on all headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'ASSA Vesta', sans-serif !important;
 }
