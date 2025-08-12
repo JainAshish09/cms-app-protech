@@ -258,7 +258,8 @@ sections:
       - name: TECH
       - name: Pricing
   - statBgColor: "#8f2828"
-    layout: carousel
+    layout: list
+    cardBgColor: ""
     titleControls:
       align: center
       fontSize: "50"
@@ -268,7 +269,7 @@ sections:
       fontSize: "15"
       color: "#9de60e"
     memberControls:
-      cardBgColor: "#860f0f"
+      cardBgColor: "#dcc1c1"
       nameColor: "#e7ff81"
       positionColor: "#1031ca"
       bioColor: "#2a1111"
@@ -312,6 +313,6 @@ sections:
         social:
           - platform: linkedin
             url: OK
-    sectionBgColor: "#a3ceef"
+    sectionBgColor: "#95e76b"
     type: team
 ---

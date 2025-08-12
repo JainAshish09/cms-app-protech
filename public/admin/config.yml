@@ -768,7 +768,6 @@ collections:
                   - { label: "Type", name: "type", widget: "hidden", default: "team" }
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Section Background Color", name: "sectionBgColor", widget: "color", required: false }
-                  - { label: "Card Background Color", name: "cardBgColor", widget: "color", required: false }
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
