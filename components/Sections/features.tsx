@@ -51,6 +51,18 @@ const gridColumnMap: Record<number, string> = {
     5: 'grid-cols-1 sm:grid-cols-2 md:grid-cols-5',
 };
 
+// Generate inline styles for fontSize (if numeric px) and color
+function getStyleOverride(fontSize?: string, color?: string): React.CSSProperties {
+    const style: React.CSSProperties = {};
+    if (fontSize && !fontSize.startsWith('text-') && !isNaN(Number(fontSize))) {
+        style.fontSize = `${fontSize}px`;
+    }
+    if (color) {
+        style.color = color;
+    }
+    return style;
+}
+
 const FeaturesSection: React.FC<FeaturesSectionProps> = ({ section }) => {
     const {
         title,
@@ -111,18 +123,23 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ section }) => {
                 }
                 : {};
 
+    const titleInlineStyle = getStyleOverride(
+        section.titleControls?.fontSize,
+        section.titleControls?.color
+    );
+
     return (
         <section
             className={`py-16 px-6 ${bgStyle !== 'color' && bgStyle !== 'image' ? bgStyleClasses[bgStyle] : ''}`}
             style={backgroundStyle}
         >
             <div className="max-w-9xl mx-auto">
-                <h2
-                    className={`font-bold mb-4 ${titleFontSizeClass} ${titleAlignClass}`}
-                    style={titleStyle}
+                <h1
+                    className={`font-bold w-full mb-4 ${titleAlignClass} ${titleFontSizeClass}`}
+                    style={titleInlineStyle}
                 >
-                    {title}
-                </h2>
+                    {section.title}
+                </h1>
 
                 {subtitle && (
                     <p
