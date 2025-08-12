@@ -53,3 +53,23 @@ export async function getSection4Content(filename: string): Promise<Section4Data
 
   return sectionData;
 }
+
+export async function getHomepageSections(filename: string) {
+  const filePath = path.join(process.cwd(), 'content', filename);
+  const fileContent = fs.readFileSync(filePath, 'utf8');
+  const { data } = matter(fileContent);
+
+  // Normalize all controls for each section
+  if (Array.isArray(data.sections)) {
+    data.sections = data.sections.map((section: any) => {
+      // Ensure controls are always present
+      return {
+        titleControls: section.titleControls || {},
+        contentControls: section.contentControls || {},
+        ...section,
+      };
+    });
+  }
+
+  return data;
+}
