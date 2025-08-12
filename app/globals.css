@@ -28,12 +28,12 @@
 
 /* Lists */
 ul {
-  padding-left: 40px;
+  padding-left: 25px;
   list-style: disc;
 }
 
 ol {
-  padding-left: 40px;
+  padding-left: 25px;
   list-style: disc;
 }
 
@@ -58,4 +58,8 @@ h4,
 h5,
 h6 {
   font-family: 'ASSA Vesta', sans-serif !important;
+}
+
+p {
+  margin-top: 25px;
 }

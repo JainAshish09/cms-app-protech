@@ -1,14 +1,6 @@
 ---
 sections:
-  - buttons:
-      - style: outline
-        text: This is a button 1.
-        link: ww.
-        newTab: true
-        color: ""
-        backgroundColor: ""
-        border: ""
-        radius: "20"
+  - buttons: []
     titleTextSettings:
       fontSize: text-3xl
       textColor: "#182583"
@@ -16,303 +8,145 @@ sections:
       fontSize: text-base
       textColor: "#c21616"
     titleControls:
-      align: left
-      fontSize: "50"
-      color: "#ada8cc"
+      align: center
+      fontSize: "46"
+      color: "#000000"
     contentControls:
-      align: right
-      fontSize: "15"
-      color: "#b5d989"
+      align: center
+      fontSize: "22"
+      color: "#000000"
     style: fullscreen
-    title: Welcome to ProTech – Project Management Made for Door & Frame Manufacturers
+    title: PRO-TECH TITAN® Software for Door and  Hardware Distributors
     images:
-      - image: images/about-img-2.jpeg
+      - image: images/homepage-header.png
         alt: Image 1
-      - image: images/about-img-1.jpeg
-        alt: Image 2
-      - image: images/gallery5.png
-        alt: Image 3
-    content: >-
-      
-      At **ProTech**, we understand the unique challenges that door and frame manufacturers face. From juggling multiple vendors, staying on top of change orders, tracking inventory, and meeting strict delivery deadlines, your workflow demands a system that's not just efficient — but tailored to your industry.
+    content: Submittals, estimates, quoting, scheduling, ordering and delivery
+      details become automated, efficient and fast!
     type: hero
-    bgColor: "#d8daeb"
-  - layout: grid
-    bgStyle: color
+    bgColor: ""
+  - type: features
+    itemsPerRow: 4
+    bgStyle: light
+    title: Robust Features Save Your Time and Money
     titleControls:
-      align: left
-      fontSize: "30"
-      color: "#122e4f"
-    contentControls:
-      align: right
-      fontSize: "40"
-      color: "#2d0d0d"
-    subtitle: This is a Subtitle
-    title: "This is a Future grid "
-    type: features
+      color: "#000000"
+      fontSize: "32"
+      align: center
     features:
-      - title: tHIS IS A fUTURE 1
-        description: fUTURE 1
-        icon: images/about-img-2.jpeg
-        link: OK
-      - title: Feature 2
-        description: This is a feature 2
-        icon: images/about-img-1.jpeg
-        link: ALT
-      - title: Feature 3
-        description: This is a feature 3
-        icon: images/close-svgrepo-com.svg
-        link: "3"
-      - title: f4
-        description: f4
-        icon: images/chevron-right.svg
-      - title: F5
-        description: This is a image 5
-        icon: images/assa-abloy-logo-header.svg
-      - title: f6
+      - icon: images/create-projects.svg
         description: >-
           
-          f6http://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSections
-
-
-
-          f6http://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSections
-
-
-
-          f6http://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSections
-
-
-
-          f6http://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSections
-        icon: images/about-img-1.jpeg
-        link: OKOK
-    itemsPerRow: 4
-    bgColor: "#d4ddc6"
+          Easily create projects from existing door schedules or Openings Studio™
+        title: "  "
+      - title: "  "
+        description: Create hardware sets to simplify adding standardized hardware to
+          door openings
+        icon: images/create-hardware-sets.svg
+      - icon: images/titan-apogee.svg
+        description: |-
+          
+          Visualize 3D door opening elevations in real time with TITAN APOGEE
+        title: "  "
+      - description: |-
+          
+          Track change orders and impact to price as the project evolves
+        icon: images/track-change-orders.svg
+        title: "  "
+      - description: |-
+          
+          Generate submittals and quotes from your projects
+        icon: images/generate-submittals.svg
+        title: " "
+      - description: >-
+          
+          Access product collateral and price books from door and hardware manufacturers
+        icon: images/access-product-collateral.svg
+        title: " "
+      - icon: images/generate-reports.svg
+        description: >-
+          
+          Generate reports like door and hardware schedules, keying data and material cost
+        title: " "
+      - description: >-
+          
+          Integrate with accounting systems for an end-to-end business experience
+        icon: images/integrate-accounting-systems.svg
+        title: " "
+    contentControls:
+      fontSize: "14"
   - buttons:
-      text: ""
-      link: ""
-      style: outline
+      style: primary
       newTab: false
-      color: "#a6e7ac"
-      backgroundColor: "#372121"
-      radius: "20"
+      color: "#ffffff"
+      backgroundColor: "#00a0d0"
+      border: 1px solid transparent
+      radius: 4px
+      text: Check out the latest versions of PRO-TECH  >
+      link: test
     layout: imageLeft
     titleControls:
+      fontSize: "32"
+      color: "#000000"
       align: left
-      fontSize: "40"
-      color: "#0a0a63"
     contentControls:
-      align: center
-      fontSize: "20"
-      color: "#0d2126"
-    cta:
-      text: This is a call to action
-      link: www.google.com
-    title: This is a content with image
-    content: http://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSectionshttp://localhost:3000/admin/index.html#/collections/homepageSections/entries/homepageSections
+      fontSize: "16"
+      align: left
+    title: Powerful project management tool made for the door and hardware industry
+    content: >-
+      Managing the door openings on projects large and small can be a
+      time-consuming and complex task for contract hardware distributors.
+      Simplify the process and bring greater efficiency to your business with
+      PRO-TECH software.
+
+
+      Offered as on-premises software or cloud-based with PRO-TECH V8®, or exclusively on the cloud as PRO-TECH TITAN®. Help for your most time-consuming tasks is here!  
+
+
+      The PRO-TECH advantage includes:
+
+      * Simplified project detailing with advanced features
+
+      * Default and custom price books for hardware and material
     type: contentMedia
     mediaItems:
-      - file: images/about-img-2.jpeg
-        alt: This is a image 2
+      - file: images/project-management-tool.png
+        alt: Image 1
     mediaType: image
-    bgColor: "#fc9f9f"
-  - cardsPerRow: 3
+  - type: cards
+    cardsPerRow: 2
+    showBorder: false
+    hoverEffect: false
+    title: " "
     cards:
-      - title: Card 1
-        content: "`This is a
-          cardhttp://localhost:3000/admin/index.html#/collections/homepageSecti\
-          ons/entries/homepageSectionshttp://localhost:3000/admin/index.html#/c\
-          ollections/homepageSections/entries/homepageSectionshttp://localhost:\
-          3000/admin/index.html#/collections/homepageSections/entries/homepageS\
-          ectionshttp://localhost:3000/admin/index.html#/collections/homepageSe\
-          ctions/entries/homepageSectionshttp://localhost:3000/admin/index.html\
-          #/collections/homepageSections/entries/homepageSectionshttp://localho\
-          st:3000/admin/index.html#/collections/homepageSections/entries/homepa\
-          geSections`"
-        image: images/about-img-2.jpeg
-        link: wokok
-        buttons:
-          text: "Button 1 "
-          link: "This is a Button 1 "
-          style: primary
-          icon: images/accountability.svg
-          color: "#1fef78"
-          backgroundColor: "#1d3063"
-          border: "padding: 0;"
-      - title: crad 2
-        content: This is a card 2
-        image: images/about-img-1.jpeg
-        link: "Card 2 "
-        buttonText: OKOK
       - buttons:
-          style: outline
+          style: primary
           newTab: false
-          color: ""
-          backgroundColor: ""
-          border: ""
-          radius: ""
-          text: Button 1
-          link: This is a Buttonn 1
-        title: "card3 "
-        content: This is a card 3 content
-        image: images/gallery6.png
-        link: THis is a Button 0f card 1
+          color: "#ffffff"
+          backgroundColor: "#00A0D0"
+          border: 1px solid transparent
+          radius: 4px
+          text: "Request a demo  > "
+          link: link
+        image: images/protech-in-action.png
+        content: Learn how PRO-TECH can accelerate productivity and improve project
+          accuracy by automating many time-consuming tasks.  Schedule a software
+          demonstration to see the advanced PRO-TECH features that will help
+          take your business to the next level. 
+        title: See PRO-TECH in action
+      - buttons:
+          color: "#ffffff"
+          border: 1px solid transparent
+          text: Further information on training  >
+          style: primary
+          radius: 4px
+          newTab: false
+          backgroundColor: "#00A0D0"
+          icon: ""
+          link: test
+        title: Need help utilizing PRO-TECH to its full potential?
+        content: Training sessions are available to assist you in getting the most out
+          of the software. Our team of experts is happy to help!
+        image: images/training-sessions.png
     cardControls:
-      textColor: "#8d6c98"
-      titleColor: "#5445d1"
-      titleFontSize: "20"
-      textFontSize: "15"
-      backgroundColor: ""
-    showBorder: true
-    hoverEffect: true
-    titleControls:
-      align: center
-      fontSize: "30"
-      color: "#338910"
-    contentControls:
-      align: right
-      fontSize: "30"
-      color: "#a71f1f"
-    style: grid
-    title: This si a card grid
-    type: cards
-  - layout: grid
-    titleControls:
-      align: left
-      fontSize: "40"
-      color: "#101a1e"
-    subtitleControls:
-      align: right
-      fontSize: "30"
-      color: "#2a1d70"
-    contentControls:
-      align: center
-      fontSize: "40"
-      color: "#73a1ec"
-    testimonials:
-      - author: MIKE
-        title: USER
-        image: images/generate-submittals.svg
-        content: This is really nice software.
-      - author: Mike
-        title: USER
-        image: images/access-product-collateral.svg
-        content: This is a really a nice software, it is a fast and secure.
-    backgroundColor: "#b58484"
-    subtitle: This is a subtitle
-    title: This is a Testimonial Section
-    showRatings: true
-    type: testimonials
-    roleCompanyColor: "#61df30"
-  - styles:
-      titleAlign: left
-      titleSize: "20"
-      titleColor: "#e99f9f"
-      contentAlign: left
-      contentSize: "15"
-      contentColor: "#e26f6f"
-    animation: countUp
-    sectionBg: "#4545d3"
-    layout: masonry
-    titleControls:
-      align: left
-      fontSize: "50"
-      color: "#44ee69"
-    contentControls:
-      align: left
-      color: "#e7f1e8"
-      fontSize: "40"
-    subtitle: okok
-    title: This is  a Stats Section
-    statBg: "#676554"
-    type: stats
-    stats:
-      - label: States 1
-        value: "10"
-        icon: images/about-img-3.jpeg
-        prefix: This is a pre
-      - label: This is a Stats 2
-        value: "2000"
-  - layout: grid
-    questions:
-      - question: THIS IS A QUESTION 1
-        answer: THIS IS A Answer1
-        category: TECH
-      - question: THIS IS A QUESTION 2
-        answer: THIS IS A ANSWER 2
-        category: Pricing
-    titleControls:
-      align: left
-      fontSize: "25"
-      color: "#094281"
-    contentControls:
-      align: left
-      fontSize: "20"
-      color: "#190303"
-    title: This is a FAQ section
-    questionBgColor: "#cf9999"
-    sectionBgColor: "#a36c6c"
-    type: faq
-    categories:
-      - name: TECH
-      - name: Pricing
-  - statBgColor: "#8f2828"
-    layout: list
-    cardBgColor: ""
-    titleControls:
-      align: left
-      fontSize: "20"
-      color: "#f8dfdf"
-    contentControls:
-      align: left
-      fontSize: "15"
-      color: "#9de60e"
-    memberControls:
-      cardBgColor: "#dcc1c1"
-      nameColor: "#e7ff81"
-      positionColor: "#1031ca"
-      bioColor: "#64914b"
-    title: This is a team section
-    members:
-      - name: TEST
-        position: ENGINEER
-        image: images/create-hardware-sets.svg
-        bio: He is a test member
-        social:
-          - platform: linkedin
-            url: This is a linked
-          - platform: twitter
-            url: ok
-          - platform: facebook
-            url: fw
-          - platform: instagram
-            url: ins
-      - name: Member 2
-        position: ENG.
-        image: images/about-img-2.jpeg
-        bio: HE IS A DEVELOPER
-        social:
-          - platform: linkedin
-            url: OK
-      - name: Member 3
-        position: ABC
-        image: images/about-img-2.jpeg
-        bio: HE IS A PERSON
-        social:
-          - platform: linkedin
-            url: OK
-      - name: Member 2
-        position: ENG.
-        image: images/about-img-2.jpeg
-        bio: HELLO
-      - name: Member 2
-        position: ENG.
-        image: images/about-img-2.jpeg
-        bio: HE IS A DEVELOPER
-        social:
-          - platform: linkedin
-            url: OK
-    sectionBgColor: "#95e76b"
-    type: team
+      textFontSize: "16"
 ---

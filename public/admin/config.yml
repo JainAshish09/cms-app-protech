@@ -806,83 +806,39 @@ collections:
                 name: "timeline"
                 widget: "object"
                 fields:
-                  - {
-                      label: "Type",
-                      name: "type",
-                      widget: "hidden",
-                      default: "timeline",
-                    }
+                  - { label: "Type", name: "type", widget: "hidden", default: "timeline" }
                   - { label: "Title", name: "title", widget: "string" }
+
                   - label: "Title Controls"
                     name: "titleControls"
                     widget: "object"
                     fields:
-                      - {
-                          label: "Alignment",
-                          name: "align",
-                          widget: "select",
-                          options: ["left", "center", "right"],
-                          required: false,
-                        }
-                      - {
-                          label: "Font Size",
-                          name: "fontSize",
-                          widget: "string",
-                          required: false,
-                        }
-                      - {
-                          label: "Color",
-                          name: "color",
-                          widget: "color",
-                          required: false,
-                        }
-                  - label: "Content Controls"
-                    name: "contentControls"
+                      - { label: "Alignment", name: "align", widget: "select", options: ["left", "center", "right"], required: false }
+                      - { label: "Font Size", name: "fontSize", widget: "string", required: false }
+                      - { label: "Color", name: "color", widget: "color", required: false }
+
+                  - label: "Section Background Color"
+                    name: "sectionBgColor"
+                    widget: "color"
+                    required: false
+
+                  - label: "Card Controls"
+                    name: "cardControls"
                     widget: "object"
                     fields:
-                      - {
-                          label: "Alignment",
-                          name: "align",
-                          widget: "select",
-                          options: ["left", "center", "right"],
-                          required: false,
-                        }
-                      - {
-                          label: "Font Size",
-                          name: "fontSize",
-                          widget: "string",
-                          required: false,
-                        }
-                      - {
-                          label: "Color",
-                          name: "color",
-                          widget: "color",
-                          required: false,
-                        }
-                  - {
-                      label: "Layout",
-                      name: "layout",
-                      widget: "select",
-                      options: ["vertical", "horizontal"],
-                      default: "vertical",
-                    }
+                      - { label: "Background Color", name: "bgColor", widget: "color", required: false }
+                      - { label: "Title Color", name: "titleColor", widget: "color", required: false }
+                      - { label: "Content Color", name: "contentColor", widget: "color", required: false }
+                      - { label: "Date Color", name: "dateColor", widget: "color", required: false }
+
                   - label: "Events"
                     name: "events"
                     widget: "list"
                     fields:
                       - { label: "Date", name: "date", widget: "string" }
                       - { label: "Title", name: "title", widget: "string" }
-                      - {
-                          label: "Content",
-                          name: "content",
-                          widget: "markdown",
-                        }
-                      - {
-                          label: "Image",
-                          name: "image",
-                          widget: "image",
-                          required: false,
-                        }
+                      - { label: "Content", name: "content", widget: "markdown" }
+                      - { label: "Image", name: "image", widget: "image", required: false }
 
               - label: "Pricing Tables"
                 name: "pricing"

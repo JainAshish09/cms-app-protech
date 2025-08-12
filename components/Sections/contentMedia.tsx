@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import Button, { ButtonProps } from '../widgets/Button'; // ✅ Make sure path is correct
+import { px } from 'framer-motion';
 
 interface ControlSettings {
     align?: 'left' | 'center' | 'right';
@@ -104,11 +105,11 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
             )}
 
             <div
-                className={`max-w-7xl mx-auto flex flex-col items-center justify-between gap-8 px-4 md:px-8 ${flexDirectionClass}`}
+                className={`max-w-fit mx-auto flex flex-col items-center justify-between gap-8 px-4 md:px-8 ${flexDirectionClass}`}
             >
                 {/* Media Column */}
                 {!hasBgImage && mediaItems.length > 0 && (
-                    <div className="relative w-full md:w-1/2 max-w-xl rounded-xl shadow overflow-hidden">
+                    <div className="relative m-0 p-3 w-full md:w-1/2 max-w-xl rounded-xl border border-gray-200 overflow-hidden">
                         <Image
                             src={`/${mediaItems[currentIndex].file}`}
                             alt={mediaItems[currentIndex].alt || `Image ${currentIndex + 1}`}
@@ -140,7 +141,7 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
                 )}
 
                 {/* Text Content Column */}
-                <div className="w-full md:w-1/2 max-w-xl space-y-6">
+                <div className="w-full md:w-1/2 max-w-2xl space-y-6">
                     <h2
                         className={`font-bold drop-shadow-lg w-full ${getTextAlignClass(titleControls?.align)}`}
                         style={getStyleOverride(titleControls?.fontSize, titleControls?.color)}

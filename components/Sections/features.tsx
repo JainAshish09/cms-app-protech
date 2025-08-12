@@ -121,10 +121,10 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ section }) => {
                 )}
 
                 <div className={`grid gap-8 ${gridColsClass}`}>
-                    {features.map((feature, index) => (
+                    {features != null && features.map((feature, index) => (
                         <div
                             key={index}
-                            className="bg-white rounded-xl p-6 shadow-md flex flex-col items-center text-center"
+                            className="bg-white rounded-xl p-6  border border-[#D8E5EF] flex flex-col items-center text-center"
                         >
                             {feature.icon && (
                                 <img
