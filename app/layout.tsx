@@ -1,6 +1,6 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Inter, Noto_Sans } from "next/font/google";
+import { Inter, Noto_Sans, Lato } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -11,7 +11,13 @@ const inter = Inter({ subsets: ["latin"] });
 const notoSans = Noto_Sans({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-noto", // ✅ Exposed for use in Tailwind
+  variable: "--font-noto",
+});
+
+const lato = Lato({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-lato',
 });
 
 export const metadata: Metadata = {
@@ -35,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js" />
-      <body className={`${inter.className} ${notoSans.variable}`}>
+      <body className={`${inter.className} ${notoSans.variable} ${lato.variable}`}>
         <Header />
         <main>{children}</main>
         <Footer />

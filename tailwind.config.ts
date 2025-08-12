@@ -15,6 +15,7 @@ const config: Config = {
       },
       fontFamily: {
         noto: "var(--font-noto)",
+        lato: "var(--font-lato)",
       },
       spacing: {
         '8xl': '88rem',

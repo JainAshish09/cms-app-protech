@@ -47,7 +47,7 @@ br {
 /* Force Noto Sans on <p> and <p><code> */
 p,
 p>code {
-  font-family: var(--font-noto) !important;
+  font-family: var(--font-lato) !important;
 }
 
 /* Force ASSA Vesta on all headings */
@@ -57,7 +57,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'ASSA Vesta', sans-serif !important;
+  font-family: var(--font-lato) !important;
 }
 
 p {

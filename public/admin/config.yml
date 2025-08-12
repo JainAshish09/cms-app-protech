@@ -1292,3 +1292,108 @@ collections:
                           widget: "color",
                           required: false,
                         }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+    - label: "Features"
+      name: "features"
+      file: "app/content/features.md"
+      fields:
+        - { label: "Title", name: "title", widget: "string"}
+        - { label: "Publish Date", name: "date", widget: "datetime" }
+        - label: 'Features'
+          name: "features"
+          widget: list
+          fields:
+            - { label: "Title", name: "title", widget: "string"}
+            - label: "Sub Section"
+              name: "subSections"
+              widget: "list"
+              fields:
+                - { label: "Title", name: "title", widget: "string"}
+                - { label: "Image", name: "image", widget: "image"}
+                - label: "Details"
+                  name: "details"
+                  widget: "list"
+                  fields:
+                    - { label: "Description", name: "description", widget: "markdown"}
+    - name: "blogs"
+      label: "blogs"
+      file: "app/content/blogs.md"
+      fields:
+        - name: "blog"
+          label: "blog"
+          widget: "list"
+          fields:
+            - { label: "Title", name: "title", widget: "string" }
+            - { label: "Date", name: "date", widget: "datetime" }
+            - { label: "Content", name: "content", widget: "markdown" }
+            - label: "Image"
+              name: "image" 
+              widget: "list"
+              fields:
+                - {label: "Image", name: "image", widget: "image"}
+
+  - name: 'demoForm'
+    label: 'Demo Form'
+    files:
+    - label: "Form"
+      name: "form"
+      file: 'app/content/forms/demoForm.md'
+      fields:
+      - label: 'Form Title'
+        name: 'title'
+        widget: 'string'        
+      - label: 'Form Content'
+        name: 'content'
+        widget: 'markdown'
+      - label: 'Form Fields (min = 1)'
+        name: 'fields'
+        widget: 'list'
+        fields:
+        - label: "Row Name"
+          name: "row_name"
+          widget: "string"
+        - label: 'Row'
+          name: 'row'
+          widget: 'list'
+          min: 1
+          max: 2
+          fields:
+          - label: 'Field Name'
+            name: 'name'
+            widget: 'string'
+          - label: 'Field Label'
+            name: 'label'
+            widget: 'string'
+          - label: 'Field Type'
+            name: 'type'
+            widget: 'select'
+            options:
+            - 'text'
+            - 'email'
+            - 'number'
+            - 'password'
+            - 'url'
+            - 'tel'
+            - 'color'
+            - 'date'
+            - 'time'
+            - 'datetime-local'
+            - 'month'
+            - 'week'
+            - 'textarea'
+            - 'file'
+            - 'dropdown'
+          - name: 'dropdown_values'
+            label: 'Dropdown Values'
+            widget: 'list'
+            required: false
+            fields:
+            - { label: 'Value', name: 'value', widget: 'string' }
+            - { label: 'Label', name: 'label', widget: 'string' }
+      - name: "privacy"
+        label: "Privacy Policy URL"
+        widget: "string"
+        required: false
