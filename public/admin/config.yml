@@ -1397,3 +1397,37 @@ collections:
         label: "Privacy Policy URL"
         widget: "string"
         required: false
+
+  - name: "footer"
+    label: "Footer"
+    files:
+      - label: "Footer Data"
+        name: "footer"
+        file: "content/footer.md"
+        fields:
+          - { label: "Address", name: "address", widget: "string" }
+          - { label: "Get Directions URL", name: "directionsUrl", widget: "string" }
+          - label: "Social Links"
+            name: "socialLinks"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Icon", name: "icon",widget: "image" }
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - label: "Links"
+                name: "links"
+                widget: "list"
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "URL", name: "url", widget: "string" }
+          - label: "Gallery"
+            name: "gallery"
+            widget: "list"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Alt", name: "alt", widget: "string" }
