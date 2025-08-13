@@ -1,45 +1,22 @@
-import React from 'react';
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+'use client';
+import React, { useState } from 'react';
+import { CMSMenuItem, NavbarData } from '@/app/services/getNavbarData';
 
-type MenuAlignment = 'left' | 'right'; // center removed
-type MenuItemType = 'button' | 'text' | 'logo' | 'link';
-
-interface CMSMenuItem {
-    type: MenuItemType;
-    label?: string;
-    url?: string;
-    style?: string;
-    newTab?: boolean;
-    icon?: string;
-    fontSize?: string;
-    color?: string;
-    image?: string;
-    placement?: MenuAlignment;
-    height?: number;
-    alignment?: MenuAlignment; // only 'left' or 'right'
-    controls?: { fontSize?: string; color?: string };
+interface HeaderProps {
+    navbarData: NavbarData;
 }
 
-interface NavbarData {
-    title?: string;
-    bgColor?: string;
-    textColor?: string;
-    items: CMSMenuItem[];
-    showSearch?: boolean;
-    searchPlaceholder?: string;
-}
+const Header: React.FC<HeaderProps> = ({ navbarData }) => {
 
-const getNavbarData = (): NavbarData => {
-    const filePath = path.join(process.cwd(), 'content/navigation/navbar.md');
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
-    const { data } = matter(fileContent);
-    return data as NavbarData;
-};
+    const {
+        bgColor = '#ffffff',
+        textColor = '#000000',
+        items = [],
+        showSearch = false,
+        searchPlaceholder = '',
+    } = navbarData || {};
 
-const Header: React.FC = () => {
-    const { bgColor, textColor, items, showSearch, searchPlaceholder } = getNavbarData();
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const headerStyles = {
         backgroundColor: bgColor || '#ffffff',
@@ -102,23 +79,29 @@ const Header: React.FC = () => {
         }
     };
 
-    const renderMenuItems = (arr?: CMSMenuItem[]) => (
-        <ul className="flex space-x-6">{arr?.map(renderItem)}</ul>
+    const renderMenuItems = (arr?: CMSMenuItem[], vertical?: boolean) => (
+        <ul className={`flex ${vertical ? 'flex-col space-y-2' : 'space-x-6'}`}>
+            {arr?.map(renderItem)}
+        </ul>
     );
 
     return (
-        <div className="fixed top-0 inset-x-0 z-50  py-3 px-6">
+        <div className="fixed top-0 inset-x-0 z-50 py-3 px-4 sm:px-6">
             <div className="max-w-9xl mx-auto">
                 <header
                     style={headerStyles}
-                    className="max-w-7xl mx-auto bg-white rounded-lg p-3 flex items-center justify-between shadow-md"
+                    className="bg-white rounded-lg p-3 flex items-center justify-between shadow-md"
                 >
-                    {/* Left section - Static Menu Icon and Menu Text */}
-                    <div className="flex items-center space-x-2">
-                        <div className="flex items-center space-x-1 border-2 border-black rounded-lg px-1 py-1">
+                    {/* Left section: Menu toggle on mobile */}
+                    <div className="flex items-center space-x-4">
+                        {/* Mobile menu button */}
+                        <button
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            className="md:hidden flex items-center space-x-1 border-2 border-black rounded-lg px-2 py-1"
+                        >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="w-7 h-6 text-black"
+                                className="w-6 h-6 text-black"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -126,23 +109,25 @@ const Header: React.FC = () => {
                             >
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
+                        </button>
+
+                        {/* Desktop Left Menu */}
+                        <div className="hidden md:flex items-center space-x-4">
+                            <span className="text-black text-lg font-normal">Menu</span>
+                            {renderMenuItems(leftItems)}
                         </div>
-                        <span className="text-black text-lg font-normal">Menu</span>
-                        {renderMenuItems(leftItems)}
                     </div>
 
-
-                    {/* Center: Hardcoded logo using text, not image */}
+                    {/* Center logo */}
                     <div className="flex flex-1 justify-center items-center">
-                        <div className="flex items-baseline space-x-2">
-                            <span className="text-black text-2xl font-extrabold tracking-tight">ASSA ABLOY</span>
-                            <span className="text-black text-sm font-normal tracking-wide">PRO-TECH TITAN®</span>
+                        <div className="flex items-baseline space-x-2 text-center md:text-left">
+                            <span className="text-black text-xl md:text-2xl font-extrabold tracking-tight">ASSA ABLOY</span>
+                            <span className="text-black text-xs md:text-sm font-normal tracking-wide">PRO-TECH TITAN®</span>
                         </div>
                     </div>
 
-
-                    {/* Right: CMS right items + search + language + login */}
-                    <div className="flex items-center space-x-3">
+                    {/* Right items */}
+                    <div className="hidden md:flex items-center space-x-3">
                         {renderMenuItems(rightItems)}
 
                         {showSearch && (
@@ -165,19 +150,29 @@ const Header: React.FC = () => {
                                 </div>
                             </div>
                         )}
-
-                        <select className="border rounded px-2 py-1 text-sm">
-                            <option value="en">EN</option>
-                        </select>
-
-                        <button className="bg-sky-500 hover:bg-sky-600 text-white px-4 py-1.5 rounded text-sm">
-                            Login
-                        </button>
                     </div>
                 </header>
+
+                {/* Mobile dropdown menu */}
+                {mobileMenuOpen && (
+                    <div className="md:hidden mt-2 bg-white rounded-lg shadow p-4 space-y-4">
+                        {renderMenuItems(leftItems, true)}
+                        <hr />
+                        {renderMenuItems(rightItems, true)}
+                        {showSearch && (
+                            <input
+                                type="text"
+                                placeholder={searchPlaceholder || 'Search...'}
+                                className="w-full px-3 py-2 border rounded"
+                            />
+                        )}
+                    </div>
+                )}
             </div>
         </div>
     );
 };
 
 export default Header;
+
+

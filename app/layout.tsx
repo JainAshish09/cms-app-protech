@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Script from "next/script";
+import HeaderWrapper from "@/components/headerWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -42,7 +43,7 @@ export default function RootLayout({
     <html lang="en">
       <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js" />
       <body className={`${inter.className} ${notoSans.variable} ${lato.variable}`}>
-        <Header />
+        <HeaderWrapper />
         <main>{children}</main>
         <Footer />
       </body>

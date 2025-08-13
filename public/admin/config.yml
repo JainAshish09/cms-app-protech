@@ -1444,10 +1444,12 @@ collections:
             name: "bgColor"
             widget: "color"
             default: "#ffffff"
+            required: false
           - label: "Navbar Text Color"
             name: "textColor"
             widget: "color"
             default: "#000000"
+            required: false
           - label: "Navbar Items"
             name: "items"
             widget: "list"
