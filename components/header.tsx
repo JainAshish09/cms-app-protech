@@ -110,20 +110,38 @@ const Header: React.FC = () => {
     );
 
     return (
-        <header
-            style={headerStyles}
-            className="p-4 fixed top-0 left-0 right-0 z-50 shadow-lg"
-        >
-            <div className="container mx-auto flex items-center justify-between">
-                {/* Left section */}
-                <div className="flex items-center space-x-4">{renderMenuItems(leftItems)}</div>
+        <div className="bg-[#d9f1f8] p-4">
+            <header
+                style={headerStyles}
+                className="max-w-7xl mx-auto bg-white rounded-lg p-3 flex items-center justify-between shadow-md"
+            >
+                {/* Left section - Static Menu Icon and Menu Text */}
+                <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-1 border-2 border-black rounded-lg px-1 py-1">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="w-7 h-6 text-black"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </div>
+                    <span className="text-black text-lg font-normal">Menu</span>
+                    {renderMenuItems(leftItems)}
+                </div>
 
-                {/* Center section */}
-                <div className="flex items-center">{renderMenuItems(centerItems)}</div>
+                {/* Center section - Center-aligned items like logo */}
+                <div className="flex justify-center items-center">
+                    {renderMenuItems(centerItems)}
+                </div>
 
-                {/* Right section */}
-                <div className="flex items-center space-x-4">
+                {/* Right section - Search, Language Select, Login */}
+                <div className="flex items-center space-x-3">
                     {renderMenuItems(rightItems)}
+
                     {showSearch && (
                         <input
                             type="text"
@@ -131,10 +149,13 @@ const Header: React.FC = () => {
                             className="px-2 py-1 border rounded"
                         />
                     )}
+
+
                 </div>
-            </div>
-        </header>
+            </header>
+        </div>
     );
+
 };
 
 export default Header;
