@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-type MenuAlignment = 'left' | 'center' | 'right';
+type MenuAlignment = 'left' | 'right'; // center removed
 type MenuItemType = 'button' | 'text' | 'logo' | 'link';
 
 interface CMSMenuItem {
@@ -18,8 +18,8 @@ interface CMSMenuItem {
     image?: string;
     placement?: MenuAlignment;
     height?: number;
-    alignment?: MenuAlignment; // alignment per item from CMS
-    controls?: { fontSize?: string; color?: string }; // For text items nested "controls"
+    alignment?: MenuAlignment; // only 'left' or 'right'
+    controls?: { fontSize?: string; color?: string };
 }
 
 interface NavbarData {
@@ -39,7 +39,7 @@ const getNavbarData = (): NavbarData => {
 };
 
 const Header: React.FC = () => {
-    const { title, bgColor, textColor, items, showSearch, searchPlaceholder } = getNavbarData();
+    const { bgColor, textColor, items, showSearch, searchPlaceholder } = getNavbarData();
 
     const headerStyles = {
         backgroundColor: bgColor || '#ffffff',
@@ -47,7 +47,6 @@ const Header: React.FC = () => {
     };
 
     const leftItems = items?.filter((item) => item.alignment === 'left');
-    const centerItems = items?.filter((item) => item.alignment === 'center');
     const rightItems = items?.filter((item) => item.alignment === 'right');
 
     const renderItem = (item: CMSMenuItem, idx: number) => {
@@ -59,15 +58,13 @@ const Header: React.FC = () => {
                         href={item.url || '#'}
                         target={item.newTab ? '_blank' : '_self'}
                         rel={item.newTab ? 'noopener noreferrer' : undefined}
-                        className={`inline-flex items-center ${item.style || 'bg-blue-500 text-white px-4 py-2 rounded'
-                            }`}
+                        className={`inline-flex items-center ${item.style || 'bg-blue-500 text-white px-4 py-2 rounded'}`}
                     >
                         {item.icon && <img src={item.icon} alt="" className="mr-2 h-4 w-4" />}
                         {item.label}
                     </a>
                 );
             case 'text':
-                // Use nested controls object for fontSize and color if present
                 return (
                     <span
                         key={idx}
@@ -110,52 +107,77 @@ const Header: React.FC = () => {
     );
 
     return (
-        <div className="bg-[#d9f1f8] p-4">
-            <header
-                style={headerStyles}
-                className="max-w-7xl mx-auto bg-white rounded-lg p-3 flex items-center justify-between shadow-md"
-            >
-                {/* Left section - Static Menu Icon and Menu Text */}
-                <div className="flex items-center space-x-2">
-                    <div className="flex items-center space-x-1 border-2 border-black rounded-lg px-1 py-1">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="w-7 h-6 text-black"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
+        <div className="fixed top-0 inset-x-0 z-50  py-3 px-6">
+            <div className="max-w-9xl mx-auto">
+                <header
+                    style={headerStyles}
+                    className="max-w-7xl mx-auto bg-white rounded-lg p-3 flex items-center justify-between shadow-md"
+                >
+                    {/* Left section - Static Menu Icon and Menu Text */}
+                    <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-1 border-2 border-black rounded-lg px-1 py-1">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-7 h-6 text-black"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </div>
+                        <span className="text-black text-lg font-normal">Menu</span>
+                        {renderMenuItems(leftItems)}
                     </div>
-                    <span className="text-black text-lg font-normal">Menu</span>
-                    {renderMenuItems(leftItems)}
-                </div>
-
-                {/* Center section - Center-aligned items like logo */}
-                <div className="flex justify-center items-center">
-                    {renderMenuItems(centerItems)}
-                </div>
-
-                {/* Right section - Search, Language Select, Login */}
-                <div className="flex items-center space-x-3">
-                    {renderMenuItems(rightItems)}
-
-                    {showSearch && (
-                        <input
-                            type="text"
-                            placeholder={searchPlaceholder || 'Search...'}
-                            className="px-2 py-1 border rounded"
-                        />
-                    )}
 
 
-                </div>
-            </header>
+                    {/* Center: Hardcoded logo using text, not image */}
+                    <div className="flex flex-1 justify-center items-center">
+                        <div className="flex items-baseline space-x-2">
+                            <span className="text-black text-2xl font-extrabold tracking-tight">ASSA ABLOY</span>
+                            <span className="text-black text-sm font-normal tracking-wide">PRO-TECH TITAN®</span>
+                        </div>
+                    </div>
+
+
+                    {/* Right: CMS right items + search + language + login */}
+                    <div className="flex items-center space-x-3">
+                        {renderMenuItems(rightItems)}
+
+                        {showSearch && (
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    placeholder={searchPlaceholder || 'Search...'}
+                                    className="px-3 py-1 border rounded pr-8"
+                                />
+                                <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-4 w-4"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1117 9a7.5 7.5 0 01-.35 7.65z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        )}
+
+                        <select className="border rounded px-2 py-1 text-sm">
+                            <option value="en">EN</option>
+                        </select>
+
+                        <button className="bg-sky-500 hover:bg-sky-600 text-white px-4 py-1.5 rounded text-sm">
+                            Login
+                        </button>
+                    </div>
+                </header>
+            </div>
         </div>
     );
-
 };
 
 export default Header;

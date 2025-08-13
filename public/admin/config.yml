@@ -1464,7 +1464,7 @@ collections:
                   - label: "Alignment"
                     name: "alignment"
                     widget: "select"
-                    options: ["left", "center", "right"]
+                    options: ["left", "right"]
                     default: "left"
               - label: "Text"
                 name: "text"
@@ -1479,7 +1479,7 @@ collections:
                   - label: "Alignment"
                     name: "alignment"
                     widget: "select"
-                    options: ["left", "center", "right"]
+                    options: ["left", "right"]
                     default: "left"
               - label: "Logo"
                 name: "logo"
@@ -1491,7 +1491,7 @@ collections:
                   - label: "Alignment"
                     name: "alignment"
                     widget: "select"
-                    options: ["left", "center", "right"]
+                    options: ["left", "right"]
                     default: "left"
               - label: "Link"
                 name: "link"
@@ -1503,7 +1503,7 @@ collections:
                   - label: "Alignment"
                     name: "alignment"
                     widget: "select"
-                    options: ["left", "center", "right"]
+                    options: ["left", "right"]
                     default: "left"
           - label: "Show Search?"
             name: "showSearch"
