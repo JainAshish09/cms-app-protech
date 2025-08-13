@@ -1,22 +1,13 @@
 ---
 address: 10027 S. 51st St.Phoenix, AZ 85044
-directionsUrl: testURL
+directionsUrl: directionURL
 socialLinks:
-  - icon: images/facebook.svg
-    name: Facebook
-    url: fb
-  - name: instagram
-    url: ins
-    icon: images/instagram.svg
-  - name: Twitter
-    url: twitter
-    icon: images/twitter.svg
   - name: Google
     url: google
     icon: images/google.svg
-  - name: Pinterest
-    url: pinterest
-    icon: images/pinterest.svg
+  - icon: images/x-icon.jpg
+    name: twitter
+    url: twitte
 sections:
   - title: Site Links
     links:
