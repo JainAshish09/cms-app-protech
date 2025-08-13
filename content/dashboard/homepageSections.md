@@ -20,6 +20,8 @@ sections:
     images:
       - image: images/homepage-header.png
         alt: Image 1
+      - image: images/homepage-header.png
+        alt: ok
     content: Submittals, estimates, quoting, scheduling, ordering and delivery
       details become automated, efficient and fast!
     type: hero

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import ButtonGroup from '../widgets/ButtonGroup';
+import ImageNavigationButtons from '../widgets/ImageNavigationButtons';
 
 // ---------- TypeScript interfaces matching your CMS schema ----------
 
@@ -95,6 +96,18 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
         section.titleControls?.color || section.titleTextSettings?.textColor
     );
 
+    // Inside HeroSection component
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const handleLeftClick = () => {
+        setCurrentIndex((prevIndex) => (prevIndex === 0 ? section.images!.length - 1 : prevIndex - 1));
+    };
+
+    const handleRightClick = () => {
+        setCurrentIndex((prevIndex) => (prevIndex === section.images!.length - 1 ? 0 : prevIndex + 1));
+    };
+
+
     // Compute classes and inline styles for content
     const contentAlignClass = getTextAlignClass(section.contentControls?.align);
     const contentFontSizeClass =
@@ -110,7 +123,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
 
     return (
         <section
-            className={`w-full max-w-9xl mx-auto pt-20 md:pt-28 pb-5 flex flex-col items-center justify-center relative overflow-hidden ${layoutClass} ${section.customCss ?? ''}`}
+            className={`w-full max-w-9xl mx-auto pt-20 md:pt-28 pb-10 flex flex-col items-center justify-center relative overflow-hidden ${layoutClass} ${section.customCss ?? ''}`}
             style={{ backgroundColor: section.bgColor, ...sectionStyle, position: 'relative', zIndex: 3 }}
         >
             {/* Background Image Container */}
@@ -146,6 +159,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
                 {section.images && section.images.length > 0 && (
                     <div className="w-full max-w-5xl mt-8">
                         <Carousel
+                            selectedItem={currentIndex}
                             showThumbs={false}
                             infiniteLoop
                             autoPlay
@@ -154,7 +168,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
                             showStatus={false}
                             swipeable
                             emulateTouch
-                            showArrows
+                            showArrows={false}
                             dynamicHeight={false}
                             className="rounded-2xl overflow-hidden shadow-lg"
                         >
@@ -171,6 +185,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
                                 </div>
                             ))}
                         </Carousel>
+                        <div className="w-full flex justify-center mt-2">
+                            <ImageNavigationButtons onLeftClick={handleLeftClick} onRightClick={handleRightClick} />
+                        </div>
+
                     </div>
                 )}
 
