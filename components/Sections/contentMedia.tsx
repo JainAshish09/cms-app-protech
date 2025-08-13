@@ -109,7 +109,7 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
             >
                 {/* Media Column */}
                 {!hasBgImage && mediaItems.length > 0 && (
-                    <div className="relative m-0 p-0 w-full md:w-1/2 max-w-xl rounded-xl border border-gray-200 overflow-hidden">
+                    <div className="relative m-0 p-0 w-full md:w-1/2 max-w-xl rounded-xl overflow-hidden">
                         <Image
                             src={`/${mediaItems[currentIndex].file}`}
                             alt={mediaItems[currentIndex].alt || `Image ${currentIndex + 1}`}

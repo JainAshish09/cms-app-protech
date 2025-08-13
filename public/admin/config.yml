@@ -1431,3 +1431,85 @@ collections:
             fields:
               - { label: "Image", name: "image", widget: "image" }
               - { label: "Alt", name: "alt", widget: "string" }
+
+  - name: "navigation"
+    label: "Navigation"
+    files:
+      - label: "Navbar Settings"
+        name: "navbar"
+        file: "content/navigation/navbar.md"
+        body: false
+        fields:
+          - label: "Navbar Background Color"
+            name: "bgColor"
+            widget: "color"
+            default: "#ffffff"
+          - label: "Navbar Text Color"
+            name: "textColor"
+            widget: "color"
+            default: "#000000"
+          - label: "Navbar Items"
+            name: "items"
+            widget: "list"
+            types:
+              - label: "Button"
+                name: "button"
+                widget: "object"
+                fields:
+                  - { label: "Label", name: "label", widget: "string", required: true }
+                  - { label: "URL", name: "url", widget: "string", required: true }
+                  - { label: "Button Style", name: "style", widget: "string", default: "bg-blue-500 text-white px-4 py-2 rounded", required: false }
+                  - { label: "Open in New Tab", name: "newTab", widget: "boolean", default: false }
+                  - { label: "Icon", name: "icon", widget: "image", required: false }
+                  - label: "Alignment"
+                    name: "alignment"
+                    widget: "select"
+                    options: ["left", "center", "right"]
+                    default: "left"
+              - label: "Text"
+                name: "text"
+                widget: "object"
+                fields:
+                  - { label: "Label", name: "label", widget: "string", required: true }
+                  - { label: "Text Controls", name: "controls", widget: "object", fields: [
+                      { label: "Font Size", name: "fontSize", widget: "string", default: "text-base", required: false },
+                      { label: "Color", name: "color", widget: "color", default: "#333333", required: false }
+                    ]
+                  }
+                  - label: "Alignment"
+                    name: "alignment"
+                    widget: "select"
+                    options: ["left", "center", "right"]
+                    default: "left"
+              - label: "Logo"
+                name: "logo"
+                widget: "object"
+                fields:
+                  - { label: "Logo Image", name: "image", widget: "image", required: true }
+                  - { label: "Placement", name: "placement", widget: "select", options: ["left", "center", "right"], default: "left" }
+                  - { label: "Height (px)", name: "height", widget: "number", default: 40 }
+                  - label: "Alignment"
+                    name: "alignment"
+                    widget: "select"
+                    options: ["left", "center", "right"]
+                    default: "left"
+              - label: "Link"
+                name: "link"
+                widget: "object"
+                fields:
+                  - { label: "Label", name: "label", widget: "string", required: true }
+                  - { label: "URL", name: "url", widget: "string", required: true }
+                  - { label: "Open in New Tab", name: "newTab", widget: "boolean", default: false }
+                  - label: "Alignment"
+                    name: "alignment"
+                    widget: "select"
+                    options: ["left", "center", "right"]
+                    default: "left"
+          - label: "Show Search?"
+            name: "showSearch"
+            widget: "boolean"
+            default: true
+          - label: "Search Placeholder"
+            name: "searchPlaceholder"
+            widget: "string"
+            default: "Search..."

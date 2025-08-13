@@ -1,127 +1,140 @@
-'use client';
-import React, { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React from 'react';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 
-const Header = () => {
+type MenuAlignment = 'left' | 'center' | 'right';
+type MenuItemType = 'button' | 'text' | 'logo' | 'link';
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+interface CMSMenuItem {
+    type: MenuItemType;
+    label?: string;
+    url?: string;
+    style?: string;
+    newTab?: boolean;
+    icon?: string;
+    fontSize?: string;
+    color?: string;
+    image?: string;
+    placement?: MenuAlignment;
+    height?: number;
+    alignment?: MenuAlignment; // alignment per item from CMS
+    controls?: { fontSize?: string; color?: string }; // For text items nested "controls"
+}
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+interface NavbarData {
+    title?: string;
+    bgColor?: string;
+    textColor?: string;
+    items: CMSMenuItem[];
+    showSearch?: boolean;
+    searchPlaceholder?: string;
+}
 
+const getNavbarData = (): NavbarData => {
+    const filePath = path.join(process.cwd(), 'content/navigation/navbar.md');
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    const { data } = matter(fileContent);
+    return data as NavbarData;
+};
 
-  return (
-    <>
-      <header className="fixed top-[20px] left-11 right-11 z-50 flex items-center justify-between p-4 shadow-md bg-white rounded-xl">
-        <div className="flex items-center space-x-4 z-50">
-          <button type='button' className="p-2  border-[1px] border-black rounded-md " onClick={toggleMenu}>
-            <Image src={isMenuOpen ? "/icons/close-svgrepo-com.svg" : "/icons/menu.svg"} alt="Menu" width={24} height={24} />
-          </button>
-        </div>
-        <div className='absolute flex justify-center  w-full h-full '>
-          <Image src="/icons/assa-abloy-logo-header.svg" alt="ASSA ABLOY" width={150} height={24} />
-          <span className="w-[132px] h-[18px] font-[400] text-[14px] ml-3 mt-[30px]">PRO-TECH TITAN®</span>
-        </div>
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center border rounded-md px-2 py-1 text-sm">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="focus:outline-none px-2"
-            />
-            <Image src="/icons/search.svg" alt="Search" width={20} height={20} />
-          </div>
-          <button className="p-2 border rounded-md text-sm">EN</button>
-          <button type='button' className="p-2 bg-blue-500 text-white rounded-md text-sm">Login</button>
-        </div>
-      </header>
-      {isMenuOpen && (<div className="fixed top-[110px] left-11 right-11 z-[1000] flex items-center justify-between p-0 shadow-md bg-white rounded-xl border-[1px] border-[#D8E5EF] ">
-        <div className="w-[70%] mr-0 m-2">
-          <nav>
-            <div className="flex justify-between">
-              {[
-                { name: 'Home', path: '/' },
-                { name: 'What is PRO-TECH?', path: '/about' },
-                { name: 'Products', path: '/products' },
-                { name: 'Features', path: '/features' },
-                { name: 'Request a Demo', path: '/demo' },
-              ].map(({ name, path }) => (
-                <p
-                  key={name}
-                  className="flex-1 border border-[#D8E5EF] text-center mr-2 rounded-md py-2"
-                >
-                  <Link href={path}>
-                    <p className="block h-full w-full" onClick={toggleMenu}>{name}</p>
-                  </Link>
-                </p>
-              ))}
-            </div>
-          </nav>
+const Header: React.FC = () => {
+    const { title, bgColor, textColor, items, showSearch, searchPlaceholder } = getNavbarData();
 
-          <div className="grid grid-cols-2 gap-4 mt-5">
-            {[1, 2].map((item) => (
-              <div key={item} className="bg-white flex overflow-hidden rounded-xl border border-[#D8E5EF] p-2 aspect-[5/2]">
-                <div className="relative w-[40%] ">
-                  <Image
-                    src="/images/protech-in-action.png"
-                    alt="Action Image"
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-xl"
-                  />
+    const headerStyles = {
+        backgroundColor: bgColor || '#ffffff',
+        color: textColor || '#000000',
+    };
+
+    const leftItems = items?.filter((item) => item.alignment === 'left');
+    const centerItems = items?.filter((item) => item.alignment === 'center');
+    const rightItems = items?.filter((item) => item.alignment === 'right');
+
+    const renderItem = (item: CMSMenuItem, idx: number) => {
+        switch (item.type) {
+            case 'button':
+                return (
+                    <a
+                        key={idx}
+                        href={item.url || '#'}
+                        target={item.newTab ? '_blank' : '_self'}
+                        rel={item.newTab ? 'noopener noreferrer' : undefined}
+                        className={`inline-flex items-center ${item.style || 'bg-blue-500 text-white px-4 py-2 rounded'
+                            }`}
+                    >
+                        {item.icon && <img src={item.icon} alt="" className="mr-2 h-4 w-4" />}
+                        {item.label}
+                    </a>
+                );
+            case 'text':
+                // Use nested controls object for fontSize and color if present
+                return (
+                    <span
+                        key={idx}
+                        className={item.controls?.fontSize || item.fontSize || 'text-base'}
+                        style={{ color: item.controls?.color || item.color || headerStyles.color }}
+                    >
+                        {item.label}
+                    </span>
+                );
+            case 'logo':
+                return (
+                    <a key={idx} href={item.url || '#'}>
+                        {item.image && (
+                            <img
+                                src={item.image}
+                                alt={item.label || 'Logo'}
+                                style={{ height: `${item.height || 40}px` }}
+                            />
+                        )}
+                    </a>
+                );
+            case 'link':
+            default:
+                return (
+                    <a
+                        key={idx}
+                        href={item.url || '#'}
+                        target={item.newTab ? '_blank' : '_self'}
+                        rel={item.newTab ? 'noopener noreferrer' : undefined}
+                        className="hover:underline transition duration-300"
+                    >
+                        {item.label}
+                    </a>
+                );
+        }
+    };
+
+    const renderMenuItems = (arr?: CMSMenuItem[]) => (
+        <ul className="flex space-x-6">{arr?.map(renderItem)}</ul>
+    );
+
+    return (
+        <header
+            style={headerStyles}
+            className="p-4 fixed top-0 left-0 right-0 z-50 shadow-lg"
+        >
+            <div className="container mx-auto flex items-center justify-between">
+                {/* Left section */}
+                <div className="flex items-center space-x-4">{renderMenuItems(leftItems)}</div>
+
+                {/* Center section */}
+                <div className="flex items-center">{renderMenuItems(centerItems)}</div>
+
+                {/* Right section */}
+                <div className="flex items-center space-x-4">
+                    {renderMenuItems(rightItems)}
+                    {showSearch && (
+                        <input
+                            type="text"
+                            placeholder={searchPlaceholder || 'Search...'}
+                            className="px-2 py-1 border rounded"
+                        />
+                    )}
                 </div>
-
-                <div className="flex flex-col w-2/3 p-4 pt-0">
-                  <h2 className="text-2xl font-bold mb-2">See PRO-TECH in action</h2>
-                  <p className="text-gray-700 flex-grow font-[500]">
-                    Learn how PRO-TECH can accelerate your business to the next level.
-                  </p>
-                  <Link href="/demo">
-                    <button className=' w-[172.38px]  bg-[#00A0D0] rounded-md px-[18px] py-[10px] mt-4 ' onClick={toggleMenu}>
-                      <div className='flex items-center justify-between'>
-                        <span className=' w-[167px] h-5 font-lato text-[16px] font-[600] leading-5 text-white'>
-                          Request a Demo
-                        </span>
-                        <Image src={"/icons/chevron-right.svg"} alt="" height={15} width={10}></Image>
-                      </div>
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="relative w-[35%] h-[300px] ml-3">
-          <Image
-            src="/images/toggleMenuImage1.png"
-            alt="toggle image"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-r-xl"
-          />
-          <div className="absolute inset-0 flex items-center justify-center p-4 text-center flex-col">
-            <p className="bg-white bg-opacity-100 text-black text-sm font-bold p-2 rounded-md mb-4">
-              Check out the latest versions of PRO-TECH TITAN®
-            </p>
-            <div className="flex justify-center w-full">
-              <Image
-                src="/images/protechLogo.png"
-                alt="Protech Logo"
-                width={150}
-                height={150}
-                className="w-2/3 rounded-md"
-              />
             </div>
-          </div>
-        </div>
-
-
-      </div >)}
-
-    </>
-  );
+        </header>
+    );
 };
 
 export default Header;
