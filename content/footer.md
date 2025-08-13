@@ -5,7 +5,7 @@ socialLinks:
   - name: Google
     url: google
     icon: images/google.svg
-  - icon: images/x-icon.jpg
+  - icon: images/twitter1.png
     name: twitter
     url: twitte
 sections:
