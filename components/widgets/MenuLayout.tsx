@@ -23,7 +23,7 @@ export default function MenuLayout({ config }: MenuLayoutProps) {
     }
 
     return (
-        <div className="w-full">
+        <div className="w-full max-h-[80vh] overflow-y-auto">
             <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] lg:grid-rows-[auto_auto] gap-4 ">
                 <section className="bg-transparent rounded-lg p-0  flex flex-row gap-3 row-start-1 col-start-1 px-3 pt-3">
                     {sectionA.buttons.map((btn, idx) => (
@@ -84,22 +84,19 @@ export default function MenuLayout({ config }: MenuLayoutProps) {
                         </div>
                     ))}
                 </section>
-
                 {/* Section C (spanning both rows) */}
-                {sectionC?.backgroundImage && (
-                    <section
-                        className="relative lg:row-span-2 col-start-2 rounded-r-xl shadow overflow-hidden flex items-center justify-center text-center "
-                        style={{
-                            backgroundImage: `url(${sectionC.backgroundImage})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                        }}
+                <section
+                    className="lg:row-span-2 lg:col-start-2 rounded-r-lg shadow min-h-[250px] flex items-center justify-center text-center overflow-hidden"
+                >
+                    <div
+                        className="w-full h-full bg-cover bg-center relative"
+                        style={{ backgroundImage: `url(${sectionC.backgroundImage})` }}
                     >
                         {/* Overlay */}
                         <div className="absolute inset-0 bg-black/40" />
 
                         {/* Content */}
-                        <div className="relative z-10 flex flex-col items-center space-y-6">
+                        <div className="relative z-10 mt-16 flex flex-col items-center space-y-6">
                             <a
                                 href={sectionC.link || '#'}
                                 className="text-black bg-white no-underline text-base font-semibold p-2 rounded-md shadow hover:bg-gray-100 transition duration-300"
@@ -116,8 +113,8 @@ export default function MenuLayout({ config }: MenuLayoutProps) {
                             )}
 
                         </div>
-                    </section>
-                )}
+                    </div>
+                </section>
             </div>
         </div>
     );
