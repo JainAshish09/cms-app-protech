@@ -97,7 +97,7 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
 
     return (
         <section
-            className="w-full max-w-12xl mx-auto py-8 relative"
+            className="w-full max-w-12xl mx-auto py-14 relative"
             style={hasBgImage ? {} : { backgroundColor: bgColor }}
         >
             {/* Background Image */}
