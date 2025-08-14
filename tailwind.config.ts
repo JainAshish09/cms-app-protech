@@ -20,6 +20,9 @@ const config: Config = {
       spacing: {
         '8xl': '88rem',
         '9xl': '96rem',
+        '10xl': '104rem',
+        '11xl': '112rem',
+        '12xl': '120rem',
       },
     },
   },

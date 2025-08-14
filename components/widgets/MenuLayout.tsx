@@ -30,7 +30,7 @@ export default function MenuLayout({ config }: MenuLayoutProps) {
                         <a
                             key={idx}
                             href={btn.url || '#'}
-                            className="flex-grow basis-[calc(25%-0.75rem)] sm:basis-[calc(20%-0.75rem)] md:basis-[calc(16.66%-0.75rem)] lg:basis-[calc(12.5%-0.75rem)] px-4 py-2 border border-[#D8E5EF] rounded-lg text-sm font-medium text-center transition hover:opacity-90 shadow"
+                            className="flex-grow basis-[calc(25%-0.75rem)] sm:basis-[calc(20%-0.75rem)] md:basis-[calc(16.66%-0.75rem)] lg:basis-[calc(12.5%-0.75rem)] px-4 py-2 border border-[#D8E5EF] rounded-lg text-sm font-medium text-center transition hover:opacity-90 shadow flex items-center justify-center"
                             style={{
                                 backgroundColor: btn.buttonBgColor || 'transparent',
                                 color: btn.buttonTextColor || '#000000',

@@ -133,7 +133,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ section }) => {
             className={`py-10 px-6 ${bgStyle !== 'color' && bgStyle !== 'image' ? bgStyleClasses[bgStyle] : ''}`}
             style={backgroundStyle}
         >
-            <div className="max-w-9xl mx-auto">
+            <div className="max-w-12xl mx-auto">
                 <h1
                     className={`font-bold w-full mb-4 ${titleAlignClass} ${titleFontSizeClass}`}
                     style={titleInlineStyle}

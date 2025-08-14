@@ -123,7 +123,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
 
     return (
         <section
-            className={`w-full max-w-9xl mx-auto pt-20 md:pt-28 pb-10 flex flex-col items-center justify-center relative overflow-hidden ${layoutClass} ${section.customCss ?? ''}`}
+            className={`w-full max-w-12xl mx-auto pt-16 md:pt-24 pb-10 flex flex-col items-center justify-center relative overflow-hidden ${layoutClass} ${section.customCss ?? ''}`}
             style={{ backgroundColor: section.bgColor, ...sectionStyle, position: 'relative', zIndex: 3 }}
         >
             {/* Background Image Container */}
@@ -157,7 +157,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
 
                 {/* Images Carousel */}
                 {section.images && section.images.length > 0 && (
-                    <div className="w-full max-w-5xl mt-8">
+                    <div className="w-full max-w-5xl mt-8 px-2">
                         <Carousel
                             selectedItem={currentIndex}
                             showThumbs={false}
