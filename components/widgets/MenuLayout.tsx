@@ -61,7 +61,7 @@ export default function MenuLayout({ config }: MenuLayoutProps) {
                                 <img
                                     src={card.image}
                                     alt={card.title || 'Card image'}
-                                    className="w-full h-48 lg:w-40 lg:h-40 object-cover rounded-3xl flex-shrink-0"
+                                    className="w-full h-40 lg:h-full lg:w-40 object-cover rounded-3xl flex-shrink-0"
                                 />
                             )}
 
