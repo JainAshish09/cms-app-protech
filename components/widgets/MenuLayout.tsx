@@ -25,12 +25,12 @@ export default function MenuLayout({ config }: MenuLayoutProps) {
     return (
         <div className="w-full max-h-[80vh] overflow-y-auto">
             <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] lg:grid-rows-[auto_auto] gap-4 ">
-                <section className="bg-transparent rounded-lg p-0  flex flex-row gap-3 row-start-1 col-start-1 px-3 pt-3">
+                <section className="w-full flex flex-wrap gap-3 px-3 pt-3">
                     {sectionA.buttons.map((btn, idx) => (
                         <a
                             key={idx}
                             href={btn.url || '#'}
-                            className="flex-1 min-w-[100px] px-4 py-2 border border-[#D8E5EF] rounded-lg text-sm font-medium text-center transition hover:opacity-90 shadow"
+                            className="flex-grow basis-[calc(25%-0.75rem)] sm:basis-[calc(20%-0.75rem)] md:basis-[calc(16.66%-0.75rem)] lg:basis-[calc(12.5%-0.75rem)] px-4 py-2 border border-[#D8E5EF] rounded-lg text-sm font-medium text-center transition hover:opacity-90 shadow"
                             style={{
                                 backgroundColor: btn.buttonBgColor || 'transparent',
                                 color: btn.buttonTextColor || '#000000',
@@ -40,6 +40,8 @@ export default function MenuLayout({ config }: MenuLayoutProps) {
                         </a>
                     ))}
                 </section>
+
+
 
                 {/* Section B with dynamic grid columns */}
                 <section
