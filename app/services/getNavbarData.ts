@@ -27,7 +27,6 @@ export interface NavbarData {
     textColor?: string;
     items: CMSMenuItem[];
     showSearch?: boolean;
-    searchPlaceholder?: string;
 }
 
 export const getNavbarData = (): NavbarData => {

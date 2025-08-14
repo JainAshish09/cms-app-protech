@@ -1,26 +1,26 @@
 'use client';
 import React, { useState } from 'react';
 import { CMSMenuItem, NavbarData } from '@/app/services/getNavbarData';
+import Logo from './widgets/logo';
+import SearchBar from './widgets/searchBar';
 
 interface HeaderProps {
     navbarData: NavbarData;
 }
 
 const Header: React.FC<HeaderProps> = ({ navbarData }) => {
-
     const {
         bgColor = '#ffffff',
         textColor = '#000000',
         items = [],
         showSearch = false,
-        searchPlaceholder = '',
     } = navbarData || {};
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const headerStyles = {
-        backgroundColor: bgColor || '#ffffff',
-        color: textColor || '#000000',
+        backgroundColor: bgColor,
+        color: textColor,
     };
 
     const leftItems = items?.filter((item) => item.alignment === 'left');
@@ -92,12 +92,12 @@ const Header: React.FC<HeaderProps> = ({ navbarData }) => {
                     style={headerStyles}
                     className="bg-white rounded-lg p-3 flex items-center justify-between shadow-md"
                 >
-                    {/* Left section: Menu toggle on mobile */}
+                    {/* Left section: Menu toggle on mobile and md+ */}
                     <div className="flex items-center space-x-4">
-                        {/* Mobile menu button */}
+                        {/* Menu button */}
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className="md:hidden flex items-center space-x-1 border-2 border-black rounded-lg px-2 py-1"
+                            className="flex items-center space-x-1 border-2 border-black rounded-lg px-2 py-1"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -111,49 +111,27 @@ const Header: React.FC<HeaderProps> = ({ navbarData }) => {
                             </svg>
                         </button>
 
-                        {/* Desktop Left Menu */}
+                        {/* Desktop Left Menu (hidden on small screens) */}
                         <div className="hidden md:flex items-center space-x-4">
                             <span className="text-black text-lg font-normal">Menu</span>
                             {renderMenuItems(leftItems)}
                         </div>
                     </div>
 
-                    {/* Center logo */}
-                    <div className="flex flex-1 justify-center items-center">
-                        <div className="flex items-baseline space-x-2 text-center md:text-left">
-                            <span className="text-black text-xl md:text-2xl font-extrabold tracking-tight">ASSA ABLOY</span>
-                            <span className="text-black text-xs md:text-sm font-normal tracking-wide">PRO-TECH TITAN®</span>
-                        </div>
-                    </div>
+                    {/* Logo */}
+                    <Logo />
 
-                    {/* Right items */}
+                    {/* Desktop Right Menu */}
                     <div className="hidden md:flex items-center space-x-3">
                         {renderMenuItems(rightItems)}
 
                         {showSearch && (
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    placeholder={searchPlaceholder || 'Search...'}
-                                    className="px-3 py-1 border rounded pr-8"
-                                />
-                                <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-4 w-4"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1117 9a7.5 7.5 0 01-.35 7.65z" />
-                                    </svg>
-                                </div>
-                            </div>
+                            <SearchBar />
                         )}
                     </div>
                 </header>
 
-                {/* Mobile dropdown menu */}
+                {/* Mobile dropdown menu (visible on small screens only) */}
                 {mobileMenuOpen && (
                     <div className="md:hidden mt-2 bg-white rounded-lg shadow p-4 space-y-4">
                         {renderMenuItems(leftItems, true)}
@@ -162,10 +140,29 @@ const Header: React.FC<HeaderProps> = ({ navbarData }) => {
                         {showSearch && (
                             <input
                                 type="text"
-                                placeholder={searchPlaceholder || 'Search...'}
+                                placeholder="Search..."
                                 className="w-full px-3 py-2 border rounded"
                             />
                         )}
+                    </div>
+                )}
+
+                {/* Desktop dropdown panel (visible on md+ only) */}
+                {mobileMenuOpen && (
+                    <div className="hidden md:block absolute left-4 right-4 top-[70px] bg-white rounded-lg shadow p-4 z-40">
+                        <div className="flex flex-col md:flex-row md:justify-between gap-4">
+                            <div>{renderMenuItems(leftItems, true)}</div>
+                            <div>{renderMenuItems(rightItems, true)}</div>
+                            {showSearch && (
+                                <div className="w-full md:max-w-xs">
+                                    <input
+                                        type="text"
+                                        placeholder="Search..."
+                                        className="w-full px-3 py-2 border rounded"
+                                    />
+                                </div>
+                            )}
+                        </div>
                     </div>
                 )}
             </div>
@@ -174,5 +171,3 @@ const Header: React.FC<HeaderProps> = ({ navbarData }) => {
 };
 
 export default Header;
-
-

@@ -1511,7 +1511,3 @@ collections:
             name: "showSearch"
             widget: "boolean"
             default: true
-          - label: "Search Placeholder"
-            name: "searchPlaceholder"
-            widget: "string"
-            default: "Search..."
