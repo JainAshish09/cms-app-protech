@@ -154,7 +154,7 @@ const Header: React.FC<HeaderProps> = ({ navbarData, menuLayoutConfig }) => {
 
                 {mobileMenuOpen && (
                     <div
-                        className=" bg-white rounded-lg p-3 items-center justify-between shadow-md mt-4"
+                        className=" bg-white rounded-lg p-3 max-w-9xl mx-auto items-center justify-between shadow-md mt-4"
                     >                        <MenuLayout config={menuLayoutConfig} />
                     </div>
 
