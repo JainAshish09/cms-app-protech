@@ -1,20 +1,20 @@
 ---
 address: 10027 S. 51st St.Phoenix, AZ 85044
-directionsUrl: directionURL
+directionsUrl: https://share.google/Y4oGUWDUjDRP00An5
 socialLinks:
   - name: Google
-    url: google
+    url: https://www.google.com/search?q=pro+tech+titan+software&sca_esv=16d5bc79565112ea&rlz=1C1GCOU_enIN1169IN1169&sxsrf=AE3TifObh7gFr8DGydXzp-77PSfC8i3ECQ%3A1755159888573&ei=UJ2daNDhIu7vseMPioD06Qo&oq=protech+titan+So&gs_lp=Egxnd3Mtd2l6LXNlcnAiEHByb3RlY2ggdGl0YW4gU28qAggAMgYQABgWGB4yCxAAGIAEGIYDGIoFMgsQABiABBiGAxiKBTILEAAYgAQYhgMYigUyBRAAGO8FMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FSJ9uUKdUWJllcAN4AZABAJgBzgGgAfgFqgEFMC4zLjG4AQPIAQD4AQGYAgegAt8GwgIKEAAYsAMY1gQYR8ICBRAhGKABwgIFECEYnwWYAwCIBgGQBgaSBwUzLjIuMqAH_RiyBwUwLjIuMrgHpAbCBwcyLTIuNC4xyAdV&sclient=gws-wiz-serp
     icon: images/google.svg
   - icon: images/twitter1.png
     name: twitter
-    url: twitte
+    url: https://www.google.com/search?q=pro+tech+titan+software&sca_esv=16d5bc79565112ea&rlz=1C1GCOU_enIN1169IN1169&sxsrf=AE3TifObh7gFr8DGydXzp-77PSfC8i3ECQ%3A1755159888573&ei=UJ2daNDhIu7vseMPioD06Qo&oq=protech+titan+So&gs_lp=Egxnd3Mtd2l6LXNlcnAiEHByb3RlY2ggdGl0YW4gU28qAggAMgYQABgWGB4yCxAAGIAEGIYDGIoFMgsQABiABBiGAxiKBTILEAAYgAQYhgMYigUyBRAAGO8FMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FSJ9uUKdUWJllcAN4AZABAJgBzgGgAfgFqgEFMC4zLjG4AQPIAQD4AQGYAgegAt8GwgIKEAAYsAMY1gQYR8ICBRAhGKABwgIFECEYnwWYAwCIBgGQBgaSBwUzLjIuMqAH_RiyBwUwLjIuMrgHpAbCBwcyLTIuNC4xyAdV&sclient=gws-wiz-serp
 sections:
   - title: Site Links
     links:
       - label: What is PRO-TECH?
-        url: test
+        url: /about
       - label: Features
-        url: features
+        url: /features
       - label: Products
         url: products
       - label: Request a Demo
@@ -22,11 +22,11 @@ sections:
   - title: Useful Links
     links:
       - label: Training
-        url: training
+        url: https://www.pro-techsoftware.com/en/training
       - label: Support
-        url: support
+        url: https://www.pro-techsoftware.com/en/support
       - label: Contact
-        url: contact
+        url: demo
   - title: Quick Links
     links:
       - label: Privacy Center

@@ -84,7 +84,7 @@ sections:
       border: 1px solid transparent
       radius: 4px
       text: Check out the latest versions of PRO-TECH  >
-      link: test
+      link: products
     layout: imageLeft
     titleControls:
       fontSize: "32"
@@ -128,7 +128,7 @@ sections:
           border: 1px solid transparent
           radius: 4px
           text: "Request a demo  > "
-          link: link
+          link: demo
         image: images/protech-in-action.png
         content: Learn how PRO-TECH can accelerate productivity and improve project
           accuracy by automating many time-consuming tasks.  Schedule a software
@@ -144,7 +144,7 @@ sections:
           newTab: false
           backgroundColor: "#00A0D0"
           icon: ""
-          link: test
+          link: demo
         title: Need help utilizing PRO-TECH to its full potential?
         content: Training sessions are available to assist you in getting the most out
           of the software. Our team of experts is happy to help!
