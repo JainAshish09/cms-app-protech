@@ -1520,22 +1520,19 @@ collections:
             name: "sectionAButtons"
             widget: "object"
             fields:
-              - { label: "Background Color", name: "backgroundColor", widget: "color", default: "#f5f5f5", required: false }
-              - { label: "Text Color", name: "textColor", widget: "color", default: "#000000", required: false }
               - label: "Buttons List"
                 name: "buttons"
                 widget: "list"
                 fields:
                   - { label: "Button Label", name: "label", widget: "string" }
                   - { label: "Button URL", name: "url", widget: "string" }
-                  - { label: "Button Background Color", name: "buttonBgColor", required: false , widget: "color", default: "#3b82f6" }
-                  - { label: "Button Text Color", name: "buttonTextColor", required: false , widget: "color", default: "#ffffff" }
+                  - { label: "Button Background Color", name: "buttonBgColor", required: false , widget: "color",  }
+                  - { label: "Button Text Color", name: "buttonTextColor", required: false , widget: "color", default: "#000000" }
 
           - label: "Section B - Main Cards"
             name: "sectionBCards"
             widget: "object"
             fields:
-              - { label: "Background Color", name: "backgroundColor", required: false,  widget: "color", default: "#ffffff" }
               - label: "Cards"
                 name: "cards"
                 widget: "list"

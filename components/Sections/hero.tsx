@@ -185,10 +185,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ section, sectionStyle }) => {
                                 </div>
                             ))}
                         </Carousel>
-                        <div className="w-full flex justify-center mt-2">
-                            <ImageNavigationButtons onLeftClick={handleLeftClick} onRightClick={handleRightClick} />
-                        </div>
-
                     </div>
                 )}
 

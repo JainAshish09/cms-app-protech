@@ -5,44 +5,50 @@ sectionAButtons:
   buttons:
     - buttonBgColor: ""
       buttonTextColor: ""
-      label: Button 1
-      url: wwww
-    - buttonBgColor: "#3b82f6"
-      buttonTextColor: "#ffffff"
-      label: Button 2
-      url: This is a button 2
-    - buttonBgColor: "#3b82f6"
-      buttonTextColor: "#ffffff"
-      label: "Button 3 "
-      url: This is a button 3
-    - buttonBgColor: "#3b82f6"
-      buttonTextColor: "#ffffff"
-      label: "Button 4 "
-      url: This is a button 4
+      label: Home
+      url: /
+    - buttonBgColor: ""
+      buttonTextColor: "#000000"
+      label: What is PRO-TECH?
+      url: about
+    - buttonBgColor: ""
+      buttonTextColor: "#000000"
+      label: Products >
+      url: products
+    - buttonBgColor: ""
+      buttonTextColor: ""
+      label: Features
+      url: features
+    - buttonTextColor: ""
+      label: Request a Demo
+      url: demo
+      buttonBgColor: ""
 sectionBCards:
   backgroundColor: "#7ba0ff"
   cards:
-    - buttonLabel: BUtton 1
+    - buttonLabel: Request a Demo >
       buttonTextColor: "#ffffff"
-      cardTextColor: "#000000"
-      buttonBgColor: "#3b82f6"
-      cardBgColor: "#ffffff"
-      title: Section B card
-      content: Content
-      image: images/gallery5.png
-      buttonUrl: url
-    - buttonLabel: CArd 2 label
+      cardTextColor: ""
+      buttonBgColor: "#00a0d0"
+      cardBgColor: ""
+      title: See PRO-TECH in action
+      content: Learn how PRO-TECH can accelerate productivity and improve project
+        accuracy by automating many time ...
+      image: images/protech-in-action.png
+      buttonUrl: demo
+    - buttonLabel: Further information on training
       buttonTextColor: "#ffffff"
-      cardTextColor: "#000000"
-      buttonBgColor: "#3b82f6"
-      cardBgColor: "#ffffff"
-      title: Card 2
-      content: Content Card 2
-      image: images/home1.png
-      buttonUrl: www
+      cardTextColor: ""
+      buttonBgColor: "#00a0d0"
+      cardBgColor: ""
+      title: See PRO-TECH in action
+      content: Learn how PRO-TECH can accelerate productivity and improve project
+        accuracy by automating many time ...
+      image: images/training-sessions.png
+      buttonUrl: training
 sectionCCard:
-  link: This is a Link of 1
-  linkLabel: Link 1
-  backgroundImage: images/about-img-2.jpeg
+  link: products
+  linkLabel: Check out the latest versions of PRO-TECH TITAN®
+  backgroundImage: images/toggleMenuImage1.png
   logo: images/protechLogo.png
 ---
