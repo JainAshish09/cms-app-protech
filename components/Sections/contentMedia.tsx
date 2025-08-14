@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import Button, { ButtonProps } from '../widgets/Button';
@@ -26,7 +26,7 @@ interface Section {
     ctaControls?: ControlSettings;
 }
 
-// Utility functions
+// Utility functions remain same...
 function getTextAlignClass(align?: string) {
     if (align === 'left') return 'text-left';
     if (align === 'right') return 'text-right';
@@ -72,22 +72,20 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
 
     const mediaRef = useRef<HTMLDivElement | null>(null);
     const textRef = useRef<HTMLDivElement | null>(null);
-    const [scrollNeeded, setScrollNeeded] = useState(false);
+    const [maxTextHeight, setMaxTextHeight] = useState<number | undefined>(undefined);
 
+    /** Function to recalc height after image load or resize */
+    const recalcHeights = useCallback(() => {
+        if (mediaRef.current) {
+            setMaxTextHeight(mediaRef.current.clientHeight);
+        }
+    }, []);
+
+    // Recalculate on resize
     useEffect(() => {
-        const checkHeights = () => {
-            if (mediaRef.current && textRef.current) {
-                const mediaHeight = mediaRef.current.clientHeight;
-                const textHeight = textRef.current.scrollHeight;
-                setScrollNeeded(textHeight > mediaHeight);
-            }
-        };
-
-        checkHeights();
-        window.addEventListener('resize', checkHeights);
-
-        return () => window.removeEventListener('resize', checkHeights);
-    }, [title, content, mediaItems]);
+        window.addEventListener('resize', recalcHeights);
+        return () => window.removeEventListener('resize', recalcHeights);
+    }, [recalcHeights]);
 
     const handlePrev = () => {
         setCurrentIndex((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
@@ -99,7 +97,7 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
 
     return (
         <section
-            className={`w-full max-w-12xl mx-auto py-16 relative`}
+            className="w-full max-w-12xl mx-auto py-8 relative"
             style={hasBgImage ? {} : { backgroundColor: bgColor }}
         >
             {/* Background Image */}
@@ -122,14 +120,12 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
                 </div>
             )}
 
-            <div
-                className={`max-w-fit mx-auto flex flex-col items-center justify-center gap-8 px-4 md:px-8 ${flexDirectionClass}`}
-            >
+            <div className={`max-w-fit mx-auto flex flex-col items-center gap-8 px-4 md:px-8 ${flexDirectionClass}`}>
                 {/* Media Column */}
                 {!hasBgImage && mediaItems.length > 0 && (
                     <div
                         ref={mediaRef}
-                        className="relative m-0 p-0 w-full md:w-1/2 max-w-xl rounded-xl overflow-hidden"
+                        className="relative w-full md:w-1/2 max-w-xl rounded-xl overflow-hidden"
                     >
                         <Image
                             src={`/${mediaItems[currentIndex].file}`}
@@ -139,6 +135,7 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
                             height={360}
                             objectFit="cover"
                             className="rounded-xl"
+                            onLoadingComplete={recalcHeights} // recalc after load
                         />
                         {showArrows && (
                             <>
@@ -164,29 +161,20 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
                 {/* Text Content Column */}
                 <div
                     ref={textRef}
-                    className={`w-full md:w-1/2 max-w-4xl space-y-6 ${scrollNeeded ? 'overflow-auto' : 'overflow-visible'
-                        }`}
+                    className={`w-full md:w-1/2 max-w-4xl space-y-6 ${maxTextHeight ? 'overflow-auto' : 'overflow-visible'}`}
                     style={{
-                        height: '-webkit-fill-available',
-                        ...(scrollNeeded && mediaRef.current
-                            ? { maxHeight: mediaRef.current.clientHeight }
-                            : {}),
+                        maxHeight: maxTextHeight, // match image height
                     }}
                 >
-
                     <h2
-                        className={`font-bold drop-shadow-lg w-full ${getTextAlignClass(
-                            titleControls?.align
-                        )}`}
+                        className={`font-bold drop-shadow-lg w-full ${getTextAlignClass(titleControls?.align)}`}
                         style={getStyleOverride(titleControls?.fontSize, titleControls?.color)}
                     >
                         {title}
                     </h2>
 
                     <div
-                        className={`prose prose-blue max-w-none ${getTextAlignClass(
-                            contentControls?.align
-                        )}`}
+                        className={`prose prose-blue max-w-none ${getTextAlignClass(contentControls?.align)}`}
                         style={{
                             ...getStyleOverride(contentControls?.fontSize, contentControls?.color),
                             wordWrap: 'break-word',
@@ -203,7 +191,6 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
                         </div>
                     )}
                 </div>
-
             </div>
         </section>
     );
