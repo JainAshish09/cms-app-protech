@@ -10,18 +10,18 @@ sectionAButtons:
     - buttonBgColor: ""
       buttonTextColor: "#000000"
       label: What is PRO-TECH?
-      url: /about
+      url: https://www.pro-techsoftware.com/en/about
     - buttonBgColor: ""
       buttonTextColor: "#000000"
       label: Products >
-      url: /products
+      url: https://www.pro-techsoftware.com/en/products
     - buttonBgColor: ""
       buttonTextColor: ""
       label: Features
-      url: /features
+      url: https://www.pro-techsoftware.com/en/features
     - buttonTextColor: ""
       label: Request a Demo
-      url: /demo
+      url: https://www.pro-techsoftware.com/en/request-a-demo
       buttonBgColor: ""
 sectionBCards:
   backgroundColor: "#7ba0ff"
@@ -35,7 +35,7 @@ sectionBCards:
       content: Learn how PRO-TECH can accelerate productivity and improve project
         accuracy by automating many time ...
       image: images/protech-in-action.png
-      buttonUrl: /demo
+      buttonUrl: https://www.pro-techsoftware.com/en/request-a-demo
     - buttonLabel: Further information on training
       buttonTextColor: "#ffffff"
       cardTextColor: ""
@@ -45,9 +45,9 @@ sectionBCards:
       content: Learn how PRO-TECH can accelerate productivity and improve project
         accuracy by automating many time ...
       image: images/training-sessions.png
-      buttonUrl: /training
+      buttonUrl: https://www.pro-techsoftware.com/en/training
 sectionCCard:
-  link: /products
+  link: https://www.pro-techsoftware.com/en/products
   linkLabel: Check out the latest versions of PRO-TECH TITAN®
   backgroundImage: images/toggleMenuImage1.png
   logo: images/protechLogo.png

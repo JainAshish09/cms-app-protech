@@ -12,13 +12,13 @@ sections:
   - title: Site Links
     links:
       - label: What is PRO-TECH?
-        url: /about
+        url: https://www.pro-techsoftware.com/en/about
       - label: Features
-        url: /features
+        url: https://www.pro-techsoftware.com/en/features
       - label: Products
-        url: products
+        url: https://www.pro-techsoftware.com/en/products
       - label: Request a Demo
-        url: demo
+        url: https://www.pro-techsoftware.com/en/request-a-demo
   - title: Useful Links
     links:
       - label: Training
@@ -26,7 +26,7 @@ sections:
       - label: Support
         url: https://www.pro-techsoftware.com/en/support
       - label: Contact
-        url: demo
+        url: https://www.pro-techsoftware.com/en/contact
   - title: Quick Links
     links:
       - label: Privacy Center

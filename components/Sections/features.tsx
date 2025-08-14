@@ -130,7 +130,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ section }) => {
 
     return (
         <section
-            className={`py-16 px-6 ${bgStyle !== 'color' && bgStyle !== 'image' ? bgStyleClasses[bgStyle] : ''}`}
+            className={`py-10 px-6 ${bgStyle !== 'color' && bgStyle !== 'image' ? bgStyleClasses[bgStyle] : ''}`}
             style={backgroundStyle}
         >
             <div className="max-w-9xl mx-auto">

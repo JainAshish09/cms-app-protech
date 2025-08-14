@@ -35,7 +35,7 @@ sections:
       fontSize: "32"
       align: center
     features:
-      - icon: images/create-projects.svg
+      - icon: images/BUILDINGS.png
         description: >-
           
           Easily create projects from existing door schedules or Openings Studio™
@@ -43,8 +43,8 @@ sections:
       - title: "  "
         description: Create hardware sets to simplify adding standardized hardware to
           door openings
-        icon: images/create-hardware-sets.svg
-      - icon: images/titan-apogee.svg
+        icon: images/HANDLE.png
+      - icon: images/INNER-DOOR.png
         description: |-
           
           Visualize 3D door opening elevations in real time with TITAN APOGEE
@@ -52,19 +52,19 @@ sections:
       - description: |-
           
           Track change orders and impact to price as the project evolves
-        icon: images/track-change-orders.svg
+        icon: images/UPDATER.png
         title: "  "
       - description: |-
           
           Generate submittals and quotes from your projects
-        icon: images/generate-submittals.svg
+        icon: images/AGENDA.png
         title: " "
       - description: >-
           
           Access product collateral and price books from door and hardware manufacturers
-        icon: images/access-product-collateral.svg
+        icon: images/CATALOGUE.png
         title: " "
-      - icon: images/generate-reports.svg
+      - icon: images/CHART.png
         description: >-
           
           Generate reports like door and hardware schedules, keying data and material cost
@@ -72,7 +72,7 @@ sections:
       - description: >-
           
           Integrate with accounting systems for an end-to-end business experience
-        icon: images/integrate-accounting-systems.svg
+        icon: images/ELEVATOR.png
         title: " "
     contentControls:
       fontSize: "14"
@@ -84,7 +84,7 @@ sections:
       border: 1px solid transparent
       radius: 4px
       text: Check out the latest versions of PRO-TECH  >
-      link: products
+      link: https://www.pro-techsoftware.com/en/products
     layout: imageLeft
     titleControls:
       fontSize: "32"
@@ -94,7 +94,7 @@ sections:
       fontSize: "16"
       align: left
     title: Powerful project management tool made for the door and hardware industry
-    content: >-
+    content: >
       Managing the door openings on projects large and small can be a
       time-consuming and complex task for contract hardware distributors.
       Simplify the process and bring greater efficiency to your business with
@@ -102,13 +102,6 @@ sections:
 
 
       Offered as on-premises software or cloud-based with PRO-TECH V8®, or exclusively on the cloud as PRO-TECH TITAN®. Help for your most time-consuming tasks is here!  
-
-
-      The PRO-TECH advantage includes:
-
-      * Simplified project detailing with advanced features
-
-      * Default and custom price books for hardware and material
     type: contentMedia
     mediaItems:
       - file: images/project-management-tool.png
@@ -128,7 +121,7 @@ sections:
           border: 1px solid transparent
           radius: 4px
           text: "Request a demo  > "
-          link: demo
+          link: https://www.pro-techsoftware.com/en/request-a-demo
         image: images/protech-in-action.png
         content: Learn how PRO-TECH can accelerate productivity and improve project
           accuracy by automating many time-consuming tasks.  Schedule a software
@@ -144,7 +137,7 @@ sections:
           newTab: false
           backgroundColor: "#00A0D0"
           icon: ""
-          link: demo
+          link: https://www.pro-techsoftware.com/en/training
         title: Need help utilizing PRO-TECH to its full potential?
         content: Training sessions are available to assist you in getting the most out
           of the software. Our team of experts is happy to help!
