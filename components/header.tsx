@@ -76,7 +76,7 @@ const Header: React.FC<HeaderProps> = ({ navbarData, menuLayoutConfig }) => {
     return (
         <div>
             <div className="fixed top-0 inset-x-0 z-50 py-3 px-4 sm:px-6">
-                <div className="max-w-9xl mx-auto">
+                <div className="max-w-8xl mx-auto">
                     <header style={headerStyles} className="relative bg-white rounded-lg p-3 flex items-center justify-between shadow-md">
                         {/* Left Section */}
                         <div className="flex items-center space-x-4">
