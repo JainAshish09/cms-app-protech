@@ -1,14 +1,16 @@
 'use client';
 import React, { useState } from 'react';
-import { CMSMenuItem, NavbarData } from '@/app/services/getNavbarData';
+import { CMSMenuItem, MenuLayoutConfig, NavbarData } from '@/app/services/getNavbarData';
 import Logo from './widgets/logo';
 import SearchBar from './widgets/searchBar';
+import MenuLayout from './widgets/MenuLayout';
 
 interface HeaderProps {
     navbarData: NavbarData;
+    menuLayoutConfig: MenuLayoutConfig;
 }
 
-const Header: React.FC<HeaderProps> = ({ navbarData }) => {
+const Header: React.FC<HeaderProps> = ({ navbarData, menuLayoutConfig }) => {
     const {
         bgColor = '#ffffff',
         textColor = '#000000',
@@ -86,86 +88,80 @@ const Header: React.FC<HeaderProps> = ({ navbarData }) => {
     );
 
     return (
-        <div className="fixed top-0 inset-x-0 z-50 py-3 px-4 sm:px-6">
-            <div className="max-w-9xl mx-auto">
-                <header
-                    style={headerStyles}
-                    className="bg-white rounded-lg p-3 flex items-center justify-between shadow-md"
-                >
-                    {/* Left section: Menu toggle on mobile and md+ */}
-                    <div className="flex items-center space-x-4">
-                        {/* Menu button */}
-                        <button
-                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className="flex items-center space-x-1 border-2 border-black rounded-lg px-2 py-1"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6 text-black"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                strokeWidth={2}
+        <div>
+            <div className="fixed top-0 inset-x-0 z-50 py-3 px-4 sm:px-6">
+                <div className="max-w-9xl mx-auto">
+                    <header
+                        style={headerStyles}
+                        className="relative bg-white rounded-lg p-3 flex items-center justify-between shadow-md"
+                    >
+
+                        {/* Left section: Menu toggle on mobile and md+ */}
+                        <div className="flex items-center space-x-4">
+                            {/* Menu button */}
+                            <button
+                                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                                className="flex items-center space-x-1 border-2 border-black rounded-lg px-2 py-1"
                             >
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        </button>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6 text-black"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    strokeWidth={2}
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                            </button>
 
-                        {/* Desktop Left Menu (hidden on small screens) */}
-                        <div className="hidden md:flex items-center space-x-4">
-                            <span className="text-black text-lg font-normal">Menu</span>
-                            {renderMenuItems(leftItems)}
+                            {/* Desktop Left Menu (hidden on small screens) */}
+                            <div className="hidden md:flex items-center space-x-4">
+                                <span className="text-black text-lg font-normal">Menu</span>
+                                {renderMenuItems(leftItems)}
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Logo */}
-                    <Logo />
+                        {/* Logo */}
+                        <Logo />
 
-                    {/* Desktop Right Menu */}
-                    <div className="hidden md:flex items-center space-x-3">
-                        {renderMenuItems(rightItems)}
+                        {/* Desktop Right Menu */}
+                        <div className="hidden md:flex items-center space-x-3">
+                            {renderMenuItems(rightItems)}
 
-                        {showSearch && (
-                            <SearchBar />
-                        )}
-                    </div>
-                </header>
-
-                {/* Mobile dropdown menu (visible on small screens only) */}
-                {mobileMenuOpen && (
-                    <div className="md:hidden mt-2 bg-white rounded-lg shadow p-4 space-y-4">
-                        {renderMenuItems(leftItems, true)}
-                        <hr />
-                        {renderMenuItems(rightItems, true)}
-                        {showSearch && (
-                            <input
-                                type="text"
-                                placeholder="Search..."
-                                className="w-full px-3 py-2 border rounded"
-                            />
-                        )}
-                    </div>
-                )}
-
-                {/* Desktop dropdown panel (visible on md+ only) */}
-                {mobileMenuOpen && (
-                    <div className="hidden md:block absolute left-4 right-4 top-[70px] bg-white rounded-lg shadow p-4 z-40">
-                        <div className="flex flex-col md:flex-row md:justify-between gap-4">
-                            <div>{renderMenuItems(leftItems, true)}</div>
-                            <div>{renderMenuItems(rightItems, true)}</div>
                             {showSearch && (
-                                <div className="w-full md:max-w-xs">
-                                    <input
-                                        type="text"
-                                        placeholder="Search..."
-                                        className="w-full px-3 py-2 border rounded"
-                                    />
-                                </div>
+                                <SearchBar />
                             )}
                         </div>
+                    </header>
+
+                    {/* Mobile dropdown menu (visible on small screens only) */}
+                    {mobileMenuOpen && (
+                        <div className="md:hidden mt-2 bg-white rounded-lg shadow p-4 space-y-4">
+                            {renderMenuItems(leftItems, true)}
+                            <hr />
+                            {renderMenuItems(rightItems, true)}
+                            {showSearch && (
+                                <input
+                                    type="text"
+                                    placeholder="Search..."
+                                    className="w-full px-3 py-2 border rounded"
+                                />
+                            )}
+                        </div>
+                    )}
+                </div>
+
+                {mobileMenuOpen && (
+                    <div
+                        className=" bg-white rounded-lg p-3 items-center justify-between shadow-md mt-4"
+                    >                        <MenuLayout config={menuLayoutConfig} />
                     </div>
+
                 )}
             </div>
+
+
         </div>
     );
 };

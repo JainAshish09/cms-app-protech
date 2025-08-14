@@ -1511,3 +1511,50 @@ collections:
             name: "showSearch"
             widget: "boolean"
             default: true
+      - label: "Menu Layout Configuration"
+        name: "menuLayoutConfig"
+        file: "content/navigation/menu-layout.md"
+        body: false
+        fields:
+          - label: "Section A - Button Controls"
+            name: "sectionAButtons"
+            widget: "object"
+            fields:
+              - { label: "Background Color", name: "backgroundColor", widget: "color", default: "#f5f5f5", required: false }
+              - { label: "Text Color", name: "textColor", widget: "color", default: "#000000", required: false }
+              - label: "Buttons List"
+                name: "buttons"
+                widget: "list"
+                fields:
+                  - { label: "Button Label", name: "label", widget: "string" }
+                  - { label: "Button URL", name: "url", widget: "string" }
+                  - { label: "Button Background Color", name: "buttonBgColor", required: false , widget: "color", default: "#3b82f6" }
+                  - { label: "Button Text Color", name: "buttonTextColor", required: false , widget: "color", default: "#ffffff" }
+
+          - label: "Section B - Main Cards"
+            name: "sectionBCards"
+            widget: "object"
+            fields:
+              - { label: "Background Color", name: "backgroundColor", required: false,  widget: "color", default: "#ffffff" }
+              - label: "Cards"
+                name: "cards"
+                widget: "list"
+                fields:
+                  - { label: "Card Title", name: "title", widget: "string" }
+                  - { label: "Card Content", name: "content", widget: "text" }
+                  - { label: "Card Image", name: "image", widget: "image" }
+                  - { label: "Button Label", name: "buttonLabel", widget: "string" }
+                  - { label: "Button URL", name: "buttonUrl", widget: "string" }
+                  - { label: "Button Background Color", name: "buttonBgColor", required: false, widget: "color", default: "#3b82f6" }
+                  - { label: "Button Text Color", name: "buttonTextColor", required: false, widget: "color", default: "#ffffff" }
+                  - { label: "Card Background Color", name: "cardBgColor", required: false, widget: "color", default: "#ffffff" }
+                  - { label: "Card Text Color", name: "cardTextColor", required: false, widget: "color", default: "#000000" }
+
+          - label: "Section C - Sidebar Card"
+            name: "sectionCCard"
+            widget: "object"
+            fields:
+              - { label: "Link URL", name: "link", widget: "string" }
+              - { label: "Link Label", name: "linkLabel", widget: "string" }
+              - { label: "Background Image", name: "backgroundImage", widget: "image" }
+              - { label: "Logo", name: "logo", widget: "image" }
