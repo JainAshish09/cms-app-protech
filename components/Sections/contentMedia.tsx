@@ -164,7 +164,7 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
                 {/* Text Content Column */}
                 <div
                     ref={textRef}
-                    className={`w-full md:w-1/2 max-w-4xl space-y-6 ${scrollNeeded ? 'overflow-auto' : ''
+                    className={`w-full md:w-1/2 max-w-4xl space-y-6 ${scrollNeeded ? 'overflow-auto' : 'overflow-visible'
                         }`}
                     style={{
                         height: '-webkit-fill-available',
@@ -173,32 +173,37 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
                             : {}),
                     }}
                 >
+
                     <h2
-                        className={`font-bold drop-shadow-lg w-full ${getTextAlignClass(titleControls?.align)}`}
+                        className={`font-bold drop-shadow-lg w-full ${getTextAlignClass(
+                            titleControls?.align
+                        )}`}
                         style={getStyleOverride(titleControls?.fontSize, titleControls?.color)}
                     >
                         {title}
                     </h2>
 
                     <div
-                        className={`prose prose-blue max-w-none ${getTextAlignClass(contentControls?.align)}`}
+                        className={`prose prose-blue max-w-none ${getTextAlignClass(
+                            contentControls?.align
+                        )}`}
                         style={{
                             ...getStyleOverride(contentControls?.fontSize, contentControls?.color),
                             wordWrap: 'break-word',
                             overflowWrap: 'break-word',
                             whiteSpace: 'normal',
-                            maxWidth: '100%',
                         }}
                     >
                         <ReactMarkdown>{content}</ReactMarkdown>
                     </div>
 
-                    {buttons && buttons?.text && buttons?.link && (
+                    {buttons?.text && buttons?.link && (
                         <div className={getTextAlignClass(contentControls?.align)}>
                             <Button {...buttons} />
                         </div>
                     )}
                 </div>
+
             </div>
         </section>
     );
