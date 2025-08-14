@@ -3,8 +3,8 @@ sectionAButtons:
   backgroundColor: "#ede3e3"
   textColor: "#101c5a"
   buttons:
-    - buttonBgColor: "#3b82f6"
-      buttonTextColor: "#ffffff"
+    - buttonBgColor: ""
+      buttonTextColor: ""
       label: Button 1
       url: wwww
     - buttonBgColor: "#3b82f6"
@@ -44,5 +44,5 @@ sectionCCard:
   link: This is a Link of 1
   linkLabel: Link 1
   backgroundImage: images/about-img-2.jpeg
-  logo: images/about-img-1.jpeg
+  logo: images/protechLogo.png
 ---

@@ -24,16 +24,16 @@ export default function MenuLayout({ config }: MenuLayoutProps) {
 
     return (
         <div className="w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] lg:grid-rows-[auto_auto] gap-6">
-                <section className="bg-transparent border rounded-lg p-5 shadow-sm flex flex-row gap-3 row-start-1 col-start-1">
+            <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] lg:grid-rows-[auto_auto] gap-4 ">
+                <section className="bg-transparent rounded-lg p-0  flex flex-row gap-3 row-start-1 col-start-1 px-3 pt-3">
                     {sectionA.buttons.map((btn, idx) => (
                         <a
                             key={idx}
                             href={btn.url || '#'}
-                            className="flex-1 min-w-[100px] px-4 py-2 rounded-md text-sm font-medium text-center transition hover:opacity-90 shadow"
+                            className="flex-1 min-w-[100px] px-4 py-2 border border-[#D8E5EF] rounded-lg text-sm font-medium text-center transition hover:opacity-90 shadow"
                             style={{
-                                backgroundColor: btn.buttonBgColor || '#3b82f6',
-                                color: btn.buttonTextColor || '#ffffff',
+                                backgroundColor: btn.buttonBgColor || 'transparent',
+                                color: btn.buttonTextColor || '#000000',
                             }}
                         >
                             {btn.label || 'Button'}
@@ -43,12 +43,12 @@ export default function MenuLayout({ config }: MenuLayoutProps) {
 
                 {/* Section B with dynamic grid columns */}
                 <section
-                    className={`grid ${gridColsClass} gap-4 row-start-2 col-start-1`}
+                    className={`grid ${gridColsClass} gap-4 row-start-2 col-start-1 px-3 pb-3`}
                 >
                     {sectionB.cards.map((card, idx) => (
                         <div
                             key={idx}
-                            className="bg-white border rounded-lg shadow-sm p-5 flex flex-col lg:flex-row min-w-0"
+                            className="bg-white border border-[#D8E5EF] rounded-3xl shadow-sm p-4 flex flex-col lg:flex-row min-w-0"
                             style={{
                                 backgroundColor: card.cardBgColor || '#ffffff',
                                 color: card.cardTextColor || '#000000',
@@ -59,25 +59,28 @@ export default function MenuLayout({ config }: MenuLayoutProps) {
                                 <img
                                     src={card.image}
                                     alt={card.title || 'Card image'}
-                                    className="w-full h-48 lg:w-40 lg:h-40 object-cover rounded-md flex-shrink-0"
+                                    className="w-full h-48 lg:w-40 lg:h-40 object-cover rounded-3xl flex-shrink-0"
                                 />
                             )}
 
                             {/* Right Content */}
                             <div className="flex flex-col flex-1 mt-4 lg:mt-0 lg:ml-4 min-w-0">
                                 <h3 className="text-lg font-semibold mb-2">{card.title || 'Card Title'}</h3>
-                                <p className="text-sm mb-4 flex-grow">{card.content || ''}</p>
-                                <a
-                                    href={card.buttonUrl || '#'}
-                                    className="inline-block text-sm font-medium px-4 py-2 rounded-md text-center self-start"
-                                    style={{
-                                        backgroundColor: card.buttonBgColor || '#3b82f6',
-                                        color: card.buttonTextColor || '#ffffff',
-                                    }}
-                                >
-                                    {card.buttonLabel || 'Learn More'}
-                                </a>
+                                <p className="text-sm mb-4 mt-0">{card.content || ''}</p>
+                                <div className="mt-auto">
+                                    <a
+                                        href={card.buttonUrl || '#'}
+                                        className="inline-block text-sm font-medium px-4 py-2 rounded-md text-center self-start"
+                                        style={{
+                                            backgroundColor: card.buttonBgColor || '#3b82f6',
+                                            color: card.buttonTextColor || '#ffffff',
+                                        }}
+                                    >
+                                        {card.buttonLabel || 'Learn More'}
+                                    </a>
+                                </div>
                             </div>
+
                         </div>
                     ))}
                 </section>
@@ -85,7 +88,7 @@ export default function MenuLayout({ config }: MenuLayoutProps) {
                 {/* Section C (spanning both rows) */}
                 {sectionC?.backgroundImage && (
                     <section
-                        className="relative lg:row-span-2 col-start-2 rounded-lg shadow overflow-hidden flex items-center justify-center text-center p-6"
+                        className="relative lg:row-span-2 col-start-2 rounded-r-xl shadow overflow-hidden flex items-center justify-center text-center "
                         style={{
                             backgroundImage: `url(${sectionC.backgroundImage})`,
                             backgroundSize: 'cover',
@@ -96,20 +99,22 @@ export default function MenuLayout({ config }: MenuLayoutProps) {
                         <div className="absolute inset-0 bg-black/40" />
 
                         {/* Content */}
-                        <div className="relative z-10 flex flex-col items-center space-y-4">
+                        <div className="relative z-10 flex flex-col items-center space-y-6">
+                            <a
+                                href={sectionC.link || '#'}
+                                className="text-black bg-white no-underline text-base font-semibold p-2 rounded-md shadow hover:bg-gray-100 transition duration-300"
+                            >
+                                {sectionC.linkLabel || 'Learn More'}
+                            </a>
+
                             {sectionC.logo && (
                                 <img
                                     src={sectionC.logo}
                                     alt="Sidebar Logo"
-                                    className="h-12 w-auto"
+                                    className="h-20 w-auto object-contain rounded-lg border border-[#00A0D0]"
                                 />
                             )}
-                            <a
-                                href={sectionC.link || '#'}
-                                className="text-white text-base font-semibold underline"
-                            >
-                                {sectionC.linkLabel || 'Learn More'}
-                            </a>
+
                         </div>
                     </section>
                 )}

@@ -46,7 +46,8 @@ br {
 
 /* Force Noto Sans on <p> and <p><code> */
 p,
-p>code {
+p>code,
+address {
   font-family: var(--font-lato) !important;
 }
 
