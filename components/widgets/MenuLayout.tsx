@@ -101,7 +101,7 @@ export default function MenuLayout({ config }: MenuLayoutProps) {
                         <div className="relative z-10 mt-16 flex flex-col items-center space-y-6">
                             <a
                                 href={sectionC.link || '#'}
-                                className="text-black bg-white no-underline text-base font-semibold p-2 rounded-md shadow hover:bg-gray-100 transition duration-300"
+                                className="text-black bg-white no-underline text-base font-semibold p-2 mx-3 rounded-md shadow hover:bg-gray-100 transition duration-300"
                             >
                                 {sectionC.linkLabel || 'Learn More'}
                             </a>
