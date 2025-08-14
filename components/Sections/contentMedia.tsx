@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
-import Button, { ButtonProps } from '../widgets/Button'; // ✅ Make sure path is correct
-import { px } from 'framer-motion';
+import Button, { ButtonProps } from '../widgets/Button';
 
 interface ControlSettings {
     align?: 'left' | 'center' | 'right';
@@ -20,7 +19,7 @@ interface Section {
     bgColor?: string;
     title: string;
     content: string;
-    buttons?: ButtonProps; // ✅ Single button object
+    buttons?: ButtonProps;
     mediaItems?: MediaItem[];
     titleControls?: ControlSettings;
     contentControls?: ControlSettings;
@@ -71,6 +70,25 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const showArrows = mediaItems.length > 1;
 
+    const mediaRef = useRef<HTMLDivElement | null>(null);
+    const textRef = useRef<HTMLDivElement | null>(null);
+    const [scrollNeeded, setScrollNeeded] = useState(false);
+
+    useEffect(() => {
+        const checkHeights = () => {
+            if (mediaRef.current && textRef.current) {
+                const mediaHeight = mediaRef.current.clientHeight;
+                const textHeight = textRef.current.scrollHeight;
+                setScrollNeeded(textHeight > mediaHeight);
+            }
+        };
+
+        checkHeights();
+        window.addEventListener('resize', checkHeights);
+
+        return () => window.removeEventListener('resize', checkHeights);
+    }, [title, content, mediaItems]);
+
     const handlePrev = () => {
         setCurrentIndex((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
     };
@@ -109,7 +127,10 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
             >
                 {/* Media Column */}
                 {!hasBgImage && mediaItems.length > 0 && (
-                    <div className="relative m-0 p-0 w-full md:w-1/2 max-w-xl rounded-xl overflow-hidden">
+                    <div
+                        ref={mediaRef}
+                        className="relative m-0 p-0 w-full md:w-1/2 max-w-xl rounded-xl overflow-hidden"
+                    >
                         <Image
                             src={`/${mediaItems[currentIndex].file}`}
                             alt={mediaItems[currentIndex].alt || `Image ${currentIndex + 1}`}
@@ -141,7 +162,17 @@ const ContentMediaSection: React.FC<{ section: Section }> = ({ section }) => {
                 )}
 
                 {/* Text Content Column */}
-                <div className="w-full md:w-1/2 max-w-4xl space-y-6">
+                <div
+                    ref={textRef}
+                    className={`w-full md:w-1/2 max-w-4xl space-y-6 ${scrollNeeded ? 'overflow-auto' : ''
+                        }`}
+                    style={{
+                        height: '-webkit-fill-available',
+                        ...(scrollNeeded && mediaRef.current
+                            ? { maxHeight: mediaRef.current.clientHeight }
+                            : {}),
+                    }}
+                >
                     <h2
                         className={`font-bold drop-shadow-lg w-full ${getTextAlignClass(titleControls?.align)}`}
                         style={getStyleOverride(titleControls?.fontSize, titleControls?.color)}
